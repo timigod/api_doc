@@ -3,6 +3,7 @@ title: Electric Vehicle Charging
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
+  - javascript
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -32,6 +33,22 @@ curl "discovery_endpoint_here"
   --data "range=10000"
   --data "connector=tesla_supercharger"
   --data "level=3"
+```
+
+```javascript
+const discoveryEndPoint = "discovery_endpoint_here";
+
+fetch("/login", {
+  method: "POST",
+  body: JSON.stringify({
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "latitude": "45.518805",
+    "longitude": "-122.707975",
+    "range": "10000",
+    "connector": "tesla_supercharger",
+    "level": "3",
+  })
+});
 ```
 
 <table class="arguments">
