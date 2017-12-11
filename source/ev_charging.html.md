@@ -23,7 +23,7 @@ The communication protocol for Electric Vehicle charging describes the format of
 
 A statement of need for charging stations. Typically this will be sent by an electric vehicle that is looking for a charging station around certain coordinates.
 
-This request is sent to the decentralized discovery engine which responds with status 200. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
+This request is sent to the decentralized discovery engine which responds with status 200 and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
 ## Arguments
 
