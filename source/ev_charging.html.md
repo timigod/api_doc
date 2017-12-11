@@ -33,6 +33,7 @@ curl "discovery_endpoint_here"
   --data "range=10000"
   --data "connector=tesla_supercharger"
   --data "level=3"
+  --data "amenities=2,3"
 ```
 
 ```javascript
@@ -47,6 +48,7 @@ fetch(discoveryEndPoint, {
     "range": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
+    "amenities": "2,3",
   })
 });
 ```
@@ -93,6 +95,13 @@ fetch(discoveryEndPoint, {
       <div class="type">optional</div>
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">amenities</div>
+      <div class="type">optional</div>
+    </td>
+    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
   </tr>
 </table>
 
@@ -169,6 +178,53 @@ fetch(discoveryEndPoint, {
   <tr>
     <td>3</td>
     <td>DC fast charging</td>
+  </tr>
+</table>
+
+# Amenities
+
+A list of amentities can be included in both requests and responses.
+
+<table class="reference">
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Lodging</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Dining</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Restrooms</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>EV Parking</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Valet Parking</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Park</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>WiFi</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Shopping</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Grocery</td>
   </tr>
 </table>
 
