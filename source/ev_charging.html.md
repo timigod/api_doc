@@ -15,7 +15,7 @@ includes:
 search: true
 ---
 
-# Introduction
+# Electric Vehicle Charging Protocol
 
 The communication protocol for Electric Vehicle charging describes the format of a request for a charging service, and the response sent by a charging provider.
 
