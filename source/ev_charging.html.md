@@ -32,7 +32,7 @@ curl "discovery_endpoint_here"
   --data "start_at=2017-12-11T15:18:54+03:00"
   --data "latitude=45.518805"
   --data "longitude=-122.707975"
-  --data "range=10000"
+  --data "radius=10000"
   --data "connector=tesla_supercharger"
   --data "level=3"
   --data "amenities=2,3"
@@ -47,7 +47,7 @@ fetch(discoveryEndPoint, {
     "start_at": "2017-12-11T15:18:54+03:00",
     "latitude": "45.518805",
     "longitude": "-122.707975",
-    "range": "10000",
+    "radius": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
     "amenities": "2,3",
@@ -79,10 +79,10 @@ fetch(discoveryEndPoint, {
   </tr>
   <tr>
     <td>
-      <div class="field">range</div>
+      <div class="field">radius</div>
       <div class="type required">required</div>
     </td>
-    <td>Range around the search coordinate to search. Specified as an integer representing meters.</td>
+    <td>Radius in meters around the search coordinates to search. Specified as an integer.</td>
   </tr>
   <tr>
     <td>
