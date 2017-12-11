@@ -6,9 +6,9 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - Parts of this API were inspired by
-  - the <a href="https://github.com/PlugShare/slate">PlugShare API</a>
-  - Documentation powered by <a href="https://github.com/lord/slate">Slate</a>
+  - Parts of the EV charging API were
+  - inspired by the <a href="https://github.com/PlugShare/slate">PlugShare API</a>.
+  - Documentation powered by <a href="https://github.com/lord/slate">Slate</a>.
 
 includes:
 
