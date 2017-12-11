@@ -4,6 +4,7 @@ title: Electric Vehicle Charging
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
   - javascript
+  - python
 
 toc_footers:
   - Parts of the EV charging API were
@@ -45,6 +46,19 @@ fetch(discoveryEndPoint, {
     "amenities": "3",
   })
 });
+```
+
+```python
+import requests
+payload = {
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "latitude": "45.518805",
+    "longitude": "-122.707975",
+    "radius": "1000",
+    "connector": "tesla_supercharger",
+    "amenities": "3",
+  }
+requests.post("discovery_endpoint_here", data=payload)
 ```
 
 For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
@@ -89,6 +103,25 @@ fetch(vehicleEndPoint, {
 });
 ```
 
+```python
+import requests
+payload = {
+    "request_uid": "ae7bd8f67f3089c",
+    "price": "2300000000000000000",
+    "latitude": "45.521361",
+    "longitude": "-122.690619",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
+    "connectors": "tesla_hpwc,tesla_supercharger",
+    "levels": "2,3",
+    "amenities": "2,3,4,7,9",
+    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "manufacturer": "Tesla",
+    "model": "Supercharger",
+  }
+requests.post("vehicle_endpoint_here", data=payload)
+```
+
 In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
 
 # Need
@@ -127,6 +160,20 @@ fetch(discoveryEndPoint, {
     "amenities": "2,3",
   })
 });
+```
+
+```python
+import requests
+payload = {
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "latitude": "45.518805",
+    "longitude": "-122.707975",
+    "radius": "10000",
+    "connector": "tesla_supercharger",
+    "level": "3",
+    "amenities": "2,3",
+  }
+requests.post("discovery_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
@@ -225,6 +272,25 @@ fetch(vehicleEndPoint, {
     "model": "Supercharger",
   })
 });
+```
+
+```python
+import requests
+payload = {
+    "request_uid": "ae7bd8f67f3089c",
+    "price": "2300000000000000000",
+    "latitude": "45.521361",
+    "longitude": "-122.690619",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
+    "connectors": "tesla_hpwc,tesla_supercharger",
+    "levels": "2,3",
+    "amenities": "2,3,4,7,9",
+    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "manufacturer": "Tesla",
+    "model": "Supercharger",
+  }
+requests.post("vehicle_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
