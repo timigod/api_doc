@@ -132,49 +132,49 @@ fetch(discoveryEndPoint, {
 <table class="arguments">
   <tr>
     <td>
-      <div class="field">start_at</div>
+      <code class="field">start_at</code>
       <div class="type required">required</div>
     </td>
     <td>The time at which the requester would like to arrive at charging station. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">latitude</div>
+      <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
     <td>The latitude coordinate around which to search.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">longitude</div>
+      <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
     <td>The longitude coordinate around which to search.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">radius</div>
+      <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
     <td>Radius in meters around the search coordinates to search. Specified as an integer.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">connector</div>
+      <code class="field">connector</code>
       <div class="type">optional</div>
     </td>
     <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">level</div>
+      <code class="field">level</code>
       <div class="type">optional</div>
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">amenities</div>
+      <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
     <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
@@ -230,84 +230,84 @@ fetch(vehicleEndPoint, {
 <table class="arguments">
   <tr>
     <td>
-      <div class="field">request_uid</div>
+      <code class="field">request_uid</code>
       <div class="type required">required</div>
     </td>
     <td>The UID of the request. This arrives as part of the request.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">price</div>
+      <code class="field">price</code>
       <div class="type required">required</div>
     </td>
     <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000).</td>
   </tr>
   <tr>
     <td>
-      <div class="field">latitude</div>
+      <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
     <td>The latitude coordinate of the charging station.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">longitude</div>
+      <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
     <td>The longitude coordinate of the charging station.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">available_from</div>
+      <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
     <td>The time from which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">available_until</div>
+      <code class="field">available_until</code>
       <div class="type">optional</div>
     </td>
     <td>The time until which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">connectors</div>
+      <code class="field">connectors</code>
       <div class="type">required</div>
     </td>
     <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">levels</div>
+      <code class="field">levels</code>
       <div class="type">optional</div>
     </td>
     <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">amenities</div>
+      <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
     <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">address</div>
+      <code class="field">address</code>
       <div class="type required">required</div>
     </td>
     <td>A street address or description of the charging station location.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">manufacturer</div>
+      <code class="field">manufacturer</code>
       <div class="type">optional</div>
     </td>
     <td>Name of the manufacturer of this station.</td>
   </tr>
   <tr>
     <td>
-      <div class="field">model</div>
+      <code class="field">model</code>
       <div class="type">optional</div>
     </td>
     <td>Name of the model of this station.</td>
@@ -325,47 +325,47 @@ Connector types and their unique identifier.
     <th>Power Level</th>
   </tr>
   <tr>
-    <td>nema_5_15</td>
+    <td><code>nema_5_15</code></td>
     <td>NEMA 5-15 Wall Outlet</td>
     <td>1</td>
   </tr>
   <tr>
-    <td>nema_5_20</td>
+    <td><code>nema_5_20</code></td>
     <td>NEMA 5-20 Wall Outlet</td>
     <td>1</td>
   </tr>
   <tr>
-    <td>j1772</td>
+    <td><code>j1772</code></td>
     <td>SAE J1772</td>
     <td>2</td>
   </tr>
   <tr>
-    <td>mennekes</td>
+    <td><code>mennekes</code></td>
     <td>SAE J3068 / IEC 62196 (Mennekes)</td>
     <td>2</td>
   </tr>
   <tr>
-    <td>nema_14_50</td>
+    <td><code>nema_14_50</code></td>
     <td>NEMA 14-50 (RV plug)	</td>
     <td>2</td>
   </tr>
   <tr>
-    <td>chademo</td>
+    <td><code>chademo</code></td>
     <td>CHAdeMO</td>
     <td>3</td>
   </tr>
   <tr>
-    <td>ccs</td>
+    <td><code>ccs</code></td>
     <td>SAE Combined Charging System (CCS)</td>
     <td>3</td>
   </tr>
   <tr>
-    <td>tesla_hpwc</td>
+    <td><code>tesla_hpwc</code></td>
     <td>Tesla HPWC</td>
     <td>2</td>
   </tr>
   <tr>
-    <td>tesla_supercharger</td>
+    <td><code>tesla_supercharger</code></td>
     <td>Tesla supercharger</td>
     <td>3</td>
   </tr>
@@ -381,15 +381,15 @@ Available charging levels.
     <th>Description</th>
   </tr>
   <tr>
-    <td>1</td>
+    <td><code>1</code></td>
     <td>Standard house outlet</td>
   </tr>
   <tr>
-    <td>2</td>
+    <td><code>2</code></td>
     <td>240 volt AC charging</td>
   </tr>
   <tr>
-    <td>3</td>
+    <td><code>3</code></td>
     <td>DC fast charging</td>
   </tr>
 </table>
@@ -404,39 +404,39 @@ A list of amentities can be included in both requests and responses.
     <th>Description</th>
   </tr>
   <tr>
-    <td>1</td>
+    <td><code>1</code></td>
     <td>Lodging</td>
   </tr>
   <tr>
-    <td>2</td>
+    <td><code>2</code></td>
     <td>Dining</td>
   </tr>
   <tr>
-    <td>3</td>
+    <td><code>3</code></td>
     <td>Restrooms</td>
   </tr>
   <tr>
-    <td>4</td>
+    <td><code>4</code></td>
     <td>EV Parking</td>
   </tr>
   <tr>
-    <td>5</td>
+    <td><code>5</code></td>
     <td>Valet Parking</td>
   </tr>
   <tr>
-    <td>6</td>
+    <td><code>6</code></td>
     <td>Park</td>
   </tr>
   <tr>
-    <td>7</td>
+    <td><code>7</code></td>
     <td>WiFi</td>
   </tr>
   <tr>
-    <td>8</td>
+    <td><code>8</code></td>
     <td>Shopping</td>
   </tr>
   <tr>
-    <td>9</td>
+    <td><code>9</code></td>
     <td>Grocery</td>
   </tr>
 </table>
