@@ -109,6 +109,139 @@ fetch(discoveryEndPoint, {
   </tr>
 </table>
 
+# Bid
+
+A bid to provide a charging service. Typically sent from a charging station to an electric vehicle.
+
+## Arguments
+
+> Post request to a local/remote endpoint representing the vehicle
+
+```shell
+curl "vehicle_endpoint_here"
+  --data "request_uid=ae7bd8f67f3089c"
+  --data "price=2300000000000000000"
+  --data "latitude=45.521361"
+  --data "longitude=-122.690619"
+  --data "available_from=2017-12-11T15:18:54+03:00"
+  --data "available_until=2017-12-12T15:18:54+03:00"
+  --data "connectors=tesla_hpwc,tesla_supercharger"
+  --data "levels=2,3"
+  --data "amenities=2,3,4,7,9"
+  --data "address=Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA"
+  --data "manufacturer=Tesla"
+  --data "model=Supercharger"
+```
+
+```javascript
+const vehicleEndPoint = "vehicle_endpoint_here";
+
+fetch(vehicleEndPoint, {
+  method: "POST",
+  body: JSON.stringify({
+    "request_uid": "ae7bd8f67f3089c",
+    "price": "2300000000000000000",
+    "latitude": "45.521361",
+    "longitude": "-122.690619",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
+    "connectors": "tesla_hpwc,tesla_supercharger",
+    "levels": "2,3",
+    "amenities": "2,3,4,7,9",
+    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "manufacturer": "Tesla",
+    "model": "Supercharger",
+  })
+});
+```
+
+<table class="arguments">
+  <tr>
+    <td>
+      <div class="field">request_uid</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The UID of the request. This arrives as part of the request.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">price</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000).</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">latitude</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The latitude coordinate of the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">longitude</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The longitude coordinate of the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">available_from</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The time from which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">available_until</div>
+      <div class="type">optional</div>
+    </td>
+    <td>The time until which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">connectors</div>
+      <div class="type">required</div>
+    </td>
+    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">levels</div>
+      <div class="type">optional</div>
+    </td>
+    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">amenities</div>
+      <div class="type">optional</div>
+    </td>
+    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">address</div>
+      <div class="type required">required</div>
+    </td>
+    <td>A street address or description of the charging station location.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">manufacturer</div>
+      <div class="type">optional</div>
+    </td>
+    <td>Name of the manufacturer of this station.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">model</div>
+      <div class="type">optional</div>
+    </td>
+    <td>Name of the model of this station.</td>
+  </tr>
+</table>
+
 # Connector Types
 
 <table class="reference connectors">
