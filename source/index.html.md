@@ -15,6 +15,7 @@ Here you will find the different protocols governing communication between the d
     <a href="./ev_charging.html">Electric Vehicle Charging</a>
     <ul>
       <li><a href="./ev_charging.html#need">Need</a></li>
+      <li><a href="./ev_charging.html#bid">Bid</a></li>
       <li><a href="./ev_charging.html#connector-types">Connector Types</a></li>
       <li><a href="./ev_charging.html#charging-levels">Charging Levels</a></li>
       <li><a href="./ev_charging.html#amenities">Amenities</a></li>
