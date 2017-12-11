@@ -17,7 +17,79 @@ search: true
 
 # Electric Vehicle Charging Protocol
 
-The communication protocol for Electric Vehicle charging describes the format of a request for a charging service, and the response sent by a charging provider.
+The communication protocol for electric vehicle charging describes the format of a request for a charging service (need), and the response sent by a charging provider (bid).
+
+> Need
+
+```shell
+curl "discovery_endpoint_here"
+  --data "start_at=2017-12-11T15:18:54+03:00"
+  --data "latitude=45.518805"
+  --data "longitude=-122.707975"
+  --data "radius=1000"
+  --data "connector=tesla_supercharger"
+  --data "amenities=3"
+```
+
+```javascript
+const discoveryEndPoint = "discovery_endpoint_here";
+
+fetch(discoveryEndPoint, {
+  method: "POST",
+  body: JSON.stringify({
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "latitude": "45.518805",
+    "longitude": "-122.707975",
+    "radius": "1000",
+    "connector": "tesla_supercharger",
+    "amenities": "3",
+  })
+});
+```
+
+For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
+
+> Bid
+
+```shell
+curl "vehicle_endpoint_here"
+  --data "request_uid=ae7bd8f67f3089c"
+  --data "price=2300000000000000000"
+  --data "latitude=45.521361"
+  --data "longitude=-122.690619"
+  --data "available_from=2017-12-11T15:18:54+03:00"
+  --data "available_until=2017-12-12T15:18:54+03:00"
+  --data "connectors=tesla_hpwc,tesla_supercharger"
+  --data "levels=2,3"
+  --data "amenities=2,3,4,7,9"
+  --data "address=Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA"
+  --data "manufacturer=Tesla"
+  --data "model=Supercharger"
+```
+
+```javascript
+const vehicleEndPoint = "vehicle_endpoint_here";
+
+fetch(vehicleEndPoint, {
+  method: "POST",
+  body: JSON.stringify({
+    "request_uid": "ae7bd8f67f3089c",
+    "price": "2300000000000000000",
+    "latitude": "45.521361",
+    "longitude": "-122.690619",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
+    "connectors": "tesla_hpwc,tesla_supercharger",
+    "levels": "2,3",
+    "amenities": "2,3,4,7,9",
+    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "manufacturer": "Tesla",
+    "model": "Supercharger",
+  })
+});
+```
+
+In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
 
 # Need
 
