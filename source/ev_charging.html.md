@@ -22,8 +22,9 @@ A statement of need for charging stations, typically sent by an electric vehicle
 
 ## Arguments
 
+> Post request to a local/remote discovery endpoint
+
 ```shell
-# Post request to a local/remote discovery endpoint
 curl "discovery_endpoint_here"
   --data "connector=tesla_supercharger"
   --data "level=3"
