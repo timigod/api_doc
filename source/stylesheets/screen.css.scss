@@ -616,3 +616,47 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+// Additional Styles
+table.arguments {
+  tr {
+    td:first-of-type, th:first-of-type {
+      text-align: right;
+    }
+  }
+  .field {
+    font-weight: 500;
+  }
+  .type {
+    color: #777;
+    white-space: nowrap;
+  }
+  .type.required {
+    color: #003ca6;
+    font-weight: 600;
+  }
+  .type.deprecated {
+    color: #ff4040;
+  }
+}
+
+table.reference {
+  tr:nth-child(even)>td {
+    background-color: #f8fafd;
+  }
+}
+
+table.connectors {
+  td:first-of-type, th:first-of-type {
+    text-align: left;
+  }
+  td:last-of-type, th:last-of-type {
+    text-align: center;
+  }
+}
+
+table.levels {
+  td:first-of-type, th:first-of-type {
+    text-align: center;
+  }
+}
