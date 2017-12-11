@@ -38,7 +38,7 @@ curl "discovery_endpoint_here"
 ```javascript
 const discoveryEndPoint = "discovery_endpoint_here";
 
-fetch("/login", {
+fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
