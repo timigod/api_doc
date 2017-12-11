@@ -26,11 +26,43 @@ A statement of need for charging stations, typically sent by an electric vehicle
 
 ```shell
 curl "discovery_endpoint_here"
+  --data "start_at=2017-12-11T15:18:54+03:00"
+  --data "latitude=45.518805"
+  --data "longitude=-122.707975"
+  --data "range=10000"
   --data "connector=tesla_supercharger"
   --data "level=3"
 ```
 
 <table class="arguments">
+  <tr>
+    <td>
+      <div class="field">start_at</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The time at which the requester would like to arrive at charging station. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">latitude</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The latitude coordinate around which to search.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">longitude</div>
+      <div class="type required">required</div>
+    </td>
+    <td>The longitude coordinate around which to search.</td>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">range</div>
+      <div class="type required">required</div>
+    </td>
+    <td>Range around the search coordinate to search. Specified as an integer representing meters.</td>
+  </tr>
   <tr>
     <td>
       <div class="field">connector</div>
