@@ -244,6 +244,8 @@ fetch(vehicleEndPoint, {
 
 # Connector Types
 
+Connector types and their unique identifier.
+
 <table class="reference connectors">
   <tr>
     <th>Connector ID</th>
@@ -298,6 +300,8 @@ fetch(vehicleEndPoint, {
 </table>
 
 # Charging Levels
+
+Available charging levels.
 
 <table class="reference levels">
   <tr>
