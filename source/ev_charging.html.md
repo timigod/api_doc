@@ -239,6 +239,7 @@ A bid to provide a charging service. Typically sent from a charging station to a
 ```shell
 curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
+  --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
   --data "latitude=45.521361" \
   --data "longitude=-122.690619" \
@@ -259,6 +260,7 @@ fetch(vehicleEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
     "latitude": "45.521361",
     "longitude": "-122.690619",
@@ -278,6 +280,7 @@ fetch(vehicleEndPoint, {
 import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
     "latitude": "45.521361",
     "longitude": "-122.690619",
@@ -300,6 +303,13 @@ requests.post("vehicle_endpoint_here", data=payload)
       <div class="type required">required</div>
     </td>
     <td>The UID of the request. This arrives as part of the request.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">expires_at</code>
+      <div class="type required">required</div>
+    </td>
+    <td>This bid will expire at this time. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
