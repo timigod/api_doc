@@ -68,6 +68,7 @@ For example, an electric vehicle might search for charging stations within 1 km 
 ```shell
 curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
+  --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
@@ -88,6 +89,7 @@ fetch(vehicleEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
@@ -107,6 +109,7 @@ fetch(vehicleEndPoint, {
 import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
