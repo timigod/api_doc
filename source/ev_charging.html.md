@@ -25,8 +25,8 @@ The communication protocol for electric vehicle charging describes the format of
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=45.518805" \
-  --data "longitude=-122.707975" \
+  --data "latitude=32.787793" \
+  --data "longitude=-79.935005" \
   --data "radius=1000" \
   --data "connector=tesla_supercharger" \
   --data "amenities=3"
@@ -39,8 +39,8 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "45.518805",
-    "longitude": "-122.707975",
+    "latitude": "32.787793",
+    "longitude": "-79.935005",
     "radius": "1000",
     "connector": "tesla_supercharger",
     "amenities": "3",
@@ -52,8 +52,8 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "45.518805",
-    "longitude": "-122.707975",
+    "latitude": "32.787793",
+    "longitude": "-79.935005",
     "radius": "1000",
     "connector": "tesla_supercharger",
     "amenities": "3",
@@ -69,14 +69,14 @@ For example, an electric vehicle might search for charging stations within 1 km 
 curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "price=2300000000000000000" \
-  --data "latitude=45.521361" \
-  --data "longitude=-122.690619" \
+  --data "latitude=32.785889" \
+  --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "amenities=2,3,4,7,9" \
-  --data "address=Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA" \
+  --data "address=372 King St, Charleston, SC 29401, USA" \
   --data "manufacturer=Tesla" \
   --data "model=Supercharger"
 ```
@@ -89,14 +89,14 @@ fetch(vehicleEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "price": "2300000000000000000",
-    "latitude": "45.521361",
-    "longitude": "-122.690619",
+    "latitude": "32.785889",
+    "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   })
@@ -108,14 +108,14 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "price": "2300000000000000000",
-    "latitude": "45.521361",
-    "longitude": "-122.690619",
+    "latitude": "32.785889",
+    "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
@@ -137,8 +137,8 @@ This request is sent to the decentralized discovery engine which responds with s
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=45.518805" \
-  --data "longitude=-122.707975" \
+  --data "latitude=32.787793" \
+  --data "longitude=-79.935005" \
   --data "radius=10000" \
   --data "connector=tesla_supercharger" \
   --data "level=3" \
@@ -152,8 +152,8 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "45.518805",
-    "longitude": "-122.707975",
+    "latitude": "32.787793",
+    "longitude": "-79.935005",
     "radius": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
@@ -166,8 +166,8 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "45.518805",
-    "longitude": "-122.707975",
+    "latitude": "32.787793",
+    "longitude": "-79.935005",
     "radius": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
@@ -241,14 +241,14 @@ curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=45.521361" \
-  --data "longitude=-122.690619" \
+  --data "latitude=32.785889" \
+  --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "amenities=2,3,4,7,9" \
-  --data "address=Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA" \
+  --data "address=372 King St, Charleston, SC 29401, USA" \
   --data "manufacturer=Tesla" \
   --data "model=Supercharger"
 ```
@@ -262,14 +262,14 @@ fetch(vehicleEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "45.521361",
-    "longitude": "-122.690619",
+    "latitude": "32.785889",
+    "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   })
@@ -282,14 +282,14 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "45.521361",
-    "longitude": "-122.690619",
+    "latitude": "32.785889",
+    "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "Kings Hill/SW Salmon St MAX Station, Portland, OR 97205, USA",
+    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
