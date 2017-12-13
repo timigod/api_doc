@@ -340,7 +340,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
