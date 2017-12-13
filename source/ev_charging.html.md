@@ -503,14 +503,14 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">manufacturer</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the manufacturer of this station.</td>
+    <td>Name of the manufacturer of this charging station.</td>
   </tr>
   <tr>
     <td>
       <code class="field">model</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the model of this station.</td>
+    <td>Name of the model of this charging station.</td>
   </tr>
 </table>
 
