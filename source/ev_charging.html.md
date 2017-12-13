@@ -77,7 +77,6 @@ curl "vehicle_endpoint_here" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "amenities=2,3,4,7,9" \
-  --data "address=372 King St, Charleston, SC 29401, USA" \
   --data "manufacturer=Tesla" \
   --data "model=Supercharger"
 ```
@@ -98,7 +97,6 @@ fetch(vehicleEndPoint, {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   })
@@ -118,7 +116,6 @@ payload = {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
@@ -246,12 +243,25 @@ curl "vehicle_endpoint_here" \
   --data "price=2300000000000000000" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
+  --data "entrance_latitude=32.785878" \
+  --data "entrance_longitude=-79.935558" \
+  --data "exit_latitude=32.785878" \
+  --data "exit_longitude=-79.935558" \
+  --data "location_floor=2" \
+  --data "location_name=IKEA parking lot B" \
+  --data "location_name_lang=eng" \
+  --data "location_house_number=372" \
+  --data "location_street=King" \
+  --data "location_city=Charleston" \
+  --data "location_postal_code=29401" \
+  --data "location_county=Charleston" \
+  --data "location_state=SC" \
+  --data "location_country=USA" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "amenities=2,3,4,7,9" \
-  --data "address=372 King St, Charleston, SC 29401, USA" \
   --data "manufacturer=Tesla" \
   --data "model=Supercharger"
 ```
@@ -267,12 +277,25 @@ fetch(vehicleEndPoint, {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
+    "entrance_latitude": "32.785878",
+    "entrance_longitude": "-79.935558",
+    "exit_latitude": "32.785878",
+    "exit_longitude": "-79.935558",
+    "location_floor": "2",
+    "location_name": "IKEA parking lot B",
+    "location_name_lang": "eng",
+    "location_house_number": "372",
+    "location_street": "King",
+    "location_city": "Charleston",
+    "location_postal_code": "29401",
+    "location_county": "Charleston",
+    "location_state": "SC",
+    "location_country": "USA",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   })
@@ -287,12 +310,25 @@ payload = {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
+    "entrance_latitude": "32.785878",
+    "entrance_longitude": "-79.935558",
+    "exit_latitude": "32.785878",
+    "exit_longitude": "-79.935558",
+    "location_floor": "2",
+    "location_name": "IKEA parking lot B",
+    "location_name_lang": "eng",
+    "location_house_number": "372",
+    "location_street": "King",
+    "location_city": "Charleston",
+    "location_postal_code": "29401",
+    "location_county": "Charleston",
+    "location_state": "SC",
+    "location_country": "USA",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "address": "372 King St, Charleston, SC 29401, USA",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
@@ -337,6 +373,104 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">entrance_latitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The latitude coordinate of the entrance to the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">entrance_longitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The longitude coordinate of the entrance to the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">exit_latitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The latitude coordinate of the exit from the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">exit_longitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The longitude coordinate of the exit from the charging station.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_floor</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Which floor/level is the charging stations located on (for multistory buildings).</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_name</code>
+      <div class="type">optional</div>
+    </td>
+    <td>A human readable name/description of the charging station location (e.g., Lund Train Station parking).</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_name_lang</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3">ISO 639-3</a> language code.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_house_number</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The house number where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_street</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The street name where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_city</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The city where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_postal_code</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The postal code where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_county</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The county where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_state</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The state where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">location_country</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The country where the station is located.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
@@ -369,13 +503,6 @@ requests.post("vehicle_endpoint_here", data=payload)
       <div class="type">optional</div>
     </td>
     <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">address</code>
-      <div class="type required">required</div>
-    </td>
-    <td>A street address or description of the charging station location.</td>
   </tr>
   <tr>
     <td>
