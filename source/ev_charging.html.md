@@ -256,6 +256,7 @@ curl "vehicle_endpoint_here" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "amenities=2,3,4,7,9" \
+  --data "provider=Tesla" \
   --data "manufacturer=Tesla" \
   --data "model=Supercharger"
 ```
@@ -290,6 +291,7 @@ fetch(vehicleEndPoint, {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
+    "provider": "Tesla",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   })
@@ -323,6 +325,7 @@ payload = {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
+    "provider": "Tesla",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
@@ -497,6 +500,13 @@ requests.post("vehicle_endpoint_here", data=payload)
       <div class="type">optional</div>
     </td>
     <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">provider</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Name of the service provider or charging network operating this charging station.</td>
   </tr>
   <tr>
     <td>
