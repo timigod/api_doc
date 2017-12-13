@@ -185,7 +185,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type required">required</div>
     </td>
-    <td>The time at which the requester would like to arrive at charging station. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+    <td>The time at which the requester would like to arrive at charging station. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -312,7 +312,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -347,7 +347,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">available_until</code>
       <div class="type">optional</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in ISO 8601 including date, time, and time offset from UTC.</td>
+    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
