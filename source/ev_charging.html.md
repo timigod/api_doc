@@ -76,9 +76,7 @@ curl "vehicle_endpoint_here" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "amenities=2,3,4,7,9"
 ```
 
 ```javascript
@@ -97,8 +95,6 @@ fetch(vehicleEndPoint, {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
   })
 });
 ```
@@ -116,8 +112,6 @@ payload = {
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "amenities": "2,3,4,7,9",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
