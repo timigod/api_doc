@@ -20,6 +20,10 @@ search: true
 
 # Electric Vehicle Charging Protocol
 
+The communication protocol for electric vehicle charging describes the format of a request for a charging service (need), and the response sent by a charging provider (bid).
+
+For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
+
 > Need
 
 ```shell
@@ -60,6 +64,8 @@ payload = {
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
+
+In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
 
 > Bid
 
@@ -113,12 +119,6 @@ payload = {
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
-
-The communication protocol for electric vehicle charging describes the format of a request for a charging service (need), and the response sent by a charging provider (bid).
-
-For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
-
-In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
 
 # Need
 
