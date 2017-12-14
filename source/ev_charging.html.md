@@ -16,6 +16,8 @@ includes:
 search: true
 ---
 
+<p class="header-image"><img src="/images/ev_charging/header.png" alt="Electric Vehicle Charging"></p>
+
 # Electric Vehicle Charging Protocol
 
 The communication protocol for electric vehicle charging describes the format of a request for a charging service (need), and the response sent by a charging provider (bid).

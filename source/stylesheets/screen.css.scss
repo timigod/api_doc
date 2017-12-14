@@ -660,3 +660,11 @@ table.levels {
     text-align: center;
   }
 }
+
+p.header-image {
+  padding: 0;
+  margin-bottom: -56px;
+  img {
+    width: 100%;
+  }
+}
