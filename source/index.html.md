@@ -4,6 +4,8 @@ title: DAV Communication Protocols
 search: true
 ---
 
+<p class="header-image"><img src="/images/header.png" alt="DAV Communication Protocols"></p>
+
 # Introduction
 
 Welcome to the DAV communication protocols API documentation.
