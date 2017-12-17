@@ -138,6 +138,7 @@ curl "discovery_endpoint_here" \
   --data "radius=10000" \
   --data "connector=tesla_supercharger" \
   --data "level=3" \
+  --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
 
@@ -153,6 +154,7 @@ fetch(discoveryEndPoint, {
     "radius": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
+    "energy_source": "solar",
     "amenities": "2,3",
   })
 });
@@ -167,6 +169,7 @@ payload = {
     "radius": "10000",
     "connector": "tesla_supercharger",
     "level": "3",
+    "energy_source": "solar",
     "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
@@ -217,6 +220,13 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">energy_source</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
@@ -257,6 +267,7 @@ curl "vehicle_endpoint_here" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
+  --data "energy_source=solar" \
   --data "amenities=2,3,4,7,9" \
   --data "provider=Tesla" \
   --data "manufacturer=Tesla" \
@@ -292,6 +303,7 @@ fetch(vehicleEndPoint, {
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
+    "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
     "manufacturer": "Tesla",
@@ -326,6 +338,7 @@ payload = {
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
+    "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
     "manufacturer": "Tesla",
@@ -498,6 +511,13 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">energy_source</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
@@ -603,6 +623,33 @@ Available charging levels.
   <tr>
     <td><code>3</code></td>
     <td>DC fast charging</td>
+  </tr>
+</table>
+
+# Energy Sources
+
+The energy source used by the station
+
+<table class="reference levels">
+  <tr>
+    <th>Level</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>grid</code></td>
+    <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source.</td>
+  </tr>
+  <tr>
+    <td><code>solar</code></td>
+    <td>Uses 100% solar energy.</td>
+  </tr>
+  <tr>
+    <td><code>wind</code></td>
+    <td>Uses 100% wind energy.</td>
+  </tr>
+  <tr>
+    <td><code>renewable</code></td>
+    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources.</td>
   </tr>
 </table>
 
