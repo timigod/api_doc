@@ -136,6 +136,10 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=10000" \
+  --data "height=200" \
+  --data "width=120" \
+  --data "length=330" \
+  --data "weight=1200" \
   --data "connector=tesla_supercharger" \
   --data "level=3" \
   --data "energy_source=solar" \
@@ -152,6 +156,10 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
+    "height": "200",
+    "width": "120",
+    "length": "330",
+    "weight": "1200",
     "connector": "tesla_supercharger",
     "level": "3",
     "energy_source": "solar",
@@ -167,6 +175,10 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
+    "height": "200",
+    "width": "120",
+    "length": "330",
+    "weight": "1200",
     "connector": "tesla_supercharger",
     "level": "3",
     "energy_source": "solar",
@@ -203,6 +215,34 @@ requests.post("discovery_endpoint_here", data=payload)
       <div class="type required">required</div>
     </td>
     <td>Radius in meters around the search coordinates to search. Specified as an integer.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">height</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">width</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">length</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">weight</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms.</td>
   </tr>
   <tr>
     <td>
@@ -265,6 +305,10 @@ curl "vehicle_endpoint_here" \
   --data "location_country=USA" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
+  --data "height=300" \
+  --data "width=200" \
+  --data "length=580" \
+  --data "weight=10000" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
   --data "levels=2,3" \
   --data "energy_source=solar" \
@@ -301,6 +345,10 @@ fetch(vehicleEndPoint, {
     "location_country": "USA",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
+    "height": "300",
+    "width": "200",
+    "length": "580",
+    "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "energy_source": "solar",
@@ -336,6 +384,10 @@ payload = {
     "location_country": "USA",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
+    "height": "300",
+    "width": "200",
+    "length": "580",
+    "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
     "levels": "2,3",
     "energy_source": "solar",
@@ -494,6 +546,34 @@ requests.post("vehicle_endpoint_here", data=payload)
       <div class="type">optional</div>
     </td>
     <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">height</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">width</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">length</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">weight</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms.</td>
   </tr>
   <tr>
     <td>
