@@ -246,6 +246,9 @@
             <a href="#charging-levels" class="toc-h1 toc-link" data-title="Charging Levels">Charging Levels</a>
           </li>
           <li>
+            <a href="#energy-sources" class="toc-h1 toc-link" data-title="Energy Sources">Energy Sources</a>
+          </li>
+          <li>
             <a href="#amenities" class="toc-h1 toc-link" data-title="Amenities">Amenities</a>
           </li>
       </div>
@@ -358,8 +361,13 @@
   --data <span class="s2">"latitude=32.787793"</span> <span class="se">\</span>
   --data <span class="s2">"longitude=-79.935005"</span> <span class="se">\</span>
   --data <span class="s2">"radius=10000"</span> <span class="se">\</span>
+  --data <span class="s2">"height=200"</span> <span class="se">\</span>
+  --data <span class="s2">"width=120"</span> <span class="se">\</span>
+  --data <span class="s2">"length=330"</span> <span class="se">\</span>
+  --data <span class="s2">"weight=1200"</span> <span class="se">\</span>
   --data <span class="s2">"connector=tesla_supercharger"</span> <span class="se">\</span>
   --data <span class="s2">"level=3"</span> <span class="se">\</span>
+  --data <span class="s2">"energy_source=solar"</span> <span class="se">\</span>
   --data <span class="s2">"amenities=2,3"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">discoveryEndPoint</span> <span class="o">=</span> <span class="s2">"discovery_endpoint_here"</span><span class="p">;</span>
 
@@ -370,8 +378,13 @@
     <span class="s2">"latitude"</span><span class="p">:</span> <span class="s2">"32.787793"</span><span class="p">,</span>
     <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"-79.935005"</span><span class="p">,</span>
     <span class="s2">"radius"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"200"</span><span class="p">,</span>
+    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"120"</span><span class="p">,</span>
+    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"330"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"1200"</span><span class="p">,</span>
     <span class="s2">"connector"</span><span class="p">:</span> <span class="s2">"tesla_supercharger"</span><span class="p">,</span>
     <span class="s2">"level"</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">,</span>
+    <span class="s2">"energy_source"</span><span class="p">:</span> <span class="s2">"solar"</span><span class="p">,</span>
     <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"2,3"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
@@ -381,8 +394,13 @@
     <span class="s">"latitude"</span><span class="p">:</span> <span class="s">"32.787793"</span><span class="p">,</span>
     <span class="s">"longitude"</span><span class="p">:</span> <span class="s">"-79.935005"</span><span class="p">,</span>
     <span class="s">"radius"</span><span class="p">:</span> <span class="s">"10000"</span><span class="p">,</span>
+    <span class="s">"height"</span><span class="p">:</span> <span class="s">"200"</span><span class="p">,</span>
+    <span class="s">"width"</span><span class="p">:</span> <span class="s">"120"</span><span class="p">,</span>
+    <span class="s">"length"</span><span class="p">:</span> <span class="s">"330"</span><span class="p">,</span>
+    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"1200"</span><span class="p">,</span>
     <span class="s">"connector"</span><span class="p">:</span> <span class="s">"tesla_supercharger"</span><span class="p">,</span>
     <span class="s">"level"</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span>
+    <span class="s">"energy_source"</span><span class="p">:</span> <span class="s">"solar"</span><span class="p">,</span>
     <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"2,3"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"discovery_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
@@ -418,6 +436,34 @@
   </tr>
   <tr>
     <td>
+      <code class="field">height</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">width</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">length</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">weight</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">connector</code>
       <div class="type">optional</div>
     </td>
@@ -429,6 +475,13 @@
       <div class="type">optional</div>
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">energy_source</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
   </tr>
   <tr>
     <td>
@@ -466,8 +519,13 @@
   --data <span class="s2">"location_country=USA"</span> <span class="se">\</span>
   --data <span class="s2">"available_from=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"available_until=2017-12-12T15:18:54+03:00"</span> <span class="se">\</span>
+  --data <span class="s2">"height=300"</span> <span class="se">\</span>
+  --data <span class="s2">"width=200"</span> <span class="se">\</span>
+  --data <span class="s2">"length=580"</span> <span class="se">\</span>
+  --data <span class="s2">"weight=10000"</span> <span class="se">\</span>
   --data <span class="s2">"connectors=tesla_hpwc,tesla_supercharger"</span> <span class="se">\</span>
   --data <span class="s2">"levels=2,3"</span> <span class="se">\</span>
+  --data <span class="s2">"energy_source=solar"</span> <span class="se">\</span>
   --data <span class="s2">"amenities=2,3,4,7,9"</span> <span class="se">\</span>
   --data <span class="s2">"provider=Tesla"</span> <span class="se">\</span>
   --data <span class="s2">"manufacturer=Tesla"</span> <span class="se">\</span>
@@ -498,8 +556,13 @@
     <span class="s2">"location_country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
     <span class="s2">"available_from"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"available_until"</span><span class="p">:</span> <span class="s2">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"300"</span><span class="p">,</span>
+    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"200"</span><span class="p">,</span>
+    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"580"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
     <span class="s2">"connectors"</span><span class="p">:</span> <span class="s2">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
     <span class="s2">"levels"</span><span class="p">:</span> <span class="s2">"2,3"</span><span class="p">,</span>
+    <span class="s2">"energy_source"</span><span class="p">:</span> <span class="s2">"solar"</span><span class="p">,</span>
     <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"2,3,4,7,9"</span><span class="p">,</span>
     <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"Tesla"</span><span class="p">,</span>
     <span class="s2">"manufacturer"</span><span class="p">:</span> <span class="s2">"Tesla"</span><span class="p">,</span>
@@ -529,8 +592,13 @@
     <span class="s">"location_country"</span><span class="p">:</span> <span class="s">"USA"</span><span class="p">,</span>
     <span class="s">"available_from"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"available_until"</span><span class="p">:</span> <span class="s">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s">"height"</span><span class="p">:</span> <span class="s">"300"</span><span class="p">,</span>
+    <span class="s">"width"</span><span class="p">:</span> <span class="s">"200"</span><span class="p">,</span>
+    <span class="s">"length"</span><span class="p">:</span> <span class="s">"580"</span><span class="p">,</span>
+    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"10000"</span><span class="p">,</span>
     <span class="s">"connectors"</span><span class="p">:</span> <span class="s">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
     <span class="s">"levels"</span><span class="p">:</span> <span class="s">"2,3"</span><span class="p">,</span>
+    <span class="s">"energy_source"</span><span class="p">:</span> <span class="s">"solar"</span><span class="p">,</span>
     <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"2,3,4,7,9"</span><span class="p">,</span>
     <span class="s">"provider"</span><span class="p">:</span> <span class="s">"Tesla"</span><span class="p">,</span>
     <span class="s">"manufacturer"</span><span class="p">:</span> <span class="s">"Tesla"</span><span class="p">,</span>
@@ -688,6 +756,34 @@
   </tr>
   <tr>
     <td>
+      <code class="field">height</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">width</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">length</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">weight</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">connectors</code>
       <div class="type">required</div>
     </td>
@@ -699,6 +795,13 @@
       <div class="type">optional</div>
     </td>
     <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">energy_source</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
   </tr>
   <tr>
     <td>
@@ -803,6 +906,39 @@
   <tr>
     <td><code>3</code></td>
     <td>DC fast charging</td>
+  </tr>
+</table>
+<h1 id='energy-sources'>Energy Sources</h1>
+<p>The energy source used by the station</p>
+
+<table class="reference levels">
+  <tr>
+    <th>Level</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>grid</code></td>
+    <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source.</td>
+  </tr>
+  <tr>
+    <td><code>renewable</code></td>
+    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources.</td>
+  </tr>
+  <tr>
+    <td><code>solar</code></td>
+    <td>Uses 100% solar energy.</td>
+  </tr>
+  <tr>
+    <td><code>wind</code></td>
+    <td>Uses 100% wind energy.</td>
+  </tr>
+  <tr>
+    <td><code>hydro</code></td>
+    <td>Uses 100% hydropower energy.</td>
+  </tr>
+  <tr>
+    <td><code>geothermal</code></td>
+    <td>Uses 100% geothermal energy.</td>
   </tr>
 </table>
 <h1 id='amenities'>Amenities</h1>
