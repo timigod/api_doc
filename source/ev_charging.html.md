@@ -640,6 +640,10 @@ The energy source used by the station
     <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source.</td>
   </tr>
   <tr>
+    <td><code>renewable</code></td>
+    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources.</td>
+  </tr>
+  <tr>
     <td><code>solar</code></td>
     <td>Uses 100% solar energy.</td>
   </tr>
@@ -648,8 +652,12 @@ The energy source used by the station
     <td>Uses 100% wind energy.</td>
   </tr>
   <tr>
-    <td><code>renewable</code></td>
-    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources.</td>
+    <td><code>hydro</code></td>
+    <td>Uses 100% hydropower energy.</td>
+  </tr>
+  <tr>
+    <td><code>geothermal</code></td>
+    <td>Uses 100% geothermal energy.</td>
   </tr>
 </table>
 
