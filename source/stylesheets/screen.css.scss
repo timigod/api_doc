@@ -668,3 +668,11 @@ p.header-image {
     width: 100%;
   }
 }
+
+
+// Per page overwrites
+body.index {
+  p.header-image {
+    margin-bottom: 25px;
+  }
+}
