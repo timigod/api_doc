@@ -11,8 +11,6 @@ toc_footers:
   - inspired by the <a href="https://github.com/PlugShare/slate">PlugShare API</a>.
   - Documentation powered by <a href="https://github.com/lord/slate">Slate</a>.
 
-includes:
-
 search: true
 ---
 
