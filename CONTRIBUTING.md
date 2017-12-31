@@ -12,7 +12,7 @@ There are several ways you can help the project out:
 
 ### Contributing Code
 
-A lot of **api_doc** documentation came from pull requests sent by the developer community. Here is how you can contribute too:
+A lot of our code comes from pull requests sent by the developer community. Here is how you can contribute too:
 
 - [x] Open the [API DOC GitHub page](https://github.com/DAVFoundation/api_doc) and click the ★ Star and then ⑂ Fork buttons.
 - [x] Clone a copy to your local machine with `$ git clone git@github.com:YOUR-GITHUB-USER-NAME/api_doc.git`
