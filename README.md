@@ -1,5 +1,5 @@
 # DAV Communication Protocols API Documentation
-[![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?style=flat-square)](https://gitter.im/DAVFoundation/DAV-Contributors)[![license](https://img.shields.io/github/license/DAVFoundation/api_doc.svg?style=flat-square)](https://github.com/DAVFoundation/api_doc/blob/master/LICENSE)
+[![Gitter](https://img.shields.io/gitter/room/DAVFoundation/DAV-Contributors.svg?style=flat-square)](https://gitter.im/DAVFoundation/DAV-Contributors) [![license](https://img.shields.io/github/license/DAVFoundation/api_doc.svg?style=flat-square)](https://github.com/DAVFoundation/api_doc/blob/master/LICENSE)
 
 The API documentation for DAV's communication protocols are currently under heavy construction.
 
