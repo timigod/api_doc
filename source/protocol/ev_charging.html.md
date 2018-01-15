@@ -8,8 +8,8 @@ language_tabs: # must be one of https://git.io/vQNgJ
 
 toc_footers:
   - Parts of the EV charging API were
-  - inspired by the <a href="https://github.com/PlugShare/slate">PlugShare API</a>.
-  - Documentation powered by <a href="https://github.com/lord/slate">Slate</a>.
+  - inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.
+  - Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.
 
 search: true
 ---
@@ -191,7 +191,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type required">required</div>
     </td>
-    <td>The time at which the requester would like to arrive at charging station. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time at which the requester would like to arrive at charging station. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -256,6 +256,22 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
   </tr>
+
+    <tr>
+    <td>
+      <code class="field">battery_capacity</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The vehicle's battery capacity, specified in <b>mAh</b>.</td>
+  </tr>
+      <tr>
+    <td>
+      <code class="field">charge_level</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The vehicle's current battery charge level, as it was by the time the request was sent. Specified in %.</td>
+  </tr>
+
   <tr>
     <td>
       <code class="field">energy_source</code>
@@ -410,7 +426,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -480,7 +496,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">location_name_lang</code>
       <div class="type">optional</div>
     </td>
-    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3">ISO 639-3</a> language code.</td>
+    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3" target="blank">ISO 639-3</a> language code.</td>
   </tr>
   <tr>
     <td>
@@ -536,14 +552,14 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
       <div class="type">optional</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -706,7 +722,7 @@ Available charging levels.
 
 # Energy Sources
 
-The energy source used by the station
+The energy source used by the station.
 
 <table class="reference levels">
   <tr>
