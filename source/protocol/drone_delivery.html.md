@@ -502,65 +502,84 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 # Cargo Types
 
-The following table describes the different types of cargos according to international delivery standards.
+The following table describes the different types of cargo according to international delivery standards.
 
 <table class="reference">
   <tr>
+    <th>Class ID</th>
     <th>Type</th>
   </tr>
   <tr>
-    <td><code>class_1_Satchel 500g</code></td>
+    <td><code>1</code></td>
+    <td>Satchel 500g</td>
   </tr>
   <tr>
-    <td><code>class_2_Satchel 1kg</code></td>
+    <td><code>2</code></td>
+    <td>Satchel 1kg</td>
   </tr>
   <tr>
-    <td><code>class_3_Satchel 3kg</code></td>
+    <td><code>3</code></td>
+    <td>Satchel 3kg</td>
   </tr>
   <tr>
-    <td><code>class_4_Satchel 5kg</code></td>
+    <td><code>4</code></td>
+    <td>Satchel 5kg</td>
   </tr>
   <tr>
-    <td><code>class_5_Unpackaged</code></td>
-  </tr>
-    <tr>
-    <td><code>class_6_Other/Misc</code></td>
+    <td><code>5</code></td>
+    <td>Unpackaged</td>
   </tr>
   <tr>
-    <td><code>class_7_Envelope</code></td>
+    <td><code>6</code></td>
+    <td>Other/Misc</td>
   </tr>
   <tr>
-    <td><code>class_8_Bag</code></td>
+    <td><code>7</code></td>
+    <td>Envelope</td>
   </tr>
   <tr>
-    <td><code>class_9_Satchel</code></td>
+    <td><code>8</code></td>
+    <td>Bag</td>
   </tr>
   <tr>
-    <td><code>class_10_Crate</code></td>
-  </tr>
-    <tr>
-    <td><code>class_11_Tube</code></td>
+    <td><code>9</code></td>
+    <td>Satchel</td>
   </tr>
   <tr>
-    <td><code>class_12_Pallet</code></td>
+    <td><code>10</code></td>
+    <td>Crate</td>
   </tr>
   <tr>
-    <td><code>class_13_Skid</code></td>
+    <td><code>11</code></td>
+    <td>Tube</td>
   </tr>
   <tr>
-    <td><code>class_14_Heavy Carton</code></td>
-  </tr>
-      <tr>
-    <td><code>class_15_Carton containing glass</code></td>
+    <td><code>12</code></td>
+    <td>Pallet</td>
   </tr>
   <tr>
-    <td><code>class_16_Carton containing liquids</code></td>
+    <td><code>13</code></td>
+    <td>Skid</td>
   </tr>
   <tr>
-    <td><code>class_17_wine/beer/liquor carton</code></td>
+    <td><code>14</code></td>
+    <td>Heavy Carton</td>
   </tr>
   <tr>
-    <td><code>class_18_Carton</code></td>
+    <td><code>15</code></td>
+    <td>Carton containing glass</td>
+  </tr>
+  <tr>
+    <td><code>16</code></td>
+    <td>Carton containing liquids</td>
+  </tr>
+  <tr>
+    <td><code>17</code></td>
+    <td>wine/beer/liquor carton</td>
+  </tr>
+  <tr>
+    <td><code>18</code></td>
+    <td>Carton</td>
   </tr>
 </table>
 
@@ -570,34 +589,44 @@ The following table describes the different types of hazardous goods according t
 
 <table class="reference">
   <tr>
+    <th>Class ID</th>
     <th>Type</th>
   </tr>
   <tr>
-    <td><code>class_1_explosives</code></td>
+    <td><code>1</code></td>
+    <td>Explosives</td>
   </tr>
   <tr>
-    <td><code>class_2_gases</code></td>
+    <td><code>2</code></td>
+    <td>Gases</td>
   </tr>
   <tr>
-    <td><code>class_3_flammable and combustible liquids</code></td>
+    <td><code>3</code></td>
+    <td>Flammable and combustible liquids</td>
   </tr>
   <tr>
-    <td><code>class_4_flammable solids</code></td>
+    <td><code>4</code></td>
+    <td>Flammable solids</td>
   </tr>
   <tr>
-    <td><code>class_5_oxidizing sibstances, organic peroxides</code></td>
-  </tr>
-    <tr>
-    <td><code>class_6_toxic and infectious substances</code></td>
+    <td><code>5</code></td>
+    <td>Oxidizing substances, organic peroxides</td>
   </tr>
   <tr>
-    <td><code>class_7_radioacive materials</code></td>
+    <td><code>6</code></td>
+    <td>Toxic and infectious substances</td>
   </tr>
   <tr>
-    <td><code>class_8_corrosives</code></td>
+    <td><code>7</code></td>
+    <td>Radioactive materials</td>
   </tr>
   <tr>
-    <td><code>class_9_misc Hazardous</code></td>
+    <td><code>8</code></td>
+    <td>Corrosives</td>
+  </tr>
+  <tr>
+    <td><code>9</code></td>
+    <td>Misc Hazardous</td>
   </tr>
 </table>
 
