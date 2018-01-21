@@ -607,28 +607,100 @@ A drone may provide a certain level of protection from solids and/or liquids (ma
 
 <table class="reference">
   <tr>
+    <th>Rating Code</th>
     <th>IP Rating</th>
-    <th>First Digit - SOLIDS</th>
-    <th>Second Digit - LIQUIDS</th>
+    <th>Solid Particle Protection</th>
+    <th>Liquid Ingress Protection</th>
   </tr>
   <tr>
-    <td><code>IP51</code></td>
+    <td><code>54</code></td>
+    <td>IP54</td>
     <td>Protected from limited dust ingress</td>
-    <td>Protected from dripping water (vertically falling drops)</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>IP54</code></td>
+    <td><code>55</code></td>
+    <td>IP55</td>
     <td>Protected from limited dust ingress</td>
-    <td>Protected from splashing water (from any direction) against the enclosure</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>56</code></td>
+    <td>IP56</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>57</code></td>
+    <td>IP57</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>58</code></td>
+    <td>IP58</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>60</code></td>
+    <td>IP60</td>
+    <td>Protected from total dust ingress</td>
+    <td>Not protected from liquids, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>61</code></td>
+    <td>IP61</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from condensation, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>62</code></td>
+    <td>IP62</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 15 degrees from vertical, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>63</code></td>
+    <td>IP63</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 60 degrees from vertical, limited ingress protection</td>
   </tr>
     <tr>
-    <td><code>IP65</code></td>
-    <td>Total protection from dust ingress</td>
-    <td>Protected from projected water/water jets (from any direction) against the enclosure</td>
+    <td><code>64</code></td>
+    <td>IP64</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
     <tr>
-    <td><code>IP68</code></td>
-    <td>Total protection from dust ingress</td>
-    <td>Total protection from water ingress <b>or</b> water can enter but only in such a manner that it produces no harmful effects</td>
+    <td><code>65</code></td>
+    <td>IP65</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>66</code></td>
+    <td>IP66</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>67</code></td>
+    <td>IP67</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>68</code></td>
+    <td>IP68</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>69k</code></td>
+    <td>IP69K</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
+
