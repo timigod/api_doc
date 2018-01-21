@@ -12,7 +12,7 @@ toc_footers:
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Drone Charging"></p>
+<p class="header-image"><img src="/images/drone_charging/header.png" alt="Drone Charging"></p>
 
 # Drone Charging Protocol
 
