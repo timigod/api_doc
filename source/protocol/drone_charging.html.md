@@ -16,7 +16,7 @@ search: true
 
 # Drone Charging Protocol
 
-The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service (also referred to as ‘need’) and the response sent by a charging provider (‘bid’).
+The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service (also referred to as `need`) and the response sent by a charging provider (`bid`).
 
 For example, a drone may look for a charging station that supports 2mm bullet connectors within the range of 2 km from its current location.
 
@@ -683,7 +683,7 @@ Below is a list of all the supported drone plug types.
     <td><code>8mm bullet connectors</code></td>
     <td>Up to 200 Amps</td>
   </tr>
-  
+
 </table>
 
 # Energy Sources
