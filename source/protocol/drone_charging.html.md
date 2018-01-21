@@ -245,7 +245,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">plug_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The drone's plug type. See <a href="#plug-types">Plug Types</a> for possible values.</td>
+    <td>The drone's plug type ID. See <a href="#plug-types">Plug Types</a> for possible values.</td>
   </tr>
   <tr>
     <td>
@@ -720,7 +720,13 @@ The energy source used by the charging station.
 
 # Drone Protection Level
 
-A charging station may also provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection.
+A charging station may also provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection according to the International Protection Marking, IEC standard 60529.
+
+The first digit indicates the level of protection that the enclosure provides against access to hazardous parts (e.g., electrical conductors, moving parts) and the ingress of solid foreign objects.
+
+The second digit indicates the level of protection that the enclosure provides against harmful ingress of water.
+
+For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.
 
 <table class="reference">
   <tr>
