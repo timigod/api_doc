@@ -296,20 +296,6 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>Limit the request to only receive bids from charging stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
   </tr>
-  <tr>
-    <td>
-      <code class="field">charge_network</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The ID of the charging network.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">customer_type</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The customer type ID.</td>
-  </tr>
 </table>
 
 # Bid
