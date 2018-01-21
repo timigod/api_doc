@@ -237,10 +237,10 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">reference_id_number</code>
+      <code class="field">external_reference_id</code>
       <div class="type">optional</div>
     </td>
-    <td>An ID number that might be needed for package dispatch.</td>
+    <td>An identification string that might be needed for package dispatch.</td>
   </tr>
   <tr>
     <td>
