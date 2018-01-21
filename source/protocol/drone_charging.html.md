@@ -280,7 +280,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">charge_pad_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The type of charging pad. Can be an <b>outdoor pad</b> or an <b>enclosed charging pad</b>.</td>
+    <td>The type of charging pad. Accepted values can be either <code>open</code> (for an outdoor pad) or <code>enclosed</code> (for an enclosed charging pad).</td>
   </tr>
   <tr>
     <td>
