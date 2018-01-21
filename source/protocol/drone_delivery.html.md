@@ -129,17 +129,23 @@ This request is sent to the decentralized discovery engine which responds with s
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=10000" \
-  --data "height=200" \
-  --data "width=120" \
-  --data "length=330" \
-  --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3"
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.500593" \
+  --data "dropoff_latitude=32.937778" \
+  --data "dropoff_longitude=-79.500593" \
+  --data "requester_name=Jessie Bourne" \
+  --data "requester_phone_number=+1 415 123 5983" \
+  --data "external_reference_id=jb84723" \
+  --data "cargo_type=11" \
+  --data "hazardous_goods=8" \
+  --data "ip_protection_level=68" \
+  --data "height=8" \
+  --data "width=2" \
+  --data "length=2" \
+  --data "weight=50" \
+  --data "insurance_required=true" \
+  --data "insured_value=675" \
+  --data "insured_value_currency=USD"
 ```
 
 ```javascript
@@ -149,17 +155,23 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "requester_name": "Jessie Bourne",
+    "requester_phone_number": "+1 415 123 5983",
+    "external_reference_id": "jb84723",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
+    "ip_protection_level": "68",
+    "height": "8",
+    "width": "2",
+    "length": "2",
+    "weight": "50",
+    "insurance_required": "true",
+    "insured_value": "675",
+    "insured_value_currency": "USD",
   })
 });
 ```
@@ -168,17 +180,23 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "requester_name": "Jessie Bourne",
+    "requester_phone_number": "+1 415 123 5983",
+    "external_reference_id": "jb84723",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
+    "ip_protection_level": "68",
+    "height": "8",
+    "width": "2",
+    "length": "2",
+    "weight": "50",
+    "insurance_required": "true",
+    "insured_value": "675",
+    "insured_value_currency": "USD",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
