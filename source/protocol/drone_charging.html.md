@@ -273,7 +273,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of the drone. Charging stations that cannot support a drone weighing this much should not respond. Specified as an integer representing kilograms.</td>
+    <td>The weight of the drone. Charging stations that cannot support a drone weighing this much should not respond. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
