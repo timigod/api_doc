@@ -27,9 +27,8 @@ curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
-  --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "radius=2000" \
+  --data "plug_type=bullet_2mm"
 ```
 
 ```javascript
@@ -41,9 +40,8 @@ fetch(discoveryEndPoint, {
     "start_at": "2017-12-11T15:18:54+03:00",
     "latitude": "32.787793",
     "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "radius": "2000",
+    "plug_type": "bullet_2mm",
   })
 });
 ```
@@ -54,9 +52,8 @@ payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
     "latitude": "32.787793",
     "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "radius": "2000",
+    "plug_type": "bullet_2mm",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
