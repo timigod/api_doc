@@ -502,7 +502,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">drone_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Human readable information regarding the drone (e.g Megadronix Deliveries LTD. +31-338-594332).</td>
+    <td>Human readable information regarding the drone (e.g <code>Megadronix Deliveries LTD. +31-338-594332</code>).</td>
   </tr>
   <tr>
     <td>
