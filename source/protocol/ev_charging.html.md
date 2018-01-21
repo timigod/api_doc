@@ -256,22 +256,20 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
   </tr>
-
-    <tr>
+  <tr>
     <td>
       <code class="field">battery_capacity</code>
       <div class="type">optional</div>
     </td>
     <td>The vehicle's battery capacity, specified in <b>mAh</b>.</td>
   </tr>
-      <tr>
+  <tr>
     <td>
       <code class="field">charge_level</code>
       <div class="type">optional</div>
     </td>
     <td>The vehicle's current battery charge level, as it was by the time the request was sent. Specified in %.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">energy_source</code>
