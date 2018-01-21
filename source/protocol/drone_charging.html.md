@@ -1,5 +1,5 @@
 ---
-title: Electric Vehicle Charging
+title: Drone Charging
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -7,20 +7,18 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - Parts of the EV charging API were
-  - inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.
   - Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.
 
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Electric Vehicle Charging"></p>
+<p class="header-image"><img src="/images/ev_charging/header.png" alt="Drone Charging"></p>
 
-# Electric Vehicle Charging Protocol
+# Drone Charging Protocol
 
-The communication protocol for electric vehicle charging describes the format of a request for a charging service (`need`), and the response sent by a charging provider (`bid`).
+The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service sent by the drone (also referred to as `need`) and the response sent by a charging provider (`bid`).
 
-For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
+For example, a drone may look for a charging station that supports 2mm bullet connectors within 2 km of its current location.
 
 > Need
 
@@ -29,9 +27,8 @@ curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
-  --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "radius=2000" \
+  --data "plug_type=bullet_2mm"
 ```
 
 ```javascript
@@ -43,9 +40,8 @@ fetch(discoveryEndPoint, {
     "start_at": "2017-12-11T15:18:54+03:00",
     "latitude": "32.787793",
     "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "radius": "2000",
+    "plug_type": "bullet_2mm",
   })
 });
 ```
@@ -56,14 +52,13 @@ payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
     "latitude": "32.787793",
     "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "radius": "2000",
+    "plug_type": "bullet_2mm",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
+In response, a charging station might send back a bid with a price per kWh.
 
 > Bid
 
@@ -75,10 +70,7 @@ curl "vehicle_endpoint_here" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "available_until=2017-12-12T15:18:54+03:00"
 ```
 
 ```javascript
@@ -94,9 +86,6 @@ fetch(vehicleEndPoint, {
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
   })
 });
 ```
@@ -111,16 +100,13 @@ payload = {
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
 
 # Need
 
-A statement of need for charging stations. Typically this will be sent by an electric vehicle that is looking for a charging station around certain coordinates.
+A statement of need for drone charging services. Typically this will be sent by a drone that is looking for a charging station around certain coordinates.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
@@ -134,14 +120,17 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=10000" \
-  --data "height=200" \
-  --data "width=120" \
-  --data "length=330" \
-  --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3"
+  --data "drone_type=DXY M6000" \
+  --data "battery_capacity=4500" \
+  --data "charge_level=23" \
+  --data "plug_type=bullet_4mm" \
+  --data "height=50" \
+  --data "width=30" \
+  --data "length=30" \
+  --data "weight=2500" \
+  --data "charge_pad_type=enclosed" \
+  --data "droneport_protection_level=56" \
+  --data "energy_source=solar"
 ```
 
 ```javascript
@@ -154,14 +143,17 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
+    "drone_type": "DXY M6000",
+    "battery_capacity": "4500",
+    "charge_level": "23",
+    "plug_type": "bullet_4mm",
+    "height": "50",
+    "width": "30",
+    "length": "30",
+    "weight": "2500",
+    "charge_pad_type": "enclosed",
+    "droneport_protection_level": "56"
     "energy_source": "solar",
-    "amenities": "2,3",
   })
 });
 ```
@@ -173,14 +165,17 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
+    "drone_type": "DXY M6000",
+    "battery_capacity": "4500",
+    "charge_level": "23",
+    "plug_type": "bullet_4mm",
+    "height": "50",
+    "width": "30",
+    "length": "30",
+    "weight": "2500",
+    "charge_pad_type": "enclosed",
+    "droneport_protection_level": "56"
     "energy_source": "solar",
-    "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -216,79 +211,93 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">drone_type</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The manufacturer and/or the model number of the drone. An unformatted string.</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">battery_capacity</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The capacity of the drone's battery, specified in mAh.</td>
+  </tr>
+      <tr>
+    <td>
+      <code class="field">charge_level</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The drone's current battery charge level, as it was by the time the request was sent. Specified in %.</td>
+  </tr>
+        <tr>
+    <td>
+      <code class="field">charge_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>The drone's charge type. Its induction, contact and plug type.</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">plug_type</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The drone's plug type ID. See <a href="#plug-types">Plug Types</a> for possible values.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The height of the drone and the minimum height clearance that it requires from the charging station. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The width of the drone and the minimum width clearance that it requires from the charging station. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The length of the drone and the minimum width clearance that it requires from the charging station. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms.</td>
+    <td>The weight of the drone. Charging stations that cannot support a drone weighing this much should not respond. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
-      <code class="field">connector</code>
+      <code class="field">charge_pad_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values.</td>
+    <td>The type of charging pad. Accepted values can be either <code>open</code> (for an outdoor pad) or <code>enclosed</code> (for an enclosed charging pad).</td>
   </tr>
   <tr>
     <td>
-      <code class="field">level</code>
+      <code class="field">droneport_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">battery_capacity</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The vehicle's battery capacity, specified in <b>mAh</b>.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">charge_level</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity.</td>
+    <td>Charging stations may also provide protection services for drones. This parameter specifies the level of protection given to a drone. See possible codes under <a href="#drone-protection-level">Drone Protection Level</a>.</td>
   </tr>
   <tr>
     <td>
       <code class="field">energy_source</code>
       <div class="type">optional</div>
     </td>
-    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">amenities</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
+    <td>Limit the request to only receive bids from charging stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
   </tr>
 </table>
 
 # Bid
 
-A bid to provide a charging service. Typically sent from a charging station to an electric vehicle.
+A bid to provide a charging service. Typically sent from a charging station to a drone.
 
 ## Arguments
 
@@ -301,11 +310,8 @@ curl "vehicle_endpoint_here" \
   --data "price=2300000000000000000" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
-  --data "entrance_latitude=32.785878" \
-  --data "entrance_longitude=-79.935558" \
-  --data "exit_latitude=32.785878" \
-  --data "exit_longitude=-79.935558" \
-  --data "location_floor=2" \
+  --data "available_from=2017-12-11T15:18:54+03:00" \
+  --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "location_name=IKEA parking lot B" \
   --data "location_name_lang=eng" \
   --data "location_house_number=372" \
@@ -315,19 +321,15 @@ curl "vehicle_endpoint_here" \
   --data "location_county=Charleston" \
   --data "location_state=SC" \
   --data "location_country=USA" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "height=300" \
-  --data "width=200" \
-  --data "length=580" \
-  --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "height=5000" \
+  --data "width=1000" \
+  --data "length=1000" \
+  --data "weight=100000" \
+  --data "plug_types=bullet_2mm,bullet_3_5mm,bullet_4mm" \
   --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "provider=City Charge" \
+  --data "manufacturer=GeoCharge" \
+  --data "model=gc2910"
 ```
 
 ```javascript
@@ -341,11 +343,8 @@ fetch(vehicleEndPoint, {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -355,19 +354,15 @@ fetch(vehicleEndPoint, {
     "location_county": "Charleston",
     "location_state": "SC",
     "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "height": "5000",
+    "width": "1000",
+    "length": "1000",
+    "weight": "100000",
+    "plug_types": "bullet_2mm,bullet_3_5mm,bullet_4mm",
     "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "provider": "City Charge",
+    "manufacturer": "GeoCharge",
+    "model": "gc2910",
   })
 });
 ```
@@ -380,11 +375,8 @@ payload = {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -394,19 +386,15 @@ payload = {
     "location_county": "Charleston",
     "location_state": "SC",
     "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "height": "5000",
+    "width": "1000",
+    "length": "1000",
+    "weight": "100000",
+    "plug_types": "bullet_2mm,bullet_3_5mm,bullet_4mm",
     "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "provider": "City Charge",
+    "manufacturer": "GeoCharge",
+    "model": "gc2910",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
@@ -449,38 +437,17 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">entrance_latitude</code>
-      <div class="type">optional</div>
+      <code class="field">available_from</code>
+      <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the entrance to the charging station.</td>
+    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
-      <code class="field">entrance_longitude</code>
-      <div class="type">optional</div>
+      <code class="field">available_until</code>
+      <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the entrance to the charging station.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">exit_latitude</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The latitude coordinate of the exit from the charging station.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">exit_longitude</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The longitude coordinate of the exit from the charging station.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">location_floor</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Which floor/level is the charging stations located on (for multistory buildings).</td>
+    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
   <tr>
     <td>
@@ -547,59 +514,38 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">available_from</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">available_until</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
-  </tr>
-  <tr>
-    <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum drone height this station can accommodate. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum drone width this station can accommodate. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum drone length this station can accommodate. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms.</td>
+    <td>The maximum drone weight this station can accommodate. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
-      <code class="field">connectors</code>
+      <code class="field">plug_types</code>
       <div class="type">required</div>
     </td>
-    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">levels</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
+    <td>A list of plug types available at this charging station. Specified as a comma separated list of plug type ids. See <a href="#plug-types">Plug Types</a> for available values.</td>
   </tr>
   <tr>
     <td>
@@ -607,13 +553,6 @@ requests.post("vehicle_endpoint_here", data=payload)
       <div class="type">optional</div>
     </td>
     <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">amenities</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
   </tr>
   <tr>
     <td>
@@ -638,93 +577,75 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
 </table>
 
-# Connector Types
+# Plug Types
 
-Connector types and their unique identifier.
+Below is a list of all the supported drone plug types.
 
 <table class="reference connectors">
   <tr>
-    <th>Connector ID</th>
+    <th>Plug Type ID</th>
     <th>Name</th>
-    <th>Power Level</th>
+    <th>Amp Tolerance to Plug Type</th>
   </tr>
   <tr>
-    <td><code>nema_5_15</code></td>
-    <td>NEMA 5-15 Wall Outlet</td>
-    <td>1</td>
+    <td><code>jst_739</code></td>
+    <td>JST Connector 739</td>
+    <td>Up to 5 Amps</td>
   </tr>
   <tr>
-    <td><code>nema_5_20</code></td>
-    <td>NEMA 5-20 Wall Outlet</td>
-    <td>1</td>
+    <td><code>bullet_2mm</code></td>
+    <td>2mm bullet connectors</td>
+    <td>Up to 20 Amps</td>
   </tr>
   <tr>
-    <td><code>j1772</code></td>
-    <td>SAE J1772</td>
-    <td>2</td>
+    <td><code>bullet_3_5mm</code></td>
+    <td>3.5mm bullet connectors</td>
+    <td>Up to 40 Amps</td>
   </tr>
   <tr>
-    <td><code>mennekes</code></td>
-    <td>SAE J3068 / IEC 62196 (Mennekes)</td>
-    <td>2</td>
+    <td><code>xt_60_420</code></td>
+    <td>XT60 connectors 420</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>nema_14_50</code></td>
-    <td>NEMA 14-50 (RV plug)	</td>
-    <td>2</td>
+    <td><code>t_plug_204</code></td>
+    <td>T-Plug 204</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>chademo</code></td>
-    <td>CHAdeMO</td>
-    <td>3</td>
+    <td><code>ec3_306</code></td>
+    <td>EC3 connector 306</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>ccs</code></td>
-    <td>SAE Combined Charging System (CCS)</td>
-    <td>3</td>
+    <td><code>bullet_4mm</code></td>
+    <td>4mm bullet connectors</td>
+    <td>Up to 70 Amps</td>
   </tr>
   <tr>
-    <td><code>tesla_hpwc</code></td>
-    <td>Tesla HPWC</td>
-    <td>2</td>
+    <td><code>ec5_678</code></td>
+    <td>EC5 connectors 678</td>
+    <td>Up to 120 Amps</td>
   </tr>
   <tr>
-    <td><code>tesla_supercharger</code></td>
-    <td>Tesla supercharger</td>
-    <td>3</td>
-  </tr>
-</table>
-
-# Charging Levels
-
-Available charging levels.
-
-<table class="reference levels">
-  <tr>
-    <th>Level</th>
-    <th>Description</th>
+    <td><code>bullet_6mm</code></td>
+    <td>6mm bullet connectors</td>
+    <td>Up to 120 Amps</td>
   </tr>
   <tr>
-    <td><code>1</code></td>
-    <td>Standard house outlet</td>
-  </tr>
-  <tr>
-    <td><code>2</code></td>
-    <td>240 volt AC charging</td>
-  </tr>
-  <tr>
-    <td><code>3</code></td>
-    <td>DC fast charging</td>
+    <td><code>bullet_8mm</code></td>
+    <td>8mm bullet connectors</td>
+    <td>Up to 200 Amps</td>
   </tr>
 </table>
 
 # Energy Sources
 
-The energy source used by the station.
+The energy source used by the charging station.
 
 <table class="reference levels">
   <tr>
-    <th>Level</th>
+    <th>Source</th>
     <th>Description</th>
   </tr>
   <tr>
@@ -753,50 +674,111 @@ The energy source used by the station.
   </tr>
 </table>
 
-# Amenities
+# Drone Protection Level
 
-A list of amentities can be included in both requests and responses.
+A charging station may also provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection according to the International Protection Marking, IEC standard 60529.
+
+The first digit indicates the level of protection that the enclosure provides against access to hazardous parts (e.g., electrical conductors, moving parts) and the ingress of solid foreign objects.
+
+The second digit indicates the level of protection that the enclosure provides against harmful ingress of water.
+
+For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.
 
 <table class="reference">
   <tr>
-    <th>ID</th>
-    <th>Description</th>
+    <th>Rating Code</th>
+    <th>IP Rating</th>
+    <th>Solid Particle Protection</th>
+    <th>Liquid Ingress Protection</th>
   </tr>
   <tr>
-    <td><code>1</code></td>
-    <td>Lodging</td>
+    <td><code>54</code></td>
+    <td>IP54</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>2</code></td>
-    <td>Dining</td>
+    <td><code>55</code></td>
+    <td>IP55</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>3</code></td>
-    <td>Restrooms</td>
+    <td><code>56</code></td>
+    <td>IP56</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>4</code></td>
-    <td>EV Parking</td>
+    <td><code>57</code></td>
+    <td>IP57</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>5</code></td>
-    <td>Valet Parking</td>
+    <td><code>58</code></td>
+    <td>IP58</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>6</code></td>
-    <td>Park</td>
+    <td><code>60</code></td>
+    <td>IP60</td>
+    <td>Protected from total dust ingress</td>
+    <td>Not protected from liquids, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>7</code></td>
-    <td>WiFi</td>
+    <td><code>61</code></td>
+    <td>IP61</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from condensation, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>8</code></td>
-    <td>Shopping</td>
+    <td><code>62</code></td>
+    <td>IP62</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 15 degrees from vertical, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>9</code></td>
-    <td>Grocery</td>
+    <td><code>63</code></td>
+    <td>IP63</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 60 degrees from vertical, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>64</code></td>
+    <td>IP64</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>65</code></td>
+    <td>IP65</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>66</code></td>
+    <td>IP66</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>67</code></td>
+    <td>IP67</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>68</code></td>
+    <td>IP68</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>69k</code></td>
+    <td>IP69K</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
-
