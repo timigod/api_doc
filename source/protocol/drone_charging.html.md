@@ -625,63 +625,62 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 Below is a list of all the supported drone plug types.
 
-<table class="reference levels">
+<table class="reference connectors">
   <tr>
-    <th>ID</th>
-    <th>Plug Type</th>
+    <th>Plug Type ID</th>
+    <th>Name</th>
     <th>Amp Tolerance to Plug Type</th>
   </tr>
   <tr>
-    <td>1</td>
-    <td><code>JST Connector 739</code></td>
+    <td><code>jst_739</code></td>
+    <td>JST Connector 739</td>
     <td>Up to 5 Amps</td>
   </tr>
-    <tr>
-    <td>2</td>
-    <td><code>2mm bullet connectors</code></td>
+  <tr>
+    <td><code>bullet_2mm</code></td>
+    <td>2mm bullet connectors</td>
     <td>Up to 20 Amps</td>
   </tr>
-    <tr>
-    <td>3</td>
-    <td><code>3.5mm bullet connectors</code></td>
+  <tr>
+    <td><code>bullet_3_5mm</code></td>
+    <td>3.5mm bullet connectors</td>
     <td>Up to 40 Amps</td>
   </tr>
-    <tr>
-    <td>4</td>
-    <td><code>XT60 connectors 420</code></td>
+  <tr>
+    <td><code>xt_60_420</code></td>
+    <td>XT60 connectors 420</td>
     <td>Up to 60 Amps</td>
   </tr>
-    <tr>
-    <td>5</td>
-    <td><code>T-Plug204</code></td>
+  <tr>
+    <td><code>t_plug_204</code></td>
+    <td>T-Plug 204</td>
     <td>Up to 60 Amps</td>
   </tr>
-    <tr>
-    <td>6</td>
-    <td><code>EC3 connector306</code></td>
+  <tr>
+    <td><code>ec3_306</code></td>
+    <td>EC3 connector 306</td>
     <td>Up to 60 Amps</td>
   </tr>
-    <tr>
-    <td>7</td>
-    <td><code>4mm bullet connectors</code></td>
+  <tr>
+    <td><code>bullet_4mm</code></td>
+    <td>4mm bullet connectors</td>
     <td>Up to 70 Amps</td>
   </tr>
-    <tr>
-    <td>8</td>
-    <td><code>EC5 connectors678</code></td>
+  <tr>
+    <td><code>ec5_678</code></td>
+    <td>EC5 connectors 678</td>
     <td>Up to 120 Amps</td>
   </tr>
-    <tr>
-    <td>9</td>
-    <td><code>6mm bullet connectors</code></td>
+  <tr>
+    <td><code>bullet_6mm</code></td>
+    <td>6mm bullet connectors</td>
     <td>Up to 120 Amps</td>
   </tr>
-    <tr>
-    <td>10</td>
-    <td><code>8mm bullet connectors</code></td>
+  <tr>
+    <td><code>bullet_8mm</code></td>
+    <td>8mm bullet connectors</td>
     <td>Up to 200 Amps</td>
   </tr>
-
 </table>
 
 # Energy Sources
