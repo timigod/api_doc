@@ -255,7 +255,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">hazardous_goods</code>
       <div class="type">optional</div>
     </td>
-    <td>The drone's supported plug types. See the full list of options <a href="#hazardous-goods">here</a>.</td>
+    <td>If this package contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a>.</td>
   </tr>
   <tr>
     <td>
