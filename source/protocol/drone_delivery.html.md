@@ -297,7 +297,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">insurance_required</code>
       <div class="type">optional</div>
     </td>
-    <td>Some deliveries may require an insurance service. Specified as a boolean TRUE/FALSE (deafult is false)</b>.</td>
+    <td>Some deliveries may require an insurance service. Specified as a boolean TRUE/FALSE (default is false).</td>
   </tr>
   <tr>
     <td>

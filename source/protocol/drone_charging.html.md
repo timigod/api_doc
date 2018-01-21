@@ -782,4 +782,3 @@ For a full listing of all available codes, read more about <a href="https://en.w
     <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
-
