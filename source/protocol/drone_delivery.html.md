@@ -262,7 +262,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>Drones may provide a certain level of protection to the delievered package. See full list of options <a href="#ip-protection-level">here</a>.</td>
+    <td>A certain level of protection to the package may be requested. See full list of options <a href="#ip-protection-level">here</a>.</td>
   </tr>
   <tr>
     <td>
@@ -297,7 +297,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">insurance_required</code>
       <div class="type">optional</div>
     </td>
-    <td>Some deliveries may require an insurance service. Specified as a boolean TRUE/FALSE (default is false).</td>
+    <td>The requester may require that the delivery be insured. Specified as a boolean (default is false).</td>
   </tr>
   <tr>
     <td>
