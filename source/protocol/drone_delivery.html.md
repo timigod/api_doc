@@ -18,18 +18,19 @@ search: true
 
 The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
 
-For example, a user is looking for a drone to pick up a small 2kg package from his doorstep and deliver it to a friend's backyard 20km from him.
+For example, a user is looking for a drone to pick up a small tube containing corrosive materials from his doorstep and deliver it to a friend's backyard.
 
 > Need
 
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.500593" \
+  --data "dropoff_latitude=32.937778" \
+  --data "dropoff_longitude=-79.500593" \
+  --data "cargo_type=11" \
+  --data "hazardous_goods=8"
 ```
 
 ```javascript
@@ -39,11 +40,12 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
   })
 });
 ```
@@ -52,11 +54,12 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
