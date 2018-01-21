@@ -349,35 +349,13 @@ curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "entrance_latitude=32.785878" \
-  --data "entrance_longitude=-79.935558" \
-  --data "exit_latitude=32.785878" \
-  --data "exit_longitude=-79.935558" \
-  --data "location_floor=2" \
-  --data "location_name=IKEA parking lot B" \
-  --data "location_name_lang=eng" \
-  --data "location_house_number=372" \
-  --data "location_street=King" \
-  --data "location_city=Charleston" \
-  --data "location_postal_code=29401" \
-  --data "location_county=Charleston" \
-  --data "location_state=SC" \
-  --data "location_country=USA" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "height=300" \
-  --data "width=200" \
-  --data "length=580" \
-  --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
+  --data "time_to_dropoff=2017-12-11T15:34:20+03:00" \
+  --data "insured=true" \
+  --data "insurer_dav_id=0x17325a469aef3472aa58dfdcf672881d79b31d58" \
+  --data "drone_contact=Megadronix" \
+  --data "drone_manufacturer=DXY" \
+  --data "drone_model=m6000"
 ```
 
 ```javascript
@@ -389,35 +367,13 @@ fetch(vehicleEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
+    "insured": "true",
+    "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
+    "drone_contact": "Megadronix",
+    "drone_manufacturer": "DXY",
+    "drone_model": "m6000",
   })
 });
 ```
@@ -428,35 +384,13 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
+    "insured": "true",
+    "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
+    "drone_contact": "Megadronix",
+    "drone_manufacturer": "DXY",
+    "drone_model": "m6000",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
