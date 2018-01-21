@@ -73,13 +73,8 @@ curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
+  --data "time_to_dropoff=2017-12-11T15:34:20+03:00"
 ```
 
 ```javascript
@@ -91,13 +86,8 @@ fetch(vehicleEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   })
 });
 ```
@@ -108,13 +98,8 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
