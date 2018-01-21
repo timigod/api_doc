@@ -499,6 +499,20 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">insured</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Is this delivery insured? Specified as a boolean (default is false).</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">insurer_dav_id</code>
+      <div class="type">optional</div>
+    </td>
+    <td>If this delivery is insured by another DAV Identity, include their ID here.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">drone_contact</code>
       <div class="type">optional</div>
     </td>
