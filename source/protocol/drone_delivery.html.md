@@ -290,7 +290,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of the package. Specified as an integer representing kilograms.</td>
+    <td>The weight of the package. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
