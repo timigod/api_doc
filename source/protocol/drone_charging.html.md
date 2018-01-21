@@ -430,7 +430,6 @@ requests.post("vehicle_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
-
   <tr>
     <td>
       <code class="field">request_uid</code>
@@ -466,7 +465,6 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>The longitude coordinate of the charging station.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">available_from</code>
@@ -481,7 +479,6 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">location_name</code>
@@ -545,7 +542,6 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>The country where the station is located.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">height</code>
@@ -572,7 +568,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum drone weight this station can accommodate. Specified as an integer representing kilograms.</td>
+    <td>The maximum drone weight this station can accommodate. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
@@ -581,7 +577,6 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">energy_source</code>
@@ -589,7 +584,6 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
   </tr>
-
   <tr>
     <td>
       <code class="field">provider</code>
