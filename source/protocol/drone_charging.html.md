@@ -138,7 +138,7 @@ curl "discovery_endpoint_here" \
   --data "length=30" \
   --data "weight=2500" \
   --data "charge_pad_type=enclosed" \
-  --data "droneport_protection_level=56 \
+  --data "droneport_protection_level=56" \
   --data "energy_source=solar"
 ```
 
