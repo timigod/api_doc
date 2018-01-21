@@ -120,7 +120,7 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=10000" \
-  --data "drone_type=DJI M600" \
+  --data "drone_type=DXY M6000" \
   --data "battery_capacity=4500" \
   --data "charge_level=23" \
   --data "plug_type=bullet_4mm" \
@@ -143,7 +143,7 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "drone_type": "DJI M600",
+    "drone_type": "DXY M6000",
     "battery_capacity": "4500",
     "charge_level": "23",
     "plug_type": "bullet_4mm",
@@ -165,7 +165,7 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "drone_type": "DJI M600",
+    "drone_type": "DXY M6000",
     "battery_capacity": "4500",
     "charge_level": "23",
     "plug_type": "bullet_4mm",
