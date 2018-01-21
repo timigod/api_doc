@@ -16,9 +16,9 @@ search: true
 
 # Drone Charging Protocol
 
-The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service (also referred to as `need`) and the response sent by a charging provider (`bid`).
+The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service sent by the drone (also referred to as `need`) and the response sent by a charging provider (`bid`).
 
-For example, a drone may look for a charging station that supports 2mm bullet connectors within the range of 2 km from its current location.
+For example, a drone may look for a charging station that supports 2mm bullet connectors within 2 km of its current location.
 
 > Need
 
@@ -118,7 +118,7 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 # Need
 
-A statement of need for charging stations. Typically this will be sent by a drone that is looking for a charging station around certain coordinates.
+A statement of need for drone charging services. Typically this will be sent by a drone that is looking for a charging station around certain coordinates.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
@@ -217,14 +217,14 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">drone_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The manufacturer and/or the model number of the drone.</td>
+    <td>The manufacturer and/or the model number of the drone. An unformatted string.</td>
   </tr>
     <tr>
     <td>
       <code class="field">battery_capacity</code>
       <div class="type">optional</div>
     </td>
-    <td>The capacity of the drone's battery, specified in <b>mAh</b>.</td>
+    <td>The capacity of the drone's battery, specified in mAh.</td>
   </tr>
       <tr>
     <td>
@@ -240,16 +240,14 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The drone's charge type. Its induction, contact and plug type.</td>
   </tr>
-
-        <tr>
+  <tr>
     <td>
       <code class="field">plug_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The drone's supported plug types. See <a href="#plug-types">Plug Types</a>.</td>
+    <td>The drone's plug type. See <a href="#plug-types">Plug Types</a> for possible values.</td>
   </tr>
-
-    <tr>
+  <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
