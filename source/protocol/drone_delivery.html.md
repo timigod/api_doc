@@ -16,9 +16,9 @@ search: true
 
 # Drone Delivery Protocol
 
-The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as ‘need’) and the response sent by drones that bid on providing the delivery service.
+The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
 
-For example, a user is looking for a drone to pick up a small 2kg package from his door step and deliver it to a friend's backyard 20km from him. Another example would be of a user that looks to deliver a package to him from some store nearby.
+For example, a user is looking for a drone to pick up a small 2kg package from his doorstep and deliver it to a friend's backyard 20km from him.
 
 > Need
 
@@ -61,7 +61,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a drone might send back a bid with a price, time to delivery etc.
+In response, a drone might send back a bid with a price, the estimated time it will arrive at the pickup location, and the estimated time it will arrive at the dropoff location.
 
 > Bid
 
@@ -190,7 +190,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <div class="type required">required</div>
     </td>
     <td>
-      The time at which the requester would like to deliver the package (if delivery should be done ASAP, speicify the current hour). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.
+      The time at which the requester would like the package to be picked up (if delivery should be done ASAP, specify the current time). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.
     </td>
   </tr>
   <tr>
