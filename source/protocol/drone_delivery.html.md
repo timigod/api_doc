@@ -311,7 +311,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">insured_value_currency</code>
       <div class="type">optional</div>
     </td>
-    <td>The currency in which the declared value is denoted. This should be specified as a 3 letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or "DAV".</td>
+    <td>The currency in which the declared value is denoted. This should be specified as a 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or <code>DAV</code>.</td>
   </tr>
 </table>
 
