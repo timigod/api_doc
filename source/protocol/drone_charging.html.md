@@ -287,7 +287,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">droneport_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>Charging stations may also provide protection services for drones. This parameter specifies the level of protection given to a drone. See the full table of options <a href="#drone-protection-level">here</a>.</td>
+    <td>Charging stations may also provide protection services for drones. This parameter specifies the level of protection given to a drone. See possible codes under <a href="#drone-protection-level">Drone Protection Level</a>.</td>
   </tr>
   <tr>
     <td>
