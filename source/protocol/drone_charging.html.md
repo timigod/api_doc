@@ -132,14 +132,17 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=10000" \
-  --data "height=200" \
-  --data "width=120" \
-  --data "length=330" \
-  --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3"
+  --data "drone_type=DJI M600" \
+  --data "battery_capacity=4500" \
+  --data "charge_level=23" \
+  --data "plug_type=bullet_4mm" \
+  --data "height=50" \
+  --data "width=30" \
+  --data "length=30" \
+  --data "weight=2500" \
+  --data "charge_pad_type=enclosed" \
+  --data "droneport_protection_level=56 \
+  --data "energy_source=solar"
 ```
 
 ```javascript
@@ -152,14 +155,17 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
+    "drone_type": "DJI M600",
+    "battery_capacity": "4500",
+    "charge_level": "23",
+    "plug_type": "bullet_4mm",
+    "height": "50",
+    "width": "30",
+    "length": "30",
+    "weight": "2500",
+    "charge_pad_type": "enclosed",
+    "droneport_protection_level": "56"
     "energy_source": "solar",
-    "amenities": "2,3",
   })
 });
 ```
@@ -171,14 +177,17 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
+    "drone_type": "DJI M600",
+    "battery_capacity": "4500",
+    "charge_level": "23",
+    "plug_type": "bullet_4mm",
+    "height": "50",
+    "width": "30",
+    "length": "30",
+    "weight": "2500",
+    "charge_pad_type": "enclosed",
+    "droneport_protection_level": "56"
     "energy_source": "solar",
-    "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
