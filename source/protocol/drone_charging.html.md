@@ -252,7 +252,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of the drone and the minimum width clearance that it requires from the charging station. Specified as an integer representing centimeters.</td>
+    <td>The height of the drone and the minimum height clearance that it requires from the charging station. Specified as an integer representing centimeters.</td>
   </tr>
   <tr>
     <td>
