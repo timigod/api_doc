@@ -319,11 +319,8 @@ curl "vehicle_endpoint_here" \
   --data "price=2300000000000000000" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
-  --data "entrance_latitude=32.785878" \
-  --data "entrance_longitude=-79.935558" \
-  --data "exit_latitude=32.785878" \
-  --data "exit_longitude=-79.935558" \
-  --data "location_floor=2" \
+  --data "available_from=2017-12-11T15:18:54+03:00" \
+  --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "location_name=IKEA parking lot B" \
   --data "location_name_lang=eng" \
   --data "location_house_number=372" \
@@ -333,19 +330,15 @@ curl "vehicle_endpoint_here" \
   --data "location_county=Charleston" \
   --data "location_state=SC" \
   --data "location_country=USA" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "height=300" \
-  --data "width=200" \
-  --data "length=580" \
-  --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "height=5000" \
+  --data "width=1000" \
+  --data "length=1000" \
+  --data "weight=100000" \
+  --data "plug_types=bullet_2mm,bullet_3_5mm,bullet_4mm" \
   --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "provider=City Charge" \
+  --data "manufacturer=GeoCharge" \
+  --data "model=gc2910"
 ```
 
 ```javascript
@@ -359,11 +352,8 @@ fetch(vehicleEndPoint, {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -373,19 +363,15 @@ fetch(vehicleEndPoint, {
     "location_county": "Charleston",
     "location_state": "SC",
     "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "height": "5000",
+    "width": "1000",
+    "length": "1000",
+    "weight": "100000",
+    "plug_types": "bullet_2mm,bullet_3_5mm,bullet_4mm",
     "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "provider": "City Charge",
+    "manufacturer": "GeoCharge",
+    "model": "gc2910",
   })
 });
 ```
@@ -398,11 +384,8 @@ payload = {
     "price": "2300000000000000000",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
+    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_until": "2017-12-12T15:18:54+03:00",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -412,19 +395,15 @@ payload = {
     "location_county": "Charleston",
     "location_state": "SC",
     "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "height": "5000",
+    "width": "1000",
+    "length": "1000",
+    "weight": "100000",
+    "plug_types": "bullet_2mm,bullet_3_5mm,bullet_4mm",
     "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "provider": "City Charge",
+    "manufacturer": "GeoCharge",
+    "model": "gc2910",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
