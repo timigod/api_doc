@@ -590,7 +590,7 @@ requests.post("vehicle_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">connectors</code>
-      <div class="type">required</div>
+      <div class="type required">required</div>
     </td>
     <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
   </tr>
