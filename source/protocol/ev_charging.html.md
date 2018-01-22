@@ -261,7 +261,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">battery_capacity</code>
       <div class="type">optional</div>
     </td>
-    <td>The vehicle's battery capacity, specified in <b>mAh</b>.</td>
+    <td>The vehicle's total battery capacity, specified in kWh.</td>
   </tr>
   <tr>
     <td>
