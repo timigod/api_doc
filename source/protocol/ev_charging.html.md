@@ -646,7 +646,7 @@ Connector types and their unique identifier.
   <tr>
     <th>Connector ID</th>
     <th>Name</th>
-    <th>Power Level</th>
+    <th>Charging Level</th>
   </tr>
   <tr>
     <td><code>nema_5_15</code></td>
