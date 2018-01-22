@@ -16,20 +16,21 @@ search: true
 
 # Drone Delivery Protocol
 
-The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as ‘need’) and the response sent by drones that bid on providing the delivery service.
+The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
 
-For example, a user is looking for a drone to pick up a small 2kg package from his door step and deliver it to a friend's backyard 20km from him. Another example would be of a user that looks to deliver a package to him from some store nearby.
+For example, a user is looking for a drone to pick up a small tube containing corrosive materials from his doorstep and deliver it to a friend's backyard.
 
 > Need
 
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.500593" \
+  --data "dropoff_latitude=32.937778" \
+  --data "dropoff_longitude=-79.500593" \
+  --data "cargo_type=11" \
+  --data "hazardous_goods=8"
 ```
 
 ```javascript
@@ -39,11 +40,12 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
   })
 });
 ```
@@ -52,16 +54,17 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a drone might send back a bid with a price, time to delivery etc.
+In response, a drone might send back a bid with a price, the estimated time it will arrive at the pickup location, and the estimated time it will arrive at the dropoff location.
 
 > Bid
 
@@ -70,13 +73,8 @@ curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
+  --data "time_to_dropoff=2017-12-11T15:34:20+03:00"
 ```
 
 ```javascript
@@ -88,13 +86,8 @@ fetch(vehicleEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   })
 });
 ```
@@ -105,13 +98,8 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
@@ -129,17 +117,23 @@ This request is sent to the decentralized discovery engine which responds with s
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=10000" \
-  --data "height=200" \
-  --data "width=120" \
-  --data "length=330" \
-  --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3"
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.500593" \
+  --data "dropoff_latitude=32.937778" \
+  --data "dropoff_longitude=-79.500593" \
+  --data "requester_name=Jessie Bourne" \
+  --data "requester_phone_number=+1 415 123 5983" \
+  --data "external_reference_id=jb84723" \
+  --data "cargo_type=11" \
+  --data "hazardous_goods=8" \
+  --data "ip_protection_level=68" \
+  --data "height=8" \
+  --data "width=2" \
+  --data "length=2" \
+  --data "weight=50" \
+  --data "insurance_required=true" \
+  --data "insured_value=675" \
+  --data "insured_value_currency=USD"
 ```
 
 ```javascript
@@ -149,17 +143,23 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "requester_name": "Jessie Bourne",
+    "requester_phone_number": "+1 415 123 5983",
+    "external_reference_id": "jb84723",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
+    "ip_protection_level": "68",
+    "height": "8",
+    "width": "2",
+    "length": "2",
+    "weight": "50",
+    "insurance_required": "true",
+    "insured_value": "675",
+    "insured_value_currency": "USD",
   })
 });
 ```
@@ -168,17 +168,23 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.500593",
+    "dropoff_latitude": "32.937778",
+    "dropoff_longitude": "-79.500593",
+    "requester_name": "Jessie Bourne",
+    "requester_phone_number": "+1 415 123 5983",
+    "external_reference_id": "jb84723",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
+    "ip_protection_level": "68",
+    "height": "8",
+    "width": "2",
+    "length": "2",
+    "weight": "50",
+    "insurance_required": "true",
+    "insured_value": "675",
+    "insured_value_currency": "USD",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -190,7 +196,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <div class="type required">required</div>
     </td>
     <td>
-      The time at which the requester would like to deliver the package (if delivery should be done ASAP, speicify the current hour). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.
+      The time at which the requester would like the package to be picked up (if delivery should be done ASAP, specify the current time). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.
     </td>
   </tr>
   <tr>
@@ -237,10 +243,10 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">reference_id_number</code>
+      <code class="field">external_reference_id</code>
       <div class="type">optional</div>
     </td>
-    <td>An ID number that might be needed for package dispatch.</td>
+    <td>An identification string that might be needed for package dispatch.</td>
   </tr>
   <tr>
     <td>
@@ -255,14 +261,14 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">hazardous_goods</code>
       <div class="type">optional</div>
     </td>
-    <td>The drone's supported plug types. See the full list of options <a href="#hazardous-goods">here</a>.</td>
+    <td>If this package contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a>.</td>
   </tr>
   <tr>
     <td>
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>Drones may provide a certain level of protection to the delievered package. See full list of options <a href="#ip-protection-level">here</a>.</td>
+    <td>A certain level of protection to the package may be requested. See full list of options <a href="#ip-protection-level">here</a>.</td>
   </tr>
   <tr>
     <td>
@@ -290,14 +296,14 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of the package. Specified as an integer representing kilograms.</td>
+    <td>The weight of the package. Specified as an integer representing grams.</td>
   </tr>
   <tr>
     <td>
       <code class="field">insurance_required</code>
       <div class="type">optional</div>
     </td>
-    <td>Some deliveries may require an insurance service. Specified as a boolean TRUE/FALSE (deafult is false)</b>.</td>
+    <td>The requester may require that the delivery be insured. Specified as a boolean (default is false).</td>
   </tr>
   <tr>
     <td>
@@ -311,7 +317,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">insured_value_currency</code>
       <div class="type">optional</div>
     </td>
-    <td>The currency in which the declared value is denoted. This should be specified as a 3 letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or "DAV".</td>
+    <td>The currency in which the declared value is denoted. This should be specified as a 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or <code>DAV</code>.</td>
   </tr>
 </table>
 
@@ -328,35 +334,13 @@ curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "entrance_latitude=32.785878" \
-  --data "entrance_longitude=-79.935558" \
-  --data "exit_latitude=32.785878" \
-  --data "exit_longitude=-79.935558" \
-  --data "location_floor=2" \
-  --data "location_name=IKEA parking lot B" \
-  --data "location_name_lang=eng" \
-  --data "location_house_number=372" \
-  --data "location_street=King" \
-  --data "location_city=Charleston" \
-  --data "location_postal_code=29401" \
-  --data "location_county=Charleston" \
-  --data "location_state=SC" \
-  --data "location_country=USA" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "height=300" \
-  --data "width=200" \
-  --data "length=580" \
-  --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
+  --data "time_to_dropoff=2017-12-11T15:34:20+03:00" \
+  --data "insured=true" \
+  --data "insurer_dav_id=0x17325a469aef3472aa58dfdcf672881d79b31d58" \
+  --data "drone_contact=Megadronix" \
+  --data "drone_manufacturer=DXY" \
+  --data "drone_model=m6000"
 ```
 
 ```javascript
@@ -368,35 +352,13 @@ fetch(vehicleEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
+    "insured": "true",
+    "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
+    "drone_contact": "Megadronix",
+    "drone_manufacturer": "DXY",
+    "drone_model": "m6000",
   })
 });
 ```
@@ -407,35 +369,13 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "time_to_pickup": "2017-12-11T15:21:59+03:00",
+    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
+    "insured": "true",
+    "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
+    "drone_contact": "Megadronix",
+    "drone_manufacturer": "DXY",
+    "drone_model": "m6000",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
@@ -478,10 +418,24 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">insured</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Is this delivery insured? Specified as a boolean (default is false).</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">insurer_dav_id</code>
+      <div class="type">optional</div>
+    </td>
+    <td>If this delivery is insured by another DAV Identity, include their ID here.</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">drone_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Human readable information regarding the drone (e.g Megadronix Deliveries LTD. +31-338-594332).</td>
+    <td>Human readable information regarding the drone (e.g <code>Megadronix Deliveries LTD. +31-338-594332</code>).</td>
   </tr>
   <tr>
     <td>
@@ -502,65 +456,84 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 # Cargo Types
 
-The following table describes the different types of cargos according to international delivery standards.
+The following table describes the different types of cargo according to international delivery standards.
 
 <table class="reference">
   <tr>
+    <th>Class ID</th>
     <th>Type</th>
   </tr>
   <tr>
-    <td><code>class_1_Satchel 500g</code></td>
+    <td><code>1</code></td>
+    <td>Satchel 500g</td>
   </tr>
   <tr>
-    <td><code>class_2_Satchel 1kg</code></td>
+    <td><code>2</code></td>
+    <td>Satchel 1kg</td>
   </tr>
   <tr>
-    <td><code>class_3_Satchel 3kg</code></td>
+    <td><code>3</code></td>
+    <td>Satchel 3kg</td>
   </tr>
   <tr>
-    <td><code>class_4_Satchel 5kg</code></td>
+    <td><code>4</code></td>
+    <td>Satchel 5kg</td>
   </tr>
   <tr>
-    <td><code>class_5_Unpackaged</code></td>
-  </tr>
-    <tr>
-    <td><code>class_6_Other/Misc</code></td>
+    <td><code>5</code></td>
+    <td>Unpackaged</td>
   </tr>
   <tr>
-    <td><code>class_7_Envelope</code></td>
+    <td><code>6</code></td>
+    <td>Other/Misc</td>
   </tr>
   <tr>
-    <td><code>class_8_Bag</code></td>
+    <td><code>7</code></td>
+    <td>Envelope</td>
   </tr>
   <tr>
-    <td><code>class_9_Satchel</code></td>
+    <td><code>8</code></td>
+    <td>Bag</td>
   </tr>
   <tr>
-    <td><code>class_10_Crate</code></td>
-  </tr>
-    <tr>
-    <td><code>class_11_Tube</code></td>
+    <td><code>9</code></td>
+    <td>Satchel</td>
   </tr>
   <tr>
-    <td><code>class_12_Pallet</code></td>
+    <td><code>10</code></td>
+    <td>Crate</td>
   </tr>
   <tr>
-    <td><code>class_13_Skid</code></td>
+    <td><code>11</code></td>
+    <td>Tube</td>
   </tr>
   <tr>
-    <td><code>class_14_Heavy Carton</code></td>
-  </tr>
-      <tr>
-    <td><code>class_15_Carton containing glass</code></td>
+    <td><code>12</code></td>
+    <td>Pallet</td>
   </tr>
   <tr>
-    <td><code>class_16_Carton containing liquids</code></td>
+    <td><code>13</code></td>
+    <td>Skid</td>
   </tr>
   <tr>
-    <td><code>class_17_wine/beer/liquor carton</code></td>
+    <td><code>14</code></td>
+    <td>Heavy Carton</td>
   </tr>
   <tr>
-    <td><code>class_18_Carton</code></td>
+    <td><code>15</code></td>
+    <td>Carton containing glass</td>
+  </tr>
+  <tr>
+    <td><code>16</code></td>
+    <td>Carton containing liquids</td>
+  </tr>
+  <tr>
+    <td><code>17</code></td>
+    <td>wine/beer/liquor carton</td>
+  </tr>
+  <tr>
+    <td><code>18</code></td>
+    <td>Carton</td>
   </tr>
 </table>
 
@@ -570,65 +543,153 @@ The following table describes the different types of hazardous goods according t
 
 <table class="reference">
   <tr>
+    <th>Class ID</th>
     <th>Type</th>
   </tr>
   <tr>
-    <td><code>class_1_explosives</code></td>
+    <td><code>1</code></td>
+    <td>Explosives</td>
   </tr>
   <tr>
-    <td><code>class_2_gases</code></td>
+    <td><code>2</code></td>
+    <td>Gases</td>
   </tr>
   <tr>
-    <td><code>class_3_flammable and combustible liquids</code></td>
+    <td><code>3</code></td>
+    <td>Flammable and combustible liquids</td>
   </tr>
   <tr>
-    <td><code>class_4_flammable solids</code></td>
+    <td><code>4</code></td>
+    <td>Flammable solids</td>
   </tr>
   <tr>
-    <td><code>class_5_oxidizing sibstances, organic peroxides</code></td>
-  </tr>
-    <tr>
-    <td><code>class_6_toxic and infectious substances</code></td>
+    <td><code>5</code></td>
+    <td>Oxidizing substances, organic peroxides</td>
   </tr>
   <tr>
-    <td><code>class_7_radioacive materials</code></td>
+    <td><code>6</code></td>
+    <td>Toxic and infectious substances</td>
   </tr>
   <tr>
-    <td><code>class_8_corrosives</code></td>
+    <td><code>7</code></td>
+    <td>Radioactive materials</td>
   </tr>
   <tr>
-    <td><code>class_9_misc Hazardous</code></td>
+    <td><code>8</code></td>
+    <td>Corrosives</td>
+  </tr>
+  <tr>
+    <td><code>9</code></td>
+    <td>Misc Hazardous</td>
   </tr>
 </table>
 
 # IP Protection Level
 
-A drone may provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the different levels of protection based on International Protection Rating.
+A drone may provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection according to the International Protection Marking, IEC standard 60529.
+
+The first digit indicates the level of protection that the enclosure provides against access to hazardous parts (e.g., electrical conductors, moving parts) and the ingress of solid foreign objects.
+
+The second digit indicates the level of protection that the enclosure provides against harmful ingress of water.
+
+For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.
 
 <table class="reference">
   <tr>
+    <th>Rating Code</th>
     <th>IP Rating</th>
-    <th>First Digit - SOLIDS</th>
-    <th>Second Digit - LIQUIDS</th>
+    <th>Solid Particle Protection</th>
+    <th>Liquid Ingress Protection</th>
   </tr>
   <tr>
-    <td><code>IP51</code></td>
+    <td><code>54</code></td>
+    <td>IP54</td>
     <td>Protected from limited dust ingress</td>
-    <td>Protected from dripping water (vertically falling drops)</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>IP54</code></td>
+    <td><code>55</code></td>
+    <td>IP55</td>
     <td>Protected from limited dust ingress</td>
-    <td>Protected from splashing water (from any direction) against the enclosure</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>56</code></td>
+    <td>IP56</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>57</code></td>
+    <td>IP57</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>58</code></td>
+    <td>IP58</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>60</code></td>
+    <td>IP60</td>
+    <td>Protected from total dust ingress</td>
+    <td>Not protected from liquids, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>61</code></td>
+    <td>IP61</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from condensation, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>62</code></td>
+    <td>IP62</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 15 degrees from vertical, limited ingress protection</td>
+  </tr>
+  <tr>
+    <td><code>63</code></td>
+    <td>IP63</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 60 degrees from vertical, limited ingress protection</td>
   </tr>
     <tr>
-    <td><code>IP65</code></td>
-    <td>Total protection from dust ingress</td>
-    <td>Protected from projected water/water jets (from any direction) against the enclosure</td>
+    <td><code>64</code></td>
+    <td>IP64</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
     <tr>
-    <td><code>IP68</code></td>
-    <td>Total protection from dust ingress</td>
-    <td>Total protection from water ingress <b>or</b> water can enter but only in such a manner that it produces no harmful effects</td>
+    <td><code>65</code></td>
+    <td>IP65</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>66</code></td>
+    <td>IP66</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>67</code></td>
+    <td>IP67</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>68</code></td>
+    <td>IP68</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>69k</code></td>
+    <td>IP69K</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
+
