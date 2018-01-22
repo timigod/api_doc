@@ -245,7 +245,7 @@ requests.post("discovery_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">connector</code>
-      <div class="type">optional</div>
+      <div class="type required">required</div>
     </td>
     <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values.</td>
   </tr>
