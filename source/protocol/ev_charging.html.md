@@ -251,7 +251,7 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">level</code>
+      <code class="field">charging_level</code>
       <div class="type">optional</div>
     </td>
     <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
@@ -265,7 +265,7 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">charge_level</code>
+      <code class="field">current_battery_charge</code>
       <div class="type">optional</div>
     </td>
     <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity.</td>
@@ -596,7 +596,7 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">levels</code>
+      <code class="field">charging_levels</code>
       <div class="type">optional</div>
     </td>
     <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
