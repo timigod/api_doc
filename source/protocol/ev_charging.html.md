@@ -776,7 +776,7 @@ A list of amentities can be included in both requests and responses.
   </tr>
   <tr>
     <td><code>4</code></td>
-    <td>EV Parking</td>
+    <td>Parking</td>
   </tr>
   <tr>
     <td><code>5</code></td>
