@@ -430,6 +430,13 @@ requests.post("vehicle_endpoint_here", data=payload)
     </td>
     <td>If this delivery is insured by another DAV Identity, include their ID here.</td>
   </tr>
+    <tr>
+    <td>
+      <code class="field">ip_protection_level</code>
+      <div class="type">optional</div>
+    </td>
+    <td>A certain level of package protection that a drone may provide. See full list of options <a href="#ip-protection-level">here</a>.</td>
+  </tr>
   <tr>
     <td>
       <code class="field">drone_contact</code>
