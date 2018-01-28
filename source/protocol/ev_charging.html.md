@@ -191,98 +191,98 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type required">required</div>
     </td>
-    <td>The time at which the requester would like to arrive at charging station. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time at which the requester would like to arrive at charging station. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate around which to search.</td>
+    <td>The latitude coordinate around which to search</td>
   </tr>
   <tr>
     <td>
       <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate around which to search.</td>
+    <td>The longitude coordinate around which to search</td>
   </tr>
   <tr>
     <td>
       <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
-    <td>Radius in meters around the search coordinates to search. Specified as an integer.</td>
+    <td>Radius in meters around the search coordinates to search. Specified as an integer</td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters.</td>
+    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms.</td>
+    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">connector</code>
       <div class="type required">required</div>
     </td>
-    <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values.</td>
+    <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values</td>
   </tr>
   <tr>
     <td>
       <code class="field">charging_level</code>
       <div class="type">optional</div>
     </td>
-    <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a>.</td>
+    <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">battery_capacity</code>
       <div class="type">optional</div>
     </td>
-    <td>The vehicle's total battery capacity, specified in kWh.</td>
+    <td>The vehicle's total battery capacity, specified in kWh</td>
   </tr>
   <tr>
     <td>
       <code class="field">current_battery_charge</code>
       <div class="type">optional</div>
     </td>
-    <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity.</td>
+    <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity</td>
   </tr>
   <tr>
     <td>
       <code class="field">energy_source</code>
       <div class="type">optional</div>
     </td>
-    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
+    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
+    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
   </tr>
 </table>
 
@@ -417,224 +417,224 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">request_uid</code>
       <div class="type required">required</div>
     </td>
-    <td>The UID of the request. This arrives as part of the request.</td>
+    <td>The UID of the request. This arrives as part of the request</td>
   </tr>
   <tr>
     <td>
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000).</td>
+    <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
   </tr>
   <tr>
     <td>
       <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the charging station.</td>
+    <td>The latitude coordinate of the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the charging station.</td>
+    <td>The longitude coordinate of the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the entrance to the charging station.</td>
+    <td>The latitude coordinate of the entrance to the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the entrance to the charging station.</td>
+    <td>The longitude coordinate of the entrance to the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the exit from the charging station.</td>
+    <td>The latitude coordinate of the exit from the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the exit from the charging station.</td>
+    <td>The longitude coordinate of the exit from the charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_floor</code>
       <div class="type">optional</div>
     </td>
-    <td>Which floor/level is the charging stations located on (for multistory buildings).</td>
+    <td>Which floor/level is the charging stations located on (for multistory buildings)</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_name</code>
       <div class="type">optional</div>
     </td>
-    <td>A human readable name/description of the charging station location (e.g., Lund Train Station parking).</td>
+    <td>A human readable name/description of the charging station location (e.g., Lund Train Station parking)</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_name_lang</code>
       <div class="type">optional</div>
     </td>
-    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3" target="blank">ISO 639-3</a> language code.</td>
+    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3" target="blank">ISO 639-3</a> language code</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_house_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The house number where the station is located.</td>
+    <td>The house number where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_street</code>
       <div class="type">optional</div>
     </td>
-    <td>The street name where the station is located.</td>
+    <td>The street name where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_city</code>
       <div class="type">optional</div>
     </td>
-    <td>The city where the station is located.</td>
+    <td>The city where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_postal_code</code>
       <div class="type">optional</div>
     </td>
-    <td>The postal code where the station is located.</td>
+    <td>The postal code where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_county</code>
       <div class="type">optional</div>
     </td>
-    <td>The county where the station is located.</td>
+    <td>The county where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_state</code>
       <div class="type">optional</div>
     </td>
-    <td>The state where the station is located.</td>
+    <td>The state where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_country</code>
       <div class="type">optional</div>
     </td>
-    <td>The country where the station is located.</td>
+    <td>The country where the station is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
       <div class="type required">required</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms.</td>
+    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">connectors</code>
       <div class="type required">required</div>
     </td>
-    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values.</td>
+    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values</td>
   </tr>
   <tr>
     <td>
       <code class="field">charging_levels</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a>.</td>
+    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">energy_source</code>
       <div class="type">optional</div>
     </td>
-    <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a>.</td>
+    <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a>.</td>
+    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">provider</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the service provider or charging network operating this charging station.</td>
+    <td>Name of the service provider or charging network operating this charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">manufacturer</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the manufacturer of this charging station.</td>
+    <td>Name of the manufacturer of this charging station</td>
   </tr>
   <tr>
     <td>
       <code class="field">model</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the model of this charging station.</td>
+    <td>Name of the model of this charging station</td>
   </tr>
 </table>
 
@@ -729,27 +729,27 @@ The energy source used by the station.
   </tr>
   <tr>
     <td><code>grid</code></td>
-    <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source.</td>
+    <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source</td>
   </tr>
   <tr>
     <td><code>renewable</code></td>
-    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources.</td>
+    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources</td>
   </tr>
   <tr>
     <td><code>solar</code></td>
-    <td>Uses 100% solar energy.</td>
+    <td>Uses 100% solar energy</td>
   </tr>
   <tr>
     <td><code>wind</code></td>
-    <td>Uses 100% wind energy.</td>
+    <td>Uses 100% wind energy</td>
   </tr>
   <tr>
     <td><code>hydro</code></td>
-    <td>Uses 100% hydropower energy.</td>
+    <td>Uses 100% hydropower energy</td>
   </tr>
   <tr>
     <td><code>geothermal</code></td>
-    <td>Uses 100% geothermal energy.</td>
+    <td>Uses 100% geothermal energy</td>
   </tr>
 </table>
 

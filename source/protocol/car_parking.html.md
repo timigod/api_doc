@@ -193,70 +193,70 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type required">required</div>
     </td>
-    <td>The time at which the requester would like to arrive at the parking space. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time at which the requester would like to arrive at the parking space. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
     <tr>
     <td>
       <code class="field">end_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect the price per hour. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect the price per hour. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate around which to search.</td>
+    <td>The latitude coordinate around which to search</td>
   </tr>
   <tr>
     <td>
       <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate around which to search.</td>
+    <td>The longitude coordinate around which to search</td>
   </tr>
   <tr>
     <td>
       <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
-    <td>Radius in meters around the search coordinates to search. Specified as an integer.</td>
+    <td>Radius in meters around the search coordinates to search. Specified as an integer</td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters.</td>
+    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters.</td>
+    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters.</td>
+    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of this vehicle. Parking spaces that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms.</td>
+    <td>The weight of this vehicle. Parking spaces that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that need to be present at the parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a>.</td>
+    <td>A list of amenities that need to be present at the parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a></td>
   </tr>
 </table>
 
@@ -391,196 +391,196 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">request_uid</code>
       <div class="type required">required</div>
     </td>
-    <td>The UID of the request. This arrives as part of the request.</td>
+    <td>The UID of the request. This arrives as part of the request</td>
   </tr>
   <tr>
     <td>
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000).</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
   </tr>
     <tr>
     <td>
       <code class="field">price_type</code>
       <div class="type required">required</div>
     </td>
-    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values.</td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
   </tr>
   <tr>
     <td>
       <code class="field">price_description</code>
       <div class="type required">required</div>
     </td>
-    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms.</td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
       <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the parking space.</td>
+    <td>The latitude coordinate of the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the parking space.</td>
+    <td>The longitude coordinate of the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the entrance to the parking space.</td>
+    <td>The latitude coordinate of the entrance to the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the entrance to the parking space.</td>
+    <td>The longitude coordinate of the entrance to the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the exit from the parking space.</td>
+    <td>The latitude coordinate of the exit from the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the exit from the parking space.</td>
+    <td>The longitude coordinate of the exit from the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_floor</code>
       <div class="type">optional</div>
     </td>
-    <td>Which floor/level is the parking space located on (for multistory buildings).</td>
+    <td>Which floor/level is the parking space located on (for multistory buildings)</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_name</code>
       <div class="type">optional</div>
     </td>
-    <td>A human readable name/description of the parking space location (e.g., Long Island Central Parking Lot).</td>
+    <td>A human readable name/description of the parking space location (e.g., Long Island Central Parking Lot)</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_name_lang</code>
       <div class="type">optional</div>
     </td>
-    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3" target="blank">ISO 639-3</a> language code.</td>
+    <td>The language used in <code>location_name</code>. Specified using the 3 letter <a href="https://en.wikipedia.org/wiki/ISO_639-3" target="blank">ISO 639-3</a> language code</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_house_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The house number where the parking space is located.</td>
+    <td>The house number where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_street</code>
       <div class="type">optional</div>
     </td>
-    <td>The street name where the parking space is located.</td>
+    <td>The street name where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_city</code>
       <div class="type">optional</div>
     </td>
-    <td>The city where the parking space is located.</td>
+    <td>The city where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_postal_code</code>
       <div class="type">optional</div>
     </td>
-    <td>The postal code where the parking space is located.</td>
+    <td>The postal code where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_county</code>
       <div class="type">optional</div>
     </td>
-    <td>The county where the parking space is located.</td>
+    <td>The county where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_state</code>
       <div class="type">optional</div>
     </td>
-    <td>The state where the parking space is located.</td>
+    <td>The state where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_country</code>
       <div class="type">optional</div>
     </td>
-    <td>The country where the parking space is located.</td>
+    <td>The country where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time from which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
       <div class="type required">required</div>
     </td>
-    <td>The time until which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The time until which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle height this parking space can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle height this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle width this parking space can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle width this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle length this parking space can accommodate. Specified as an integer representing centimeters.</td>
+    <td>The maximum vehicle length this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle weight this parking space can accommodate. Specified as an integer representing kilograms.</td>
+    <td>The maximum vehicle weight this parking space can accommodate. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that are present at this parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a>.</td>
+    <td>A list of amenities that are present at this parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a></td>
   </tr>
 </table>
 

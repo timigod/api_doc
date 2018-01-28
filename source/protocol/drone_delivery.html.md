@@ -196,7 +196,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <div class="type required">required</div>
     </td>
     <td>
-      The time at which the requester would like the package to be picked up (if delivery should be done ASAP, specify the current time). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.
+      The time at which the requester would like the package to be picked up (if delivery should be done ASAP, specify the current time). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
     </td>
   </tr>
   <tr>
@@ -204,56 +204,56 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">pickup_latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the pickup location.</td>
+    <td>The latitude coordinate of the pickup location</td>
   </tr>
   <tr>
     <td>
       <code class="field">pickup_longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the pickup location.</td>
+    <td>The longitude coordinate of the pickup location</td>
   </tr>
   <tr>
     <td>
       <code class="field">dropoff_latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the dropoff destination.</td>
+    <td>The latitude coordinate of the dropoff destination</td>
   </tr>
   <tr>
     <td>
       <code class="field">dropoff_longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the dropoff destination.</td>
+    <td>The longitude coordinate of the dropoff destination</td>
   </tr>
   <tr>
     <td>
       <code class="field">requester_name</code>
       <div class="type">optional</div>
     </td>
-    <td>The name of the person that is asking for the delivery service.</td>
+    <td>The name of the person that is asking for the delivery service</td>
   </tr>
   <tr>
     <td>
       <code class="field">requester_phone_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The phone number of the person that is asking for the delivery service.</td>
+    <td>The phone number of the person that is asking for the delivery service</td>
   </tr>
   <tr>
     <td>
       <code class="field">external_reference_id</code>
       <div class="type">optional</div>
     </td>
-    <td>An identification string that might be needed for package dispatch.</td>
+    <td>An identification string that might be needed for package dispatch</td>
   </tr>
   <tr>
     <td>
       <code class="field">cargo_type</code>
       <div class="type required">required</div>
     </td>
-    <td>The type of cargo to be delivered. See the full list of options <a href="#cargo-types">here</a>.
+    <td>The type of cargo to be delivered. See the full list of options <a href="#cargo-types">here</a>
     </td>
   </tr>
   <tr>
@@ -261,63 +261,63 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">hazardous_goods</code>
       <div class="type">optional</div>
     </td>
-    <td>If this package contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a>.</td>
+    <td>If this package contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>A certain level of protection to the package may be requested. See full list of options <a href="#ip-protection-level">here</a>.</td>
+    <td>A certain level of protection to the package may be requested. See full list of options <a href="#ip-protection-level">here</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of the package. Specified as an integer representing centimeters.</td>
+    <td>The height of the package. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of the package. Specified as an integer representing centimeters.</td>
+    <td>The width of the package. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of the package. Specified as an integer representing centimeters.</td>
+    <td>The length of the package. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of the package. Specified as an integer representing grams.</td>
+    <td>The weight of the package. Specified as an integer representing grams</td>
   </tr>
   <tr>
     <td>
       <code class="field">insurance_required</code>
       <div class="type">optional</div>
     </td>
-    <td>The requester may require that the delivery be insured. Specified as a boolean (default is false).</td>
+    <td>The requester may require that the delivery be insured. Specified as a boolean (default is false)</td>
   </tr>
   <tr>
     <td>
       <code class="field">insured_value</code>
       <div class="type">optional</div>
     </td>
-    <td>The declared value of the package to be insured.</td>
+    <td>The declared value of the package to be insured</td>
   </tr>
   <tr>
     <td>
       <code class="field">insured_value_currency</code>
       <div class="type">optional</div>
     </td>
-    <td>The currency in which the declared value is denoted. This should be specified as a 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or <code>DAV</code>.</td>
+    <td>The currency in which the declared value is denoted. This should be specified as a 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or <code>DAV</code></td>
   </tr>
 </table>
 
@@ -386,77 +386,77 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">request_uid</code>
       <div class="type required">required</div>
     </td>
-    <td>The UID of the request. This arrives as part of the request.</td>
+    <td>The UID of the request. This arrives as part of the request</td>
   </tr>
   <tr>
     <td>
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The offered price for the delivery (including any additional fees, insurance or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000).</td>
+    <td>The offered price for the delivery (including any additional fees, insurance or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
   </tr>
   <tr>
     <td>
       <code class="field">time_to_pickup</code>
       <div class="type required">required</div>
     </td>
-    <td>The estimate time of arrival at the pickup location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The estimate time of arrival at the pickup location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">time_to_dropoff</code>
       <div class="type required">required</div>
     </td>
-    <td>The estimate time of arrival at the dropoff location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC.</td>
+    <td>The estimate time of arrival at the dropoff location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">insured</code>
       <div class="type">optional</div>
     </td>
-    <td>Is this delivery insured? Specified as a boolean (default is false).</td>
+    <td>Is this delivery insured? Specified as a boolean (default is false)</td>
   </tr>
   <tr>
     <td>
       <code class="field">insurer_dav_id</code>
       <div class="type">optional</div>
     </td>
-    <td>If this delivery is insured by another DAV Identity, include their ID here.</td>
+    <td>If this delivery is insured by another DAV Identity, include their ID here</td>
   </tr>
     <tr>
     <td>
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>A certain level of package protection that a drone may provide. See full list of options <a href="#ip-protection-level">here</a>.</td>
+    <td>A certain level of package protection that a drone may provide. See full list of options <a href="#ip-protection-level">here</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">drone_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Human readable information regarding the drone (e.g <code>Megadronix Deliveries LTD. +31-338-594332</code>).</td>
+    <td>Human readable information regarding the drone (e.g <code>Megadronix Deliveries LTD. +31-338-594332</code>)</td>
   </tr>
   <tr>
     <td>
       <code class="field">drone_manufacturer</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the manufacturer of this drone.</td>
+    <td>Name of the manufacturer of this drone</td>
   </tr>
   <tr>
     <td>
       <code class="field">drone_model</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the model of this drone.</td>
+    <td>Name of the model of this drone</td>
   </tr>
 </table>
 
