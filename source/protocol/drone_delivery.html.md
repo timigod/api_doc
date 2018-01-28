@@ -192,7 +192,7 @@ requests.post("discovery_endpoint_here", data=payload)
 <table class="arguments">
   <tr>
     <td>
-      <code class="field">start_at</code>
+      <code class="field">pickup_at</code>
       <div class="type">optional</div>
     </td>
     <td>
