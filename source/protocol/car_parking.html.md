@@ -191,9 +191,9 @@ requests.post("discovery_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">start_at</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
-    <td>The time at which the requester would like to arrive at the parking space. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester would like to arrive at the parking space (if undefined, the arrival time will be ASAP). Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
     <tr>
     <td>

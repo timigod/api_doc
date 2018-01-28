@@ -193,10 +193,10 @@ requests.post("discovery_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">start_at</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
     <td>
-      The time at which the requester would like the package to be picked up (if delivery should be done ASAP, specify the current time). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
+      The time at which the requester would like the package to be picked up (if undefined, the pick up time will be ASAP). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
     </td>
   </tr>
   <tr>
