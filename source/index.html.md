@@ -13,7 +13,7 @@ Here you will find the different protocols governing communication between the d
 # Communication Protocols
 <ul>
   <li>
-    <a href="./protocol/ev_charging.html">Ride Hailing</a>
+    <a href="./protocol/ride_hailing.html">Ride Hailing</a>
   </li>
   <li>
     <a href="./protocol/car_parking.html">Car Parking</a>
