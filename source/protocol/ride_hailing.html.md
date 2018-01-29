@@ -62,7 +62,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, an autonomous vehicle might send back a bid with a price for the ride, an ETA and extra services it offers.
+In response, an autonomous vehicle might send back a bid with a price for the ride, the vehicle type and model, and the estimated time of arrival.
 
 > Bid
 
@@ -364,7 +364,7 @@ requests.post("discovery_endpoint_here", data=payload)
 
 # Bid
 
-A bid to provide a ride service. Typically sent by a car owner with the price for the ride, the estimated time of arrival and extra services it may offer.
+A bid to provide a ride service. Typically sent by a car owner with the price for the ride, the distance from the pick up location and the estimated time of arrival.
 
 
 ## Arguments
