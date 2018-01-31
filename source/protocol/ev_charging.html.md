@@ -550,14 +550,14 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time from which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
       <div class="type">optional</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time until which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
