@@ -18,9 +18,9 @@ search: true
 
 #  Car Parking Protocol
 
-The communication protocol for the car parking describes the format of a request for a parking space sent by a vehicle (also referred to as `need`), and the response sent by a parking space, usually an automated parking system (`bid`).
+The communication protocol for car parking describes the format of a request for a parking space (also referred to as `need`) sent by a vehicle, and the response sent by a parking space, usually an automated parking management system (`bid`).
 
-For example, a heavy goods truck might search for an available parking space within 1 km of a given coordinate that can fit in a 12 meters long vehicle.
+For example, a heavy goods truck might search for an available parking space within 1 km of a given coordinate that can fit a 12 meters long vehicle.
 
 > Need
 
@@ -63,7 +63,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a parking space might send back a bid with a price per hour, and the full details of the services it offers.
+In response, a parking space might send back a bid with a price per hour, and the full details of the additional services it offers.
 
 > Bid
 
@@ -118,7 +118,7 @@ payload = {
 requests.post("vehicle_endpoint_here", data=payload)
 ```
 
-<b>Note:</b> For charging while parking, see <a href="./protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service.
+<b>Note:</b> For charging while parking, see the <a href="../protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service. If a `bid` is given in response to a Car Parking `need` from a location offering EV Charging, the `bid` price will not include any charging services.
 
 # Need
 
@@ -200,7 +200,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">end_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect the price per hour. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect how the service is priced. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
@@ -262,7 +262,7 @@ requests.post("discovery_endpoint_here", data=payload)
 
 # Bid
 
-A bid to provide a parking service. Typically sent from a parking space to a vehicle.
+A bid to provide a parking service. Typically sent from a parking management system to a vehicle.
 
 ## Arguments
 
