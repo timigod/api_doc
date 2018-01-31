@@ -594,6 +594,14 @@ Price types and their unique identifier.
     <th>Description</th>
   </tr>
   <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
+  </tr>
+  <tr>
     <td><code>hour</code></td>
     <td>The listed <code>price</code> is per hour</td>
   </tr>
