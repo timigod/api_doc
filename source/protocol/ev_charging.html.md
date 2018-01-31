@@ -77,7 +77,7 @@ curl "vehicle_endpoint_here" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "charging_levels=2,3" \
   --data "amenities=2,3,4,7,9"
 ```
 
@@ -95,7 +95,7 @@ fetch(vehicleEndPoint, {
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "amenities": "2,3,4,7,9",
   })
 });
@@ -112,7 +112,7 @@ payload = {
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "amenities": "2,3,4,7,9",
   }
 requests.post("vehicle_endpoint_here", data=payload)
@@ -139,7 +139,7 @@ curl "discovery_endpoint_here" \
   --data "length=330" \
   --data "weight=1200" \
   --data "connector=tesla_supercharger" \
-  --data "level=3" \
+  --data "charging_level=3" \
   --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
@@ -159,7 +159,7 @@ fetch(discoveryEndPoint, {
     "length": "330",
     "weight": "1200",
     "connector": "tesla_supercharger",
-    "level": "3",
+    "charging_level": "3",
     "energy_source": "solar",
     "amenities": "2,3",
   })
@@ -178,7 +178,7 @@ payload = {
     "length": "330",
     "weight": "1200",
     "connector": "tesla_supercharger",
-    "level": "3",
+    "charging_level": "3",
     "energy_source": "solar",
     "amenities": "2,3",
   }
@@ -322,7 +322,7 @@ curl "vehicle_endpoint_here" \
   --data "length=580" \
   --data "weight=10000" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "charging_levels=2,3" \
   --data "energy_source=solar" \
   --data "amenities=2,3,4,7,9" \
   --data "provider=Tesla" \
@@ -362,7 +362,7 @@ fetch(vehicleEndPoint, {
     "length": "580",
     "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
@@ -401,7 +401,7 @@ payload = {
     "length": "580",
     "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
