@@ -30,8 +30,7 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "length=1200"
 ```
 
 ```javascript
@@ -44,8 +43,7 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   })
 });
 ```
@@ -57,8 +55,7 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -71,14 +68,18 @@ In response, a parking space might send back a bid with a price per hour, and th
 curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "height=300" \
+  --data "width=300" \
+  --data "length=1900" \
+  --data "weight=100000" \
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
@@ -89,14 +90,18 @@ fetch(vehicleEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -106,14 +111,18 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
@@ -140,9 +149,6 @@ curl "discovery_endpoint_here" \
   --data "width=120" \
   --data "length=330" \
   --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
 
@@ -160,9 +166,6 @@ fetch(discoveryEndPoint, {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   })
 });
@@ -179,9 +182,6 @@ payload = {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
@@ -272,7 +272,9 @@ A bid to provide a parking service. Typically sent from a parking management sys
 curl "vehicle_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "entrance_latitude=32.785878" \
@@ -295,13 +297,7 @@ curl "vehicle_endpoint_here" \
   --data "width=200" \
   --data "length=580" \
   --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
@@ -312,7 +308,9 @@ fetch(vehicleEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -335,13 +333,7 @@ fetch(vehicleEndPoint, {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -351,7 +343,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -374,13 +368,7 @@ payload = {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   }
 requests.post("vehicle_endpoint_here", data=payload)
 ```
