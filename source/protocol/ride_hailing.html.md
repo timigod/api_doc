@@ -544,14 +544,28 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">vehicle_manufacturer</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the manufacturer of this vehicle</td>
+    <td>Name of the manufacturer of the vehicle</td>
   </tr>
   <tr>
     <td>
       <code class="field">vehicle_model</code>
       <div class="type">optional</div>
     </td>
-    <td>Name of the model of this vehicle</td>
+    <td>Name of the model of the vehicle</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">vehicle_color</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The color of the vehicle</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">vehicle_license_number</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The license plate number of the vehicle</td>
   </tr>
   <tr>
     <td>
