@@ -555,7 +555,7 @@ requests.post("vehicle_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">available_until</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
     <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
