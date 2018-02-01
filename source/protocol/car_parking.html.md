@@ -574,7 +574,7 @@ requests.post("bidding_endpoint_here", data=payload)
 
 Price types and their unique identifier.
 
-<table class="reference prices">
+<table class="price_types">
   <tr>
     <th>Price Type</th>
     <th>Description</th>

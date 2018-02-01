@@ -1,5 +1,5 @@
 ---
-title: Drone Delivery
+title: Cargo Insurance
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -12,127 +12,28 @@ toc_footers:
 search: true
 ---
 
-<p class="header-image"><img src="/images/drone_delivery/header.png" alt="Drone Delivery"></p>
+<p class="header-image"><img src="/images/cargo_insurance/header.png" alt="Cargo Insurance"></p>
 
-# Drone Delivery Protocol
+# Cargo Insurance Protocol
 
-The following document describes the communication protocol for a cargo delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
+The following document describes the communication protocol for a cargo insurance service provided by an insurance provider to a user or a courier. It includes the format for both the request for insurance (also referred to as `need`) and the response sent by insurance providers that `bid` on providing the service.
 
-For example, a user is looking for a drone to pick up a small tube containing corrosive materials from his doorstep and deliver it to a friend's backyard.
+For example, an autonomous drone that is about to deliver an expensive diamond ring would send a request for an insurance service, along with the estimated value of the ring, the delivery path and the drone model.
 
 > Need
 
 ```shell
 curl "discovery_endpoint_here" \
   --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "pickup_latitude=32.787793" \
-  --data "pickup_longitude=-79.500593" \
-  --data "dropoff_latitude=32.937778" \
-  --data "dropoff_longitude=-79.500593" \
+  --data "end_at=2017-12-11T16:00:00+03:00" \
+  --data "pickup_latitude=40.958123" \
+  --data "pickup_longitude=-74.169388" \
+  --data "dropoff_latitude=40.875103" \
+  --data "dropoff_longitude=-74.570389" \
+  --data "planned_path=40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389" \
+  --data "vehicle_type=drone_autonomous" \
   --data "cargo_type=11" \
-  --data "hazardous_goods=8"
-```
-
-```javascript
-const discoveryEndPoint = "discovery_endpoint_here";
-
-fetch(discoveryEndPoint, {
-  method: "POST",
-  body: JSON.stringify({
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "pickup_latitude": "32.787793",
-    "pickup_longitude": "-79.500593",
-    "dropoff_latitude": "32.937778",
-    "dropoff_longitude": "-79.500593",
-    "cargo_type": "11",
-    "hazardous_goods": "8",
-  })
-});
-```
-
-```python
-import requests
-payload = {
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "pickup_latitude": "32.787793",
-    "pickup_longitude": "-79.500593",
-    "dropoff_latitude": "32.937778",
-    "dropoff_longitude": "-79.500593",
-    "cargo_type": "11",
-    "hazardous_goods": "8",
-  }
-requests.post("discovery_endpoint_here", data=payload)
-```
-
-In response, a drone might send back a bid with a price, the estimated time it will arrive at the pickup location, and the estimated time it will arrive at the dropoff location.
-
-> Bid
-
-```shell
-curl "bidding_endpoint_here" \
-  --data "request_uid=ae7bd8f67f3089c" \
-  --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
-  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
-  --data "time_to_dropoff=2017-12-11T15:34:20+03:00"
-```
-
-```javascript
-const biddingEndPoint = "bidding_endpoint_here";
-
-fetch(biddingEndPoint, {
-  method: "POST",
-  body: JSON.stringify({
-    "request_uid": "ae7bd8f67f3089c",
-    "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
-    "time_to_pickup": "2017-12-11T15:21:59+03:00",
-    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
-  })
-});
-```
-
-```python
-import requests
-payload = {
-    "request_uid": "ae7bd8f67f3089c",
-    "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
-    "time_to_pickup": "2017-12-11T15:21:59+03:00",
-    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
-  }
-requests.post("bidding_endpoint_here", data=payload)
-```
-
-# Need
-
-A statement of need for a delivery service. Typically this will be sent by a user that is looking to deliver a package using a drone.
-
-This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
-
-## Arguments
-
-> Post request to a local/remote discovery endpoint
-
-```shell
-curl "discovery_endpoint_here" \
-  --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "pickup_latitude=32.787793" \
-  --data "pickup_longitude=-79.500593" \
-  --data "dropoff_latitude=32.937778" \
-  --data "dropoff_longitude=-79.500593" \
-  --data "requester_name=Jessie Bourne" \
-  --data "requester_phone_number=+1 415 123 5983" \
-  --data "external_reference_id=jb84723" \
-  --data "cargo_type=11" \
-  --data "hazardous_goods=8" \
-  --data "ip_protection_level=68" \
-  --data "height=8" \
-  --data "width=2" \
-  --data "length=2" \
-  --data "weight=50" \
-  --data "insurance_required=true" \
-  --data "insured_value=675" \
+  --data "insured_value=3000.00" \
   --data "insured_value_currency=USD"
 ```
 
@@ -143,22 +44,15 @@ fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "start_at": "2017-12-11T15:18:54+03:00",
-    "pickup_latitude": "32.787793",
-    "pickup_longitude": "-79.500593",
-    "dropoff_latitude": "32.937778",
-    "dropoff_longitude": "-79.500593",
-    "requester_name": "Jessie Bourne",
-    "requester_phone_number": "+1 415 123 5983",
-    "external_reference_id": "jb84723",
+    "end_at": "2017-12-11T16:00:00+03:00",
+    "pickup_latitude": "40.958123",
+    "pickup_longitude": "-74.169388",
+    "dropoff_latitude": "40.875103",
+    "dropoff_longitude": "-74.570389",
+    "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
+    "vehicle_type": "drone_autonomous",
     "cargo_type": "11",
-    "hazardous_goods": "8",
-    "ip_protection_level": "68",
-    "height": "8",
-    "width": "2",
-    "length": "2",
-    "weight": "50",
-    "insurance_required": "true",
-    "insured_value": "675",
+    "insured_value": "3000.00",
     "insured_value_currency": "USD",
   })
 });
@@ -168,13 +62,119 @@ fetch(discoveryEndPoint, {
 import requests
 payload = {
     "start_at": "2017-12-11T15:18:54+03:00",
-    "pickup_latitude": "32.787793",
-    "pickup_longitude": "-79.500593",
-    "dropoff_latitude": "32.937778",
-    "dropoff_longitude": "-79.500593",
-    "requester_name": "Jessie Bourne",
-    "requester_phone_number": "+1 415 123 5983",
-    "external_reference_id": "jb84723",
+    "end_at": "2017-12-11T16:00:00+03:00",
+    "pickup_latitude": "40.958123",
+    "pickup_longitude": "-74.169388",
+    "dropoff_latitude": "40.875103",
+    "dropoff_longitude": "-74.570389",
+    "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
+    "vehicle_type": "drone_autonomous",
+    "cargo_type": "11",
+    "insured_value": "3000.00",
+    "insured_value_currency": "USD",
+  }
+requests.post("discovery_endpoint_here", data=payload)
+```
+
+In response, an insurance provider might send back a bid with the price for the given delivery path or time period, the type of coverage and the deductible amount required.
+
+> Bid
+
+```shell
+curl "bidding_endpoint_here" \
+  --data "request_uid=ae7bd8f67f3089c" \
+  --data "expires_at=2017-12-11T15:18:59+03:00" \
+  --data "coverage_type=all_risk" \
+  --data "price=2300000000000000000" \
+  --data "deductible=1400000000000000000"
+```
+
+```javascript
+const biddingEndPoint = "bidding_endpoint_here";
+
+fetch(biddingEndPoint, {
+  method: "POST",
+  body: JSON.stringify({
+    "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
+    "coverage_type": "all_risk",
+    "price": "2300000000000000000",
+    "deductible": "1400000000000000000",
+  })
+});
+```
+
+```python
+import requests
+payload = {
+    "request_uid": "ae7bd8f67f3089c",
+    "expires_at": "2017-12-11T15:18:59+03:00",
+    "coverage_type": "all_risk",
+    "price": "2300000000000000000",
+    "deductible": "1400000000000000000",
+  }
+requests.post("bidding_endpoint_here", data=payload)
+```
+
+# Need
+
+A statement of need for a cargo insurance service. Typically this will be sent by a user or a courier that plans to deliver a package from one point to another.
+
+This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
+
+## Arguments
+
+> Post request to a local/remote discovery endpoint
+
+```shell
+curl "discovery_endpoint_here" \
+  --data "start_at=2017-12-11T15:18:54+03:00" \
+  --data "end_at=2017-12-11T16:00:00+03:00" \
+  --data "start_latitude=40.746217" \
+  --data "start_longitude=-73.970261" \
+  --data "pickup_latitude=40.958123" \
+  --data "pickup_longitude=-74.169388" \
+  --data "dropoff_latitude=40.875103" \
+  --data "dropoff_longitude=-74.570389" \
+  --data "end_latitude=40.746217" \
+  --data "end_longitude=-73.970261" \
+  --data "planned_path=40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389" \
+  --data "requester_name=Megadronix" \
+  --data "requester_phone_number=+31-338-594332" \
+  --data "external_reference_id=200982447" \
+  --data "vehicle_type=drone_autonomous" \
+  --data "cargo_type=11" \
+  --data "hazardous_goods=8" \
+  --data "ip_protection_level=68" \
+  --data "height=8" \
+  --data "width=2" \
+  --data "length=2" \
+  --data "weight=50" \
+  --data "insured_value=3000.00" \
+  --data "insured_value_currency=USD"
+```
+
+```javascript
+const discoveryEndPoint = "discovery_endpoint_here";
+
+fetch(discoveryEndPoint, {
+  method: "POST",
+  body: JSON.stringify({
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "end_at": "2017-12-11T16:00:00+03:00",
+    "start_latitude": "40.746217",
+    "start_longitude": "-73.970261",
+    "pickup_latitude": "40.958123",
+    "pickup_longitude": "-74.169388",
+    "dropoff_latitude": "40.875103",
+    "dropoff_longitude": "-74.570389",
+    "end_latitude": "40.746217",
+    "end_longitude": "-73.970261",
+    "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
+    "requester_name": "Megadronix",
+    "requester_phone_number": "+31-338-594332",
+    "external_reference_id": "200982447",
+    "vehicle_type": "drone_autonomous",
     "cargo_type": "11",
     "hazardous_goods": "8",
     "ip_protection_level": "68",
@@ -182,8 +182,38 @@ payload = {
     "width": "2",
     "length": "2",
     "weight": "50",
-    "insurance_required": "true",
-    "insured_value": "675",
+    "insured_value": "3000.00",
+    "insured_value_currency": "USD",
+  })
+});
+```
+
+```python
+import requests
+payload = {
+    "start_at": "2017-12-11T15:18:54+03:00",
+    "end_at": "2017-12-11T16:00:00+03:00",
+    "start_latitude": "40.746217",
+    "start_longitude": "-73.970261",
+    "pickup_latitude": "40.958123",
+    "pickup_longitude": "-74.169388",
+    "dropoff_latitude": "40.875103",
+    "dropoff_longitude": "-74.570389",
+    "end_latitude": "40.746217",
+    "end_longitude": "-73.970261",
+    "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
+    "requester_name": "Megadronix",
+    "requester_phone_number": "+31-338-594332",
+    "external_reference_id": "200982447",
+    "vehicle_type": "drone_autonomous",
+    "cargo_type": "11",
+    "hazardous_goods": "8",
+    "ip_protection_level": "68",
+    "height": "8",
+    "width": "2",
+    "length": "2",
+    "weight": "50",
+    "insured_value": "3000.00",
     "insured_value_currency": "USD",
   }
 requests.post("discovery_endpoint_here", data=payload)
@@ -192,12 +222,35 @@ requests.post("discovery_endpoint_here", data=payload)
 <table class="arguments">
   <tr>
     <td>
-      <code class="field">pickup_at</code>
+      <code class="field">start_at</code>
       <div class="type">optional</div>
     </td>
     <td>
-      The time at which the requester would like the cargo to be picked up (if undefined, the pick up time will be ASAP). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
+      The time at which the requester would like the insurance to be activated (if undefined, the activation will be immediate). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
     </td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">end_at</code>
+      <div class="type required">required</div>
+    </td>
+    <td>
+      The time at which the requester would like the insurance to stop. This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">start_latitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The latitude coordinate of the take off location, prior to the arrival at the pickup location</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">start_longitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The longitude coordinate of the take off location, prior to the arrival at the pickup location</td>
   </tr>
   <tr>
     <td>
@@ -229,24 +282,53 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">end_latitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The latitude coordinate of the end location, after the departure from the dropoff destination</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">end_longitude</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The longitude coordinate of the end location, after the departure from the dropoff destination</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">planned_path</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The planned trip described as a polyline using geodesic geometry. Specified as a comma separated list of coordinates (e.g., "lat,long,lat,long,lat,long")</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">requester_name</code>
       <div class="type">optional</div>
     </td>
-    <td>The name of the person that is asking for the delivery service</td>
+    <td>The name of the person or the company requesting for the insurance service</td>
   </tr>
   <tr>
     <td>
       <code class="field">requester_phone_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The phone number of the person that is asking for the delivery service</td>
+    <td>The phone number of the person or the company requesting for the insurance service</td>
   </tr>
   <tr>
     <td>
       <code class="field">external_reference_id</code>
       <div class="type">optional</div>
     </td>
-    <td>An identification string that might be needed for cargo dispatch</td>
+    <td>An identification string that might be needed for providing the insurance service</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">vehicle_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>The type of vehicle used for the trip. See full list of options <a href="#vehicle-types">here</a>
+    </td>
   </tr>
   <tr>
     <td>
@@ -268,7 +350,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>A certain level of protection to the cargo may be requested. See full list of options <a href="#ip-protection-level">here</a></td>
+    <td>A certain level of protection that may be provided to the cargo (see full list of options <a href="#ip-protection-level">here</a>). This is optional but recommended as it may affect the price of policy</td>
   </tr>
   <tr>
     <td>
@@ -300,22 +382,15 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">insurance_required</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The requester may require that the delivery be insured. Specified as a boolean (default is false)</td>
-  </tr>
-  <tr>
-    <td>
       <code class="field">insured_value</code>
-      <div class="type">optional</div>
+      <div class="type required">required</div>
     </td>
-    <td>The declared value of the cargo to be insured</td>
+    <td>The declared value of the cargo to be insured. Specified as a float</td>
   </tr>
   <tr>
     <td>
       <code class="field">insured_value_currency</code>
-      <div class="type">optional</div>
+      <div class="type required">required</div>
     </td>
     <td>The currency in which the declared value is denoted. This should be specified as a 3-letter <a href="https://en.wikipedia.org/wiki/ISO_4217" target="blank">ISO 4217</a> code or <code>DAV</code></td>
   </tr>
@@ -323,24 +398,21 @@ requests.post("discovery_endpoint_here", data=payload)
 
 # Bid
 
-A bid to provide a delivery service. Typically sent from a delivery drone to the user who requested the service.
+A bid to provide a cargo insurance service. Typically sent from an insurance provider to a user or a courier that plans to deliver a package from one point to another.
 
 ## Arguments
 
-> Post request to a local/remote endpoint representing the drone
+> Post request to a local/remote endpoint representing the insurance requester
 
 ```shell
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
+  --data "coverage_type=all_risk" \
   --data "price=2300000000000000000" \
-  --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
-  --data "time_to_dropoff=2017-12-11T15:34:20+03:00" \
-  --data "insured=true" \
-  --data "insurer_dav_id=0x17325a469aef3472aa58dfdcf672881d79b31d58" \
-  --data "drone_contact=Megadronix" \
-  --data "drone_manufacturer=DXY" \
-  --data "drone_model=m6000"
+  --data "deductible=1400000000000000000" \
+  --data "insurer_contact=Airsurance LTD, Tel: +1 415 982 3342" \
+  --data "insurer_dav_id=0x17325a469aef3472aa58dfdcf672881d79b31d58"
 ```
 
 ```javascript
@@ -351,14 +423,11 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
+    "coverage_type": "all_risk",
     "price": "2300000000000000000",
-    "time_to_pickup": "2017-12-11T15:21:59+03:00",
-    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
-    "insured": "true",
+    "deductible": "1400000000000000000",
+    "insurer_contact": "Airsurance LTD, Tel: +1 415 982 3342",
     "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
-    "drone_contact": "Megadronix",
-    "drone_manufacturer": "DXY",
-    "drone_model": "m6000",
   })
 });
 ```
@@ -368,14 +437,11 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
+    "coverage_type": "all_risk",
     "price": "2300000000000000000",
-    "time_to_pickup": "2017-12-11T15:21:59+03:00",
-    "time_to_dropoff": "2017-12-11T15:34:20+03:00",
-    "insured": "true",
+    "deductible": "1400000000000000000",
+    "insurer_contact": "Airsurance LTD, Tel: +1 415 982 3342",
     "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
-    "drone_contact": "Megadronix",
-    "drone_manufacturer": "DXY",
-    "drone_model": "m6000",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
@@ -397,69 +463,119 @@ requests.post("bidding_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">coverage_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>The type of coverage provided in the insurance policy. See full list of options <a href="#insurance-coverage-types">here</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The offered price for the delivery (including any additional fees, insurance or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>The offered price for the insurance service (including any additional fees or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
   </tr>
   <tr>
     <td>
-      <code class="field">time_to_pickup</code>
+      <code class="field">deductible</code>
       <div class="type required">required</div>
     </td>
-    <td>The estimate time of arrival at the pickup location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The amount that must be paid by the policy holder before an insurance provider will pay any expenses. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
   </tr>
   <tr>
     <td>
-      <code class="field">time_to_dropoff</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The estimate time of arrival at the dropoff location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">insured</code>
+      <code class="field">insurer_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Is this delivery insured? Specified as a boolean (default is false)</td>
+    <td>Human readable information regarding the insurance company (e.g., <code>Airsurance LTD, Tel: +1 415 982 3342</code>)</td>
   </tr>
   <tr>
     <td>
       <code class="field">insurer_dav_id</code>
       <div class="type">optional</div>
     </td>
-    <td>If this delivery is insured by another DAV Identity, include their ID here</td>
-  </tr>
-    <tr>
-    <td>
-      <code class="field">ip_protection_level</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A certain level of protection that a drone may provide to the cargo. See full list of options <a href="#ip-protection-level">here</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">drone_contact</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Human readable information regarding the drone (e.g <code>Megadronix Deliveries LTD. +31-338-594332</code>)</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">drone_manufacturer</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Name of the manufacturer of this drone</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">drone_model</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Name of the model of this drone</td>
+    <td>If the insurer is a registered DAV member, include their ID here</td>
   </tr>
 </table>
 
+# Vehicle Types
+
+The type of vehicles and their unique identifier.
+
+<table class="cargo_vehicles">
+  <tr>
+    <th>Vehicle Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>drone</code></td>
+    <td>Human controlled drone</td>
+  </tr>
+  <tr>
+    <td><code>drone_autonomous</code></td>
+    <td>Self operating drone</td>
+  </tr>
+  <tr>
+    <td><code>car</code></td>
+    <td>Human controlled car</td>
+  </tr>
+  <tr>
+    <td><code>car_autonomous</code></td>
+    <td>Self operating car</td>
+  </tr>
+  <tr>
+    <td><code>truck</code></td>
+    <td>Human controlled truck</td>
+  </tr>
+  <tr>
+    <td><code>truck_autonomous</code></td>
+    <td>Self operating truck</td>
+  </tr>
+  <tr>
+    <td><code>van</code></td>
+    <td>Human controlled van</td>
+  </tr>
+  <tr>
+    <td><code>van_autonomous</code></td>
+    <td>Self operating van</td>
+  </tr>
+  <tr>
+    <td><code>ship</code></td>
+    <td>Human controlled ship</td>
+  </tr>
+  <tr>
+    <td><code>ship_autonomous</code></td>
+    <td>Self operating ship</td>
+  </tr>
+  <tr>
+    <td><code>robot</code></td>
+    <td>Human controlled robot</td>
+  </tr>
+    <tr>
+    <td><code>robot_autonomous</code></td>
+    <td>Self operating robot</td>
+  </tr>
+  <tr>
+    <td><code>bike</code></td>
+    <td>Human controlled bike</td>
+  </tr>
+  <tr>
+    <td><code>bike_autonomous</code></td>
+    <td>Self operating bike</td>
+  </tr>
+  <tr>
+    <td><code>rail</code></td>
+    <td>Human controlled rail</td>
+  </tr>
+  <tr>
+    <td><code>rail_autonomous</code></td>
+    <td>Self operating rail</td>
+  </tr>
+  <tr>
+    <td><code>intermodal</code></td>
+    <td>Combining multiple modes of transportation (e.g., rail, ship and truck)</td>
+  </tr>
+</table>
 
 # Cargo Types
 
@@ -591,6 +707,33 @@ The following table describes the different types of hazardous goods according t
   </tr>
 </table>
 
+# Insurance Coverage Types
+
+The type of coverage provided in the insurance policy to the cargo, according to international cargo insurance standards.
+
+<table class="reference">
+  <tr>
+    <th>Coverage ID</th>
+    <th>Coverage Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>general</code></td>
+    <td>General Average</td>
+    <td>Basic coverage, only covering partial losses</td>
+  </tr>
+  <tr>
+    <td><code>fpa</code></td>
+    <td>Free From Particular Average</td>
+    <td>Limited coverage, only covering losses caused from stranding, sinking, burning, or collision</td>
+  </tr>
+  <tr>
+    <td><code>all_risk</code></td>
+    <td>All Risk</td>
+    <td>Extensive coverage, including damage or loss due to external factors</td>
+  </tr>
+</table>
+
 # IP Protection Level
 
 A drone may provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection according to the International Protection Marking, IEC standard 60529.
@@ -699,4 +842,3 @@ For a full listing of all available codes, read more about <a href="https://en.w
     <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
-
