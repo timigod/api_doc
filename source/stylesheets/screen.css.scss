@@ -679,9 +679,27 @@ table.cargo_vehicles {
   }
 }
 
-table.iplevel {
+table.vehicle_types {
+  td:first-of-type, th:first-of-type {
+    text-align: right;
+  }
+}
+
+table.price_types {
   td:first-of-type, th:first-of-type {
     text-align: center;
+  }
+}
+
+table.iplevel {
+  td:first-of-type {
+    text-align: center;
+  }
+}
+
+table.energy_sources {
+  td:first-of-type, th:first-of-type {
+    text-align: left;
   }
 }
 

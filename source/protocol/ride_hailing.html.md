@@ -580,7 +580,7 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 The type of vehicles and their unique identifier.
 
-<table class="reference vehicles">
+<table class="vehicle_types">
   <tr>
     <th>Vehicle Type</th>
     <th>Description</th>

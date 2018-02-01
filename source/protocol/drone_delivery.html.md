@@ -465,7 +465,7 @@ requests.post("vehicle_endpoint_here", data=payload)
 
 The following table describes the different types of cargo according to international delivery standards.
 
-<table class="reference">
+<table class="cargo">
   <tr>
     <th>Class ID</th>
     <th>Type</th>
@@ -548,7 +548,7 @@ The following table describes the different types of cargo according to internat
 
 The following table describes the different types of hazardous goods according to international delivery standards.
 
-<table class="reference">
+<table class="hazardous">
   <tr>
     <th>Class ID</th>
     <th>Type</th>
@@ -601,7 +601,7 @@ The second digit indicates the level of protection that the enclosure provides a
 
 For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.
 
-<table class="reference">
+<table class="iplevel">
   <tr>
     <th>Rating Code</th>
     <th>IP Rating</th>

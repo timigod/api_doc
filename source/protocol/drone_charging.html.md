@@ -643,7 +643,7 @@ Below is a list of all the supported drone plug types.
 
 The energy source used by the charging station.
 
-<table class="reference levels">
+<table class="energy_sources">
   <tr>
     <th>Source</th>
     <th>Description</th>
@@ -684,7 +684,7 @@ The second digit indicates the level of protection that the enclosure provides a
 
 For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.
 
-<table class="reference">
+<table class="iplevel">
   <tr>
     <th>Rating Code</th>
     <th>IP Rating</th>

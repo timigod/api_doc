@@ -722,7 +722,7 @@ Available charging levels.
 
 The energy source used by the station.
 
-<table class="reference levels">
+<table class="energy_sources">
   <tr>
     <th>Level</th>
     <th>Description</th>
