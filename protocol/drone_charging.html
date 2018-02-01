@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Electric Vehicle Charging</title>
+    <title>Drone Charging</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="../javascripts/all.js"></script>
   </head>
 
-  <body class="protocol protocol_ev_charging" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;python&quot;]">
+  <body class="protocol protocol_drone_charging" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -221,7 +221,7 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#electric-vehicle-charging-protocol" class="toc-h1 toc-link" data-title="Electric Vehicle Charging Protocol">Electric Vehicle Charging Protocol</a>
+            <a href="#drone-charging-protocol" class="toc-h1 toc-link" data-title="Drone Charging Protocol">Drone Charging Protocol</a>
           </li>
           <li>
             <a href="#need" class="toc-h1 toc-link" data-title="Need">Need</a>
@@ -240,32 +240,27 @@
               </ul>
           </li>
           <li>
-            <a href="#connector-types" class="toc-h1 toc-link" data-title="Connector Types">Connector Types</a>
-          </li>
-          <li>
-            <a href="#charging-levels" class="toc-h1 toc-link" data-title="Charging Levels">Charging Levels</a>
+            <a href="#plug-types" class="toc-h1 toc-link" data-title="Plug Types">Plug Types</a>
           </li>
           <li>
             <a href="#energy-sources" class="toc-h1 toc-link" data-title="Energy Sources">Energy Sources</a>
           </li>
           <li>
-            <a href="#amenities" class="toc-h1 toc-link" data-title="Amenities">Amenities</a>
+            <a href="#drone-protection-level" class="toc-h1 toc-link" data-title="Drone Protection Level">Drone Protection Level</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li>Parts of the EV charging API were</li>
-            <li>inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.</li>
             <li>Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.</li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <p class="header-image"><img src="../images/ev_charging/header.png" alt="Electric Vehicle Charging"></p>
-<h1 id='electric-vehicle-charging-protocol'>Electric Vehicle Charging Protocol</h1>
-<p>The communication protocol for electric vehicle charging describes the format of a request for a charging service (<code>need</code>), and the response sent by a charging provider (<code>bid</code>).</p>
+        <p class="header-image"><img src="../images/drone_charging/header.png" alt="Drone Charging"></p>
+<h1 id='drone-charging-protocol'>Drone Charging Protocol</h1>
+<p>The following document describes the communication protocol for drone charging. It includes the format for both the request for a charging service sent by the drone (also referred to as <code>need</code>) and the response sent by a charging provider (<code>bid</code>).</p>
 
-<p>For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.</p>
+<p>For example, a drone may look for a charging station that supports 2mm bullet connectors within 2 km of its current location.</p>
 
 <blockquote>
 <p>Need</p>
@@ -274,9 +269,8 @@
   --data <span class="s2">"start_at=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"latitude=32.787793"</span> <span class="se">\</span>
   --data <span class="s2">"longitude=-79.935005"</span> <span class="se">\</span>
-  --data <span class="s2">"radius=1000"</span> <span class="se">\</span>
-  --data <span class="s2">"connector=tesla_supercharger"</span> <span class="se">\</span>
-  --data <span class="s2">"amenities=3"</span>
+  --data <span class="s2">"radius=2000"</span> <span class="se">\</span>
+  --data <span class="s2">"plug_type=bullet_2mm"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">discoveryEndPoint</span> <span class="o">=</span> <span class="s2">"discovery_endpoint_here"</span><span class="p">;</span>
 
 <span class="nx">fetch</span><span class="p">(</span><span class="nx">discoveryEndPoint</span><span class="p">,</span> <span class="p">{</span>
@@ -285,9 +279,8 @@
     <span class="s2">"start_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"latitude"</span><span class="p">:</span> <span class="s2">"32.787793"</span><span class="p">,</span>
     <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"-79.935005"</span><span class="p">,</span>
-    <span class="s2">"radius"</span><span class="p">:</span> <span class="s2">"1000"</span><span class="p">,</span>
-    <span class="s2">"connector"</span><span class="p">:</span> <span class="s2">"tesla_supercharger"</span><span class="p">,</span>
-    <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">,</span>
+    <span class="s2">"radius"</span><span class="p">:</span> <span class="s2">"2000"</span><span class="p">,</span>
+    <span class="s2">"plug_type"</span><span class="p">:</span> <span class="s2">"bullet_2mm"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -295,13 +288,12 @@
     <span class="s">"start_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"latitude"</span><span class="p">:</span> <span class="s">"32.787793"</span><span class="p">,</span>
     <span class="s">"longitude"</span><span class="p">:</span> <span class="s">"-79.935005"</span><span class="p">,</span>
-    <span class="s">"radius"</span><span class="p">:</span> <span class="s">"1000"</span><span class="p">,</span>
-    <span class="s">"connector"</span><span class="p">:</span> <span class="s">"tesla_supercharger"</span><span class="p">,</span>
-    <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span>
+    <span class="s">"radius"</span><span class="p">:</span> <span class="s">"2000"</span><span class="p">,</span>
+    <span class="s">"plug_type"</span><span class="p">:</span> <span class="s">"bullet_2mm"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"discovery_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
-<p>In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.</p>
+<p>In response, a charging station might send back a bid with a price per kWh.</p>
 
 <blockquote>
 <p>Bid</p>
@@ -313,10 +305,7 @@
   --data <span class="s2">"latitude=32.785889"</span> <span class="se">\</span>
   --data <span class="s2">"longitude=-79.935569"</span> <span class="se">\</span>
   --data <span class="s2">"available_from=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"available_until=2017-12-12T15:18:54+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"connectors=tesla_hpwc,tesla_supercharger"</span> <span class="se">\</span>
-  --data <span class="s2">"charging_levels=2,3"</span> <span class="se">\</span>
-  --data <span class="s2">"amenities=2,3,4,7,9"</span>
+  --data <span class="s2">"available_until=2017-12-12T15:18:54+03:00"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">biddingEndPoint</span> <span class="o">=</span> <span class="s2">"bidding_endpoint_here"</span><span class="p">;</span>
 
 <span class="nx">fetch</span><span class="p">(</span><span class="nx">biddingEndPoint</span><span class="p">,</span> <span class="p">{</span>
@@ -329,9 +318,6 @@
     <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"-79.935569"</span><span class="p">,</span>
     <span class="s2">"available_from"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"available_until"</span><span class="p">:</span> <span class="s2">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s2">"connectors"</span><span class="p">:</span> <span class="s2">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
-    <span class="s2">"charging_levels"</span><span class="p">:</span> <span class="s2">"2,3"</span><span class="p">,</span>
-    <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"2,3,4,7,9"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -343,13 +329,10 @@
     <span class="s">"longitude"</span><span class="p">:</span> <span class="s">"-79.935569"</span><span class="p">,</span>
     <span class="s">"available_from"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"available_until"</span><span class="p">:</span> <span class="s">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s">"connectors"</span><span class="p">:</span> <span class="s">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
-    <span class="s">"charging_levels"</span><span class="p">:</span> <span class="s">"2,3"</span><span class="p">,</span>
-    <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"2,3,4,7,9"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"bidding_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre><h1 id='need'>Need</h1>
-<p>A statement of need for charging stations. Typically this will be sent by an electric vehicle that is looking for a charging station around certain coordinates.</p>
+<p>A statement of need for drone charging services. Typically this will be sent by a drone that is looking for a charging station around certain coordinates.</p>
 
 <p>This request is sent to the decentralized discovery engine which responds with status <code>200</code> and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.</p>
 <h2 id='arguments'>Arguments</h2>
@@ -361,14 +344,17 @@
   --data <span class="s2">"latitude=32.787793"</span> <span class="se">\</span>
   --data <span class="s2">"longitude=-79.935005"</span> <span class="se">\</span>
   --data <span class="s2">"radius=10000"</span> <span class="se">\</span>
-  --data <span class="s2">"height=200"</span> <span class="se">\</span>
-  --data <span class="s2">"width=120"</span> <span class="se">\</span>
-  --data <span class="s2">"length=330"</span> <span class="se">\</span>
-  --data <span class="s2">"weight=1200"</span> <span class="se">\</span>
-  --data <span class="s2">"connector=tesla_supercharger"</span> <span class="se">\</span>
-  --data <span class="s2">"charging_level=3"</span> <span class="se">\</span>
-  --data <span class="s2">"energy_source=solar"</span> <span class="se">\</span>
-  --data <span class="s2">"amenities=2,3"</span>
+  --data <span class="s2">"drone_type=DXY M6000"</span> <span class="se">\</span>
+  --data <span class="s2">"battery_capacity=4500"</span> <span class="se">\</span>
+  --data <span class="s2">"charge_level=23"</span> <span class="se">\</span>
+  --data <span class="s2">"plug_type=bullet_4mm"</span> <span class="se">\</span>
+  --data <span class="s2">"height=50"</span> <span class="se">\</span>
+  --data <span class="s2">"width=30"</span> <span class="se">\</span>
+  --data <span class="s2">"length=30"</span> <span class="se">\</span>
+  --data <span class="s2">"weight=2500"</span> <span class="se">\</span>
+  --data <span class="s2">"charge_pad_type=enclosed"</span> <span class="se">\</span>
+  --data <span class="s2">"droneport_protection_level=56"</span> <span class="se">\</span>
+  --data <span class="s2">"energy_source=solar"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">discoveryEndPoint</span> <span class="o">=</span> <span class="s2">"discovery_endpoint_here"</span><span class="p">;</span>
 
 <span class="nx">fetch</span><span class="p">(</span><span class="nx">discoveryEndPoint</span><span class="p">,</span> <span class="p">{</span>
@@ -378,14 +364,17 @@
     <span class="s2">"latitude"</span><span class="p">:</span> <span class="s2">"32.787793"</span><span class="p">,</span>
     <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"-79.935005"</span><span class="p">,</span>
     <span class="s2">"radius"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
-    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"200"</span><span class="p">,</span>
-    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"120"</span><span class="p">,</span>
-    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"330"</span><span class="p">,</span>
-    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"1200"</span><span class="p">,</span>
-    <span class="s2">"connector"</span><span class="p">:</span> <span class="s2">"tesla_supercharger"</span><span class="p">,</span>
-    <span class="s2">"charging_level"</span><span class="p">:</span> <span class="s2">"3"</span><span class="p">,</span>
+    <span class="s2">"drone_type"</span><span class="p">:</span> <span class="s2">"DXY M6000"</span><span class="p">,</span>
+    <span class="s2">"battery_capacity"</span><span class="p">:</span> <span class="s2">"4500"</span><span class="p">,</span>
+    <span class="s2">"charge_level"</span><span class="p">:</span> <span class="s2">"23"</span><span class="p">,</span>
+    <span class="s2">"plug_type"</span><span class="p">:</span> <span class="s2">"bullet_4mm"</span><span class="p">,</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"50"</span><span class="p">,</span>
+    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"30"</span><span class="p">,</span>
+    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"30"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"2500"</span><span class="p">,</span>
+    <span class="s2">"charge_pad_type"</span><span class="p">:</span> <span class="s2">"enclosed"</span><span class="p">,</span>
+    <span class="s2">"droneport_protection_level"</span><span class="p">:</span> <span class="s2">"56"</span>
     <span class="s2">"energy_source"</span><span class="p">:</span> <span class="s2">"solar"</span><span class="p">,</span>
-    <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"2,3"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -394,14 +383,17 @@
     <span class="s">"latitude"</span><span class="p">:</span> <span class="s">"32.787793"</span><span class="p">,</span>
     <span class="s">"longitude"</span><span class="p">:</span> <span class="s">"-79.935005"</span><span class="p">,</span>
     <span class="s">"radius"</span><span class="p">:</span> <span class="s">"10000"</span><span class="p">,</span>
-    <span class="s">"height"</span><span class="p">:</span> <span class="s">"200"</span><span class="p">,</span>
-    <span class="s">"width"</span><span class="p">:</span> <span class="s">"120"</span><span class="p">,</span>
-    <span class="s">"length"</span><span class="p">:</span> <span class="s">"330"</span><span class="p">,</span>
-    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"1200"</span><span class="p">,</span>
-    <span class="s">"connector"</span><span class="p">:</span> <span class="s">"tesla_supercharger"</span><span class="p">,</span>
-    <span class="s">"charging_level"</span><span class="p">:</span> <span class="s">"3"</span><span class="p">,</span>
+    <span class="s">"drone_type"</span><span class="p">:</span> <span class="s">"DXY M6000"</span><span class="p">,</span>
+    <span class="s">"battery_capacity"</span><span class="p">:</span> <span class="s">"4500"</span><span class="p">,</span>
+    <span class="s">"charge_level"</span><span class="p">:</span> <span class="s">"23"</span><span class="p">,</span>
+    <span class="s">"plug_type"</span><span class="p">:</span> <span class="s">"bullet_4mm"</span><span class="p">,</span>
+    <span class="s">"height"</span><span class="p">:</span> <span class="s">"50"</span><span class="p">,</span>
+    <span class="s">"width"</span><span class="p">:</span> <span class="s">"30"</span><span class="p">,</span>
+    <span class="s">"length"</span><span class="p">:</span> <span class="s">"30"</span><span class="p">,</span>
+    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"2500"</span><span class="p">,</span>
+    <span class="s">"charge_pad_type"</span><span class="p">:</span> <span class="s">"enclosed"</span><span class="p">,</span>
+    <span class="s">"droneport_protection_level"</span><span class="p">:</span> <span class="s">"56"</span>
     <span class="s">"energy_source"</span><span class="p">:</span> <span class="s">"solar"</span><span class="p">,</span>
-    <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"2,3"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"discovery_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
@@ -436,80 +428,94 @@
   </tr>
   <tr>
     <td>
+      <code class="field">drone_type</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The manufacturer and/or the model number of the drone. An unformatted string</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">battery_capacity</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The capacity of the drone's battery, specified in mAh</td>
+  </tr>
+      <tr>
+    <td>
+      <code class="field">charge_level</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The drone's current battery charge level, as it was by the time the request was sent. Specified in %</td>
+  </tr>
+        <tr>
+    <td>
+      <code class="field">charge_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>The drone's charge type. Its induction, contact and plug type</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">plug_type</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The drone's plug type ID. See <a href="#plug-types">Plug Types</a> for possible values</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The height of the drone and the minimum height clearance that it requires from the charging station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The width of the drone and the minimum width clearance that it requires from the charging station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The length of the drone and the minimum width clearance that it requires from the charging station. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms</td>
+    <td>The weight of the drone. Charging stations that cannot support a drone weighing this much should not respond. Specified as an integer representing grams</td>
   </tr>
   <tr>
     <td>
-      <code class="field">connector</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">charging_level</code>
+      <code class="field">charge_pad_type</code>
       <div class="type">optional</div>
     </td>
-    <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a></td>
+    <td>The type of charging pad. Accepted values can be either <code>open</code> (for an outdoor pad) or <code>enclosed</code> (for an enclosed charging pad)</td>
   </tr>
   <tr>
     <td>
-      <code class="field">battery_capacity</code>
+      <code class="field">droneport_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>The vehicle's total battery capacity, specified in kWh</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">current_battery_charge</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity</td>
+    <td>Charging stations may also provide protection services for drones. This parameter specifies the level of protection given to a drone. See possible codes under <a href="#drone-protection-level">Drone Protection Level</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">energy_source</code>
       <div class="type">optional</div>
     </td>
-    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">amenities</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
+    <td>Limit the request to only receive bids from charging stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
   </tr>
 </table>
 <h1 id='bid'>Bid</h1>
-<p>A bid to provide a charging service. Typically sent from a charging station to an electric vehicle.</p>
+<p>A bid to provide a charging service. Typically sent from a charging station to a drone.</p>
 <h2 id='arguments-2'>Arguments</h2>
 <blockquote>
-<p>Post request to a local/remote endpoint representing the vehicle</p>
+<p>Post request to a local/remote endpoint representing the drone</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"bidding_endpoint_here"</span> <span class="se">\</span>
   --data <span class="s2">"request_uid=ae7bd8f67f3089c"</span> <span class="se">\</span>
@@ -517,11 +523,8 @@
   --data <span class="s2">"price=2300000000000000000"</span> <span class="se">\</span>
   --data <span class="s2">"latitude=32.785889"</span> <span class="se">\</span>
   --data <span class="s2">"longitude=-79.935569"</span> <span class="se">\</span>
-  --data <span class="s2">"entrance_latitude=32.785878"</span> <span class="se">\</span>
-  --data <span class="s2">"entrance_longitude=-79.935558"</span> <span class="se">\</span>
-  --data <span class="s2">"exit_latitude=32.785878"</span> <span class="se">\</span>
-  --data <span class="s2">"exit_longitude=-79.935558"</span> <span class="se">\</span>
-  --data <span class="s2">"location_floor=2"</span> <span class="se">\</span>
+  --data <span class="s2">"available_from=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
+  --data <span class="s2">"available_until=2017-12-12T15:18:54+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"location_name=IKEA parking lot B"</span> <span class="se">\</span>
   --data <span class="s2">"location_name_lang=eng"</span> <span class="se">\</span>
   --data <span class="s2">"location_house_number=372"</span> <span class="se">\</span>
@@ -531,19 +534,15 @@
   --data <span class="s2">"location_county=Charleston"</span> <span class="se">\</span>
   --data <span class="s2">"location_state=SC"</span> <span class="se">\</span>
   --data <span class="s2">"location_country=USA"</span> <span class="se">\</span>
-  --data <span class="s2">"available_from=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"available_until=2017-12-12T15:18:54+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"height=300"</span> <span class="se">\</span>
-  --data <span class="s2">"width=200"</span> <span class="se">\</span>
-  --data <span class="s2">"length=580"</span> <span class="se">\</span>
-  --data <span class="s2">"weight=10000"</span> <span class="se">\</span>
-  --data <span class="s2">"connectors=tesla_hpwc,tesla_supercharger"</span> <span class="se">\</span>
-  --data <span class="s2">"charging_levels=2,3"</span> <span class="se">\</span>
+  --data <span class="s2">"height=5000"</span> <span class="se">\</span>
+  --data <span class="s2">"width=1000"</span> <span class="se">\</span>
+  --data <span class="s2">"length=1000"</span> <span class="se">\</span>
+  --data <span class="s2">"weight=100000"</span> <span class="se">\</span>
+  --data <span class="s2">"plug_types=bullet_2mm,bullet_3_5mm,bullet_4mm"</span> <span class="se">\</span>
   --data <span class="s2">"energy_source=solar"</span> <span class="se">\</span>
-  --data <span class="s2">"amenities=2,3,4,7,9"</span> <span class="se">\</span>
-  --data <span class="s2">"provider=Tesla"</span> <span class="se">\</span>
-  --data <span class="s2">"manufacturer=Tesla"</span> <span class="se">\</span>
-  --data <span class="s2">"model=Supercharger"</span>
+  --data <span class="s2">"provider=City Charge"</span> <span class="se">\</span>
+  --data <span class="s2">"manufacturer=GeoCharge"</span> <span class="se">\</span>
+  --data <span class="s2">"model=gc2910"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">biddingEndPoint</span> <span class="o">=</span> <span class="s2">"bidding_endpoint_here"</span><span class="p">;</span>
 
 <span class="nx">fetch</span><span class="p">(</span><span class="nx">biddingEndPoint</span><span class="p">,</span> <span class="p">{</span>
@@ -554,11 +553,8 @@
     <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"2300000000000000000"</span><span class="p">,</span>
     <span class="s2">"latitude"</span><span class="p">:</span> <span class="s2">"32.785889"</span><span class="p">,</span>
     <span class="s2">"longitude"</span><span class="p">:</span> <span class="s2">"-79.935569"</span><span class="p">,</span>
-    <span class="s2">"entrance_latitude"</span><span class="p">:</span> <span class="s2">"32.785878"</span><span class="p">,</span>
-    <span class="s2">"entrance_longitude"</span><span class="p">:</span> <span class="s2">"-79.935558"</span><span class="p">,</span>
-    <span class="s2">"exit_latitude"</span><span class="p">:</span> <span class="s2">"32.785878"</span><span class="p">,</span>
-    <span class="s2">"exit_longitude"</span><span class="p">:</span> <span class="s2">"-79.935558"</span><span class="p">,</span>
-    <span class="s2">"location_floor"</span><span class="p">:</span> <span class="s2">"2"</span><span class="p">,</span>
+    <span class="s2">"available_from"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s2">"available_until"</span><span class="p">:</span> <span class="s2">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"location_name"</span><span class="p">:</span> <span class="s2">"IKEA parking lot B"</span><span class="p">,</span>
     <span class="s2">"location_name_lang"</span><span class="p">:</span> <span class="s2">"eng"</span><span class="p">,</span>
     <span class="s2">"location_house_number"</span><span class="p">:</span> <span class="s2">"372"</span><span class="p">,</span>
@@ -568,19 +564,15 @@
     <span class="s2">"location_county"</span><span class="p">:</span> <span class="s2">"Charleston"</span><span class="p">,</span>
     <span class="s2">"location_state"</span><span class="p">:</span> <span class="s2">"SC"</span><span class="p">,</span>
     <span class="s2">"location_country"</span><span class="p">:</span> <span class="s2">"USA"</span><span class="p">,</span>
-    <span class="s2">"available_from"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s2">"available_until"</span><span class="p">:</span> <span class="s2">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"300"</span><span class="p">,</span>
-    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"200"</span><span class="p">,</span>
-    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"580"</span><span class="p">,</span>
-    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"10000"</span><span class="p">,</span>
-    <span class="s2">"connectors"</span><span class="p">:</span> <span class="s2">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
-    <span class="s2">"charging_levels"</span><span class="p">:</span> <span class="s2">"2,3"</span><span class="p">,</span>
+    <span class="s2">"height"</span><span class="p">:</span> <span class="s2">"5000"</span><span class="p">,</span>
+    <span class="s2">"width"</span><span class="p">:</span> <span class="s2">"1000"</span><span class="p">,</span>
+    <span class="s2">"length"</span><span class="p">:</span> <span class="s2">"1000"</span><span class="p">,</span>
+    <span class="s2">"weight"</span><span class="p">:</span> <span class="s2">"100000"</span><span class="p">,</span>
+    <span class="s2">"plug_types"</span><span class="p">:</span> <span class="s2">"bullet_2mm,bullet_3_5mm,bullet_4mm"</span><span class="p">,</span>
     <span class="s2">"energy_source"</span><span class="p">:</span> <span class="s2">"solar"</span><span class="p">,</span>
-    <span class="s2">"amenities"</span><span class="p">:</span> <span class="s2">"2,3,4,7,9"</span><span class="p">,</span>
-    <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"Tesla"</span><span class="p">,</span>
-    <span class="s2">"manufacturer"</span><span class="p">:</span> <span class="s2">"Tesla"</span><span class="p">,</span>
-    <span class="s2">"model"</span><span class="p">:</span> <span class="s2">"Supercharger"</span><span class="p">,</span>
+    <span class="s2">"provider"</span><span class="p">:</span> <span class="s2">"City Charge"</span><span class="p">,</span>
+    <span class="s2">"manufacturer"</span><span class="p">:</span> <span class="s2">"GeoCharge"</span><span class="p">,</span>
+    <span class="s2">"model"</span><span class="p">:</span> <span class="s2">"gc2910"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
 </code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -590,11 +582,8 @@
     <span class="s">"price"</span><span class="p">:</span> <span class="s">"2300000000000000000"</span><span class="p">,</span>
     <span class="s">"latitude"</span><span class="p">:</span> <span class="s">"32.785889"</span><span class="p">,</span>
     <span class="s">"longitude"</span><span class="p">:</span> <span class="s">"-79.935569"</span><span class="p">,</span>
-    <span class="s">"entrance_latitude"</span><span class="p">:</span> <span class="s">"32.785878"</span><span class="p">,</span>
-    <span class="s">"entrance_longitude"</span><span class="p">:</span> <span class="s">"-79.935558"</span><span class="p">,</span>
-    <span class="s">"exit_latitude"</span><span class="p">:</span> <span class="s">"32.785878"</span><span class="p">,</span>
-    <span class="s">"exit_longitude"</span><span class="p">:</span> <span class="s">"-79.935558"</span><span class="p">,</span>
-    <span class="s">"location_floor"</span><span class="p">:</span> <span class="s">"2"</span><span class="p">,</span>
+    <span class="s">"available_from"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s">"available_until"</span><span class="p">:</span> <span class="s">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"location_name"</span><span class="p">:</span> <span class="s">"IKEA parking lot B"</span><span class="p">,</span>
     <span class="s">"location_name_lang"</span><span class="p">:</span> <span class="s">"eng"</span><span class="p">,</span>
     <span class="s">"location_house_number"</span><span class="p">:</span> <span class="s">"372"</span><span class="p">,</span>
@@ -604,19 +593,15 @@
     <span class="s">"location_county"</span><span class="p">:</span> <span class="s">"Charleston"</span><span class="p">,</span>
     <span class="s">"location_state"</span><span class="p">:</span> <span class="s">"SC"</span><span class="p">,</span>
     <span class="s">"location_country"</span><span class="p">:</span> <span class="s">"USA"</span><span class="p">,</span>
-    <span class="s">"available_from"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s">"available_until"</span><span class="p">:</span> <span class="s">"2017-12-12T15:18:54+03:00"</span><span class="p">,</span>
-    <span class="s">"height"</span><span class="p">:</span> <span class="s">"300"</span><span class="p">,</span>
-    <span class="s">"width"</span><span class="p">:</span> <span class="s">"200"</span><span class="p">,</span>
-    <span class="s">"length"</span><span class="p">:</span> <span class="s">"580"</span><span class="p">,</span>
-    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"10000"</span><span class="p">,</span>
-    <span class="s">"connectors"</span><span class="p">:</span> <span class="s">"tesla_hpwc,tesla_supercharger"</span><span class="p">,</span>
-    <span class="s">"charging_levels"</span><span class="p">:</span> <span class="s">"2,3"</span><span class="p">,</span>
+    <span class="s">"height"</span><span class="p">:</span> <span class="s">"5000"</span><span class="p">,</span>
+    <span class="s">"width"</span><span class="p">:</span> <span class="s">"1000"</span><span class="p">,</span>
+    <span class="s">"length"</span><span class="p">:</span> <span class="s">"1000"</span><span class="p">,</span>
+    <span class="s">"weight"</span><span class="p">:</span> <span class="s">"100000"</span><span class="p">,</span>
+    <span class="s">"plug_types"</span><span class="p">:</span> <span class="s">"bullet_2mm,bullet_3_5mm,bullet_4mm"</span><span class="p">,</span>
     <span class="s">"energy_source"</span><span class="p">:</span> <span class="s">"solar"</span><span class="p">,</span>
-    <span class="s">"amenities"</span><span class="p">:</span> <span class="s">"2,3,4,7,9"</span><span class="p">,</span>
-    <span class="s">"provider"</span><span class="p">:</span> <span class="s">"Tesla"</span><span class="p">,</span>
-    <span class="s">"manufacturer"</span><span class="p">:</span> <span class="s">"Tesla"</span><span class="p">,</span>
-    <span class="s">"model"</span><span class="p">:</span> <span class="s">"Supercharger"</span><span class="p">,</span>
+    <span class="s">"provider"</span><span class="p">:</span> <span class="s">"City Charge"</span><span class="p">,</span>
+    <span class="s">"manufacturer"</span><span class="p">:</span> <span class="s">"GeoCharge"</span><span class="p">,</span>
+    <span class="s">"model"</span><span class="p">:</span> <span class="s">"gc2910"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"bidding_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
@@ -658,38 +643,17 @@
   </tr>
   <tr>
     <td>
-      <code class="field">entrance_latitude</code>
-      <div class="type">optional</div>
+      <code class="field">available_from</code>
+      <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the entrance to the charging station</td>
+    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
-      <code class="field">entrance_longitude</code>
-      <div class="type">optional</div>
+      <code class="field">available_until</code>
+      <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the entrance to the charging station</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">exit_latitude</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The latitude coordinate of the exit from the charging station</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">exit_longitude</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The longitude coordinate of the exit from the charging station</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">location_floor</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Which floor/level is the charging stations located on (for multistory buildings)</td>
+    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
@@ -756,59 +720,38 @@
   </tr>
   <tr>
     <td>
-      <code class="field">available_from</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The time from which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">available_until</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The time until which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
-  </tr>
-  <tr>
-    <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum drone height this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum drone width this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum drone length this station can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms</td>
+    <td>The maximum drone weight this station can accommodate. Specified as an integer representing grams</td>
   </tr>
   <tr>
     <td>
-      <code class="field">connectors</code>
-      <div class="type required">required</div>
+      <code class="field">plug_types</code>
+      <div class="type">required</div>
     </td>
-    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">charging_levels</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a></td>
+    <td>A list of plug types available at this charging station. Specified as a comma separated list of plug type ids. See <a href="#plug-types">Plug Types</a> for available values</td>
   </tr>
   <tr>
     <td>
@@ -816,13 +759,6 @@
       <div class="type">optional</div>
     </td>
     <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">amenities</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
   </tr>
   <tr>
     <td>
@@ -846,88 +782,72 @@
     <td>Name of the model of this charging station</td>
   </tr>
 </table>
-<h1 id='connector-types'>Connector Types</h1>
-<p>Connector types and their unique identifier.</p>
+<h1 id='plug-types'>Plug Types</h1>
+<p>Below is a list of all the supported drone plug types.</p>
 
 <table class="reference connectors">
   <tr>
-    <th>Connector ID</th>
+    <th>Plug Type ID</th>
     <th>Name</th>
-    <th>Charging Level</th>
+    <th>Amp Tolerance to Plug Type</th>
   </tr>
   <tr>
-    <td><code>nema_5_15</code></td>
-    <td>NEMA 5-15 Wall Outlet</td>
-    <td>1</td>
+    <td><code>jst_739</code></td>
+    <td>JST Connector 739</td>
+    <td>Up to 5 Amps</td>
   </tr>
   <tr>
-    <td><code>nema_5_20</code></td>
-    <td>NEMA 5-20 Wall Outlet</td>
-    <td>1</td>
+    <td><code>bullet_2mm</code></td>
+    <td>2mm bullet connectors</td>
+    <td>Up to 20 Amps</td>
   </tr>
   <tr>
-    <td><code>j1772</code></td>
-    <td>SAE J1772</td>
-    <td>2</td>
+    <td><code>bullet_3_5mm</code></td>
+    <td>3.5mm bullet connectors</td>
+    <td>Up to 40 Amps</td>
   </tr>
   <tr>
-    <td><code>mennekes</code></td>
-    <td>SAE J3068 / IEC 62196 (Mennekes)</td>
-    <td>2</td>
+    <td><code>xt_60_420</code></td>
+    <td>XT60 connectors 420</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>nema_14_50</code></td>
-    <td>NEMA 14-50 (RV plug)    </td>
-    <td>2</td>
+    <td><code>t_plug_204</code></td>
+    <td>T-Plug 204</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>chademo</code></td>
-    <td>CHAdeMO</td>
-    <td>3</td>
+    <td><code>ec3_306</code></td>
+    <td>EC3 connector 306</td>
+    <td>Up to 60 Amps</td>
   </tr>
   <tr>
-    <td><code>ccs</code></td>
-    <td>SAE Combined Charging System (CCS)</td>
-    <td>3</td>
+    <td><code>bullet_4mm</code></td>
+    <td>4mm bullet connectors</td>
+    <td>Up to 70 Amps</td>
   </tr>
   <tr>
-    <td><code>tesla_hpwc</code></td>
-    <td>Tesla HPWC</td>
-    <td>2</td>
+    <td><code>ec5_678</code></td>
+    <td>EC5 connectors 678</td>
+    <td>Up to 120 Amps</td>
   </tr>
   <tr>
-    <td><code>tesla_supercharger</code></td>
-    <td>Tesla supercharger</td>
-    <td>3</td>
-  </tr>
-</table>
-<h1 id='charging-levels'>Charging Levels</h1>
-<p>Available charging levels.</p>
-
-<table class="reference levels">
-  <tr>
-    <th>Level</th>
-    <th>Description</th>
+    <td><code>bullet_6mm</code></td>
+    <td>6mm bullet connectors</td>
+    <td>Up to 120 Amps</td>
   </tr>
   <tr>
-    <td><code>1</code></td>
-    <td>Standard house outlet</td>
-  </tr>
-  <tr>
-    <td><code>2</code></td>
-    <td>240 volt AC charging</td>
-  </tr>
-  <tr>
-    <td><code>3</code></td>
-    <td>DC fast charging</td>
+    <td><code>bullet_8mm</code></td>
+    <td>8mm bullet connectors</td>
+    <td>Up to 200 Amps</td>
   </tr>
 </table>
 <h1 id='energy-sources'>Energy Sources</h1>
-<p>The energy source used by the station.</p>
+<p>The energy source used by the charging station.</p>
 
 <table class="reference levels">
   <tr>
-    <th>Level</th>
+    <th>Source</th>
     <th>Description</th>
   </tr>
   <tr>
@@ -955,49 +875,111 @@
     <td>Uses 100% geothermal energy</td>
   </tr>
 </table>
-<h1 id='amenities'>Amenities</h1>
-<p>A list of amentities can be included in both requests and responses.</p>
+<h1 id='drone-protection-level'>Drone Protection Level</h1>
+<p>A charging station may also provide a certain level of protection from solids and/or liquids (mainly water and dust). The following table describes the standard levels of protection according to the International Protection Marking, IEC standard 60529.</p>
+
+<p>The first digit indicates the level of protection that the enclosure provides against access to hazardous parts (e.g., electrical conductors, moving parts) and the ingress of solid foreign objects.</p>
+
+<p>The second digit indicates the level of protection that the enclosure provides against harmful ingress of water.</p>
+
+<p>For a full listing of all available codes, read more about <a href="https://en.wikipedia.org/wiki/IP_Code" target="_blank">International Protection Marking, IEC standard 60529</a>.</p>
 
 <table class="reference">
   <tr>
-    <th>ID</th>
-    <th>Description</th>
+    <th>Rating Code</th>
+    <th>IP Rating</th>
+    <th>Solid Particle Protection</th>
+    <th>Liquid Ingress Protection</th>
   </tr>
   <tr>
-    <td><code>1</code></td>
-    <td>Lodging</td>
+    <td><code>54</code></td>
+    <td>IP54</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>2</code></td>
-    <td>Dining</td>
+    <td><code>55</code></td>
+    <td>IP55</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>3</code></td>
-    <td>Restrooms</td>
+    <td><code>56</code></td>
+    <td>IP56</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>4</code></td>
-    <td>Parking</td>
+    <td><code>57</code></td>
+    <td>IP57</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>5</code></td>
-    <td>Valet Parking</td>
+    <td><code>58</code></td>
+    <td>IP58</td>
+    <td>Protected from limited dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>6</code></td>
-    <td>Park</td>
+    <td><code>60</code></td>
+    <td>IP60</td>
+    <td>Protected from total dust ingress</td>
+    <td>Not protected from liquids, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>7</code></td>
-    <td>WiFi</td>
+    <td><code>61</code></td>
+    <td>IP61</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from condensation, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>8</code></td>
-    <td>Shopping</td>
+    <td><code>62</code></td>
+    <td>IP62</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 15 degrees from vertical, limited ingress protection</td>
   </tr>
   <tr>
-    <td><code>9</code></td>
-    <td>Grocery</td>
+    <td><code>63</code></td>
+    <td>IP63</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray less than 60 degrees from vertical, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>64</code></td>
+    <td>IP64</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from water spray from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>65</code></td>
+    <td>IP65</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from low pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>66</code></td>
+    <td>IP66</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from high pressure water jets from any direction, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>67</code></td>
+    <td>IP67</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from immersion between 15 centimetres and 1 metre in depth, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>68</code></td>
+    <td>IP68</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from long term immersion up to a specified pressure, limited ingress protection</td>
+  </tr>
+    <tr>
+    <td><code>69k</code></td>
+    <td>IP69K</td>
+    <td>Protected from total dust ingress</td>
+    <td>Protected from steam-jet cleaning, limited ingress protection</td>
   </tr>
 </table>
 
