@@ -12,7 +12,7 @@ toc_footers:
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Car Parking"></p>
+<p class="header-image"><img src="/images/car_parking/header.png" alt="Car Parking"></p>
 
 #  Car Parking Protocol
 
