@@ -156,7 +156,8 @@ curl "discovery_endpoint_here" \
   --data "destination_location_name=Oyster Point" \
   --data "destination_location_name_lang=eng" \
   --data "vehicle_type=suv" \
-  --data "passengers=3"
+  --data "passengers=3" \
+  --data "additional_features=assisted"
 ```
 
 ```javascript
@@ -191,6 +192,7 @@ fetch(discoveryEndPoint, {
     "destination_location_name_lang": "eng",
     "vehicle_type": "suv",
     "passengers": "3",
+    "additional_features": "assisted",
   })
 });
 ```
@@ -224,6 +226,7 @@ payload = {
     "destination_location_name_lang": "eng",
     "vehicle_type": "suv",
     "passengers": "3",
+    "additional_features": "assisted",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -411,6 +414,13 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The total number of passengers the vehicle should accommodate</td>
   </tr>
+  <tr>
+    <td>
+      <code class="field">additional_features</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Vehicles may provide additional features. See full list of options <a href="#additional-features">here</a></td>
+  </tr>
 </table>
 
 # Bid
@@ -434,7 +444,8 @@ curl "bidding_endpoint_here" \
   --data "vehicle_model=Suave" \
   --data "vehicle_color=Sapphire" \
   --data "vehicle_license_number=92 321 87" \
-  --data "vehicle_contact=James McGill, mobile: 555-338-5943"
+  --data "vehicle_contact=James McGill, mobile: 555-338-5943" \
+  --data "additional_features=assisted"
 ```
 
 ```javascript
@@ -455,6 +466,7 @@ fetch(biddingEndPoint, {
     "vehicle_color": "Sapphire",
     "vehicle_license_number": "92 321 87",
     "vehicle_contact": "James McGill, mobile: 555-338-5943",
+    "additional_features": "assisted",
   })
 });
 ```
@@ -474,6 +486,7 @@ payload = {
     "vehicle_color": "Sapphire",
     "vehicle_license_number": "92 321 87",
     "vehicle_contact": "James McGill, mobile: 555-338-5943",
+    "additional_features": "assisted",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
@@ -564,6 +577,13 @@ requests.post("bidding_endpoint_here", data=payload)
     </td>
     <td>Human readable information regarding the vehicle (e.g <code>James McGill, mobile: 555-338-5943</code>)</td>
   </tr>
+  <tr>
+    <td>
+      <code class="field">additional_features</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Vehicles may provide additional features. See full list of options <a href="#additional-features">here</a></td>
+  </tr>
 </table>
 
 # Vehicle Types
@@ -590,5 +610,28 @@ The type of vehicles and their unique identifier.
   <tr>
     <td><code>luxury</code></td>
     <td>A vehicle with higher quality equipment, better performance and enhanced comfort</td>
+  </tr>
+</table>
+
+# Additional Features
+
+Vehicles may provide additional features such as wheelchair access etc., below are the available features and their unique identifier.
+
+<table class="vehicle_types">
+  <tr>
+    <th>Requirement</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>assisted</code></td>
+    <td>Wheelchair access available</td>
+  </tr>
+  <tr>
+    <td><code>pet_transport</code></td>
+    <td>Pet transport is allowed</td>
+  </tr>
+  <tr>
+    <td><code>ride_share</code></td>
+    <td>Ride sharing is allowed</td>
   </tr>
 </table>
