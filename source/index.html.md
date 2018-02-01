@@ -27,5 +27,7 @@ Here you will find the different protocols governing communication between the d
   <li>
     <a href="./protocol/drone_charging.html">Drone Charging</a>
   </li>
+  <li>
+    <a href="./protocol/cargo_insurance.html">Cargo Insurance</a>
+  </li>
 </ul>
-
