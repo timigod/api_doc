@@ -16,9 +16,10 @@ search: true
 
 #  Ride Hailing Protocol
 
-The communication protocol for ride hailing describes the format of a request for a ride sent by a user (also referred to as `need`), and the response sent by a driver, usually a private car owner, but can also be an autonomous vehicle (`bid`).
+The communication protocol for ride hailing describes the format of a request for a ride (also referred to as `need`) sent by a user, and the response (`bid`) sent by vehicle, driver, or car owner.
 
 For example, a user might search for a ride within 3 km of a given coordinate in a car that can load a large travel suitcase, to a destination 20 km away.
+
 > Need
 
 ```shell
@@ -117,7 +118,7 @@ requests.post("bidding_endpoint_here", data=payload)
 
 # Need
 
-A statement of need for ride request. Typically this will be sent by a user that is looking for a ride to a certain destination.
+A statement of need for a ride. Typically this will be sent by a user that is looking for a ride to a certain destination.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
@@ -356,14 +357,13 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">passengers</code>
       <div class="type required">required</div>
     </td>
-    <td>The total number of passengers</td>
+    <td>The total number of passengers the vehicle should accommodate</td>
   </tr>
 </table>
 
 # Bid
 
 A bid to provide a ride service. Typically sent by a car owner with the price for the ride, the distance from the pick up location and the estimated time of arrival.
-
 
 ## Arguments
 
@@ -524,7 +524,7 @@ requests.post("bidding_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">eta</code>
+      <code class="field">pickup_at</code>
       <div class="type required">required</div>
     </td>
     <td>The estimated time of arrival at the pick up location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
