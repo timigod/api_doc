@@ -219,7 +219,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
-    <td>Radius in meters around the search coordinates to search. Specified as an integer</td>
+    <td>Radius in meters around the search coordinates to limit the search to. Specified as an integer</td>
   </tr>
   <tr>
     <td>
