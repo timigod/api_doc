@@ -367,7 +367,7 @@ A bid to provide a ride service. Typically sent by a car owner with the price fo
 
 ## Arguments
 
-> Post request to a local/remote endpoint representing the vehicle
+> Post request to a local/remote endpoint representing the rider
 
 ```shell
 curl "vehicle_endpoint_here" \
