@@ -68,7 +68,7 @@ In response, a charging station might send back a bid with a price per kWh, and 
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -77,14 +77,14 @@ curl "vehicle_endpoint_here" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "charging_levels=2,3" \
   --data "amenities=2,3,4,7,9"
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -95,7 +95,7 @@ fetch(vehicleEndPoint, {
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "amenities": "2,3,4,7,9",
   })
 });
@@ -112,10 +112,10 @@ payload = {
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "amenities": "2,3,4,7,9",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 # Need
@@ -139,7 +139,7 @@ curl "discovery_endpoint_here" \
   --data "length=330" \
   --data "weight=1200" \
   --data "connector=tesla_supercharger" \
-  --data "level=3" \
+  --data "charging_level=3" \
   --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
@@ -159,7 +159,7 @@ fetch(discoveryEndPoint, {
     "length": "330",
     "weight": "1200",
     "connector": "tesla_supercharger",
-    "level": "3",
+    "charging_level": "3",
     "energy_source": "solar",
     "amenities": "2,3",
   })
@@ -178,7 +178,7 @@ payload = {
     "length": "330",
     "weight": "1200",
     "connector": "tesla_supercharger",
-    "level": "3",
+    "charging_level": "3",
     "energy_source": "solar",
     "amenities": "2,3",
   }
@@ -212,7 +212,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
-    <td>Radius in meters around the search coordinates to search. Specified as an integer</td>
+    <td>Radius in meters around the search coordinates to limit the search to. Specified as an integer</td>
   </tr>
   <tr>
     <td>
@@ -295,7 +295,7 @@ A bid to provide a charging service. Typically sent from a charging station to a
 > Post request to a local/remote endpoint representing the vehicle
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -322,7 +322,7 @@ curl "vehicle_endpoint_here" \
   --data "length=580" \
   --data "weight=10000" \
   --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
+  --data "charging_levels=2,3" \
   --data "energy_source=solar" \
   --data "amenities=2,3,4,7,9" \
   --data "provider=Tesla" \
@@ -331,9 +331,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -362,7 +362,7 @@ fetch(vehicleEndPoint, {
     "length": "580",
     "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
@@ -401,14 +401,14 @@ payload = {
     "length": "580",
     "weight": "10000",
     "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
+    "charging_levels": "2,3",
     "energy_source": "solar",
     "amenities": "2,3,4,7,9",
     "provider": "Tesla",
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
@@ -550,14 +550,14 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time from which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time until which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>

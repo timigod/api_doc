@@ -7,8 +7,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - Parts of the ride hailing API were
-  - inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.
   - Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.
 
 search: true
@@ -18,19 +16,20 @@ search: true
 
 #  Ride Hailing Protocol
 
-The communication protocol for ride hailing describes the format of a request for a ride sent by a user (also referred to as `need`), and the response sent by a driver, usually a private car owner, but can also be an autonomous vehicle (`bid`).
+The communication protocol for ride hailing describes the format of a request for a ride (also referred to as `need`) sent by a user, and the response (`bid`) sent by vehicle, driver, or car owner.
 
-For example, a user might search for a ride within 3 km of a given coordinate in a car that can load a large travel suitcase, to a destination 20 km away.
+For example, a user might search for a ride within 3 km of a given coordinate to a destination 2 km away.
+
 > Need
 
 ```shell
 curl "discovery_endpoint_here" \
-  --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "pickup_at=2017-12-11T15:18:54+03:00" \
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.935005" \
+  --data "destination_latitude=32.7693531" \
+  --data "destination_longitude=-79.9296352" \
+  --data "radius=3000"
 ```
 
 ```javascript
@@ -39,12 +38,12 @@ const discoveryEndPoint = "discovery_endpoint_here";
 fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.935005",
+    "destination_latitude": "32.7693531",
+    "destination_longitude": "-79.9296352",
+    "radius": "3000",
   })
 });
 ```
@@ -52,12 +51,12 @@ fetch(discoveryEndPoint, {
 ```python
 import requests
 payload = {
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.935005",
+    "destination_latitude": "32.7693531",
+    "destination_longitude": "-79.9296352",
+    "radius": "3000",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -67,35 +66,37 @@ In response, an autonomous vehicle might send back a bid with a price for the ri
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "current_latitude=32.785889" \
+  --data "current_longitude=-79.935569" \
+  --data "pickup_at=2017-12-11T15:18:54+03:00" \
+  --data "vehicle_type=suv" \
+  --data "vehicle_manufacturer=Luxor" \
+  --data "vehicle_model=Suave" \
+  --data "vehicle_color=Sapphire" \
+  --data "vehicle_license_number=92 321 87" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "current_latitude": "32.785889",
+    "current_longitude": "-79.935569",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "vehicle_type": "suv",
+    "vehicle_manufacturer": "Luxor",
+    "vehicle_model": "Suave",
+    "vehicle_color": "Sapphire",
+    "vehicle_license_number": "92 321 87",
   })
 });
 ```
@@ -106,20 +107,21 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "current_latitude": "32.785889",
+    "current_longitude": "-79.935569",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "vehicle_type": "suv",
+    "vehicle_manufacturer": "Luxor",
+    "vehicle_model": "Suave",
+    "vehicle_color": "Sapphire",
+    "vehicle_license_number": "92 321 87",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 # Need
 
-A statement of need for ride request. Typically this will be sent by a user that is looking for a ride to a certain destination.
+A statement of need for a ride. Typically this will be sent by a user that is looking for a ride to a certain destination.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
@@ -129,18 +131,32 @@ This request is sent to the decentralized discovery engine which responds with s
 
 ```shell
 curl "discovery_endpoint_here" \
-  --data "start_at=2017-12-11T15:18:54+03:00" \
-  --data "latitude=32.787793" \
-  --data "longitude=-79.935005" \
-  --data "radius=10000" \
-  --data "height=200" \
-  --data "width=120" \
-  --data "length=330" \
-  --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3"
+  --data "pickup_at=2017-12-11T15:18:54+03:00" \
+  --data "pickup_latitude=32.787793" \
+  --data "pickup_longitude=-79.935005" \
+  --data "pickup_street=King" \
+  --data "pickup_house_number=372" \
+  --data "pickup_city=Charleston" \
+  --data "pickup_postal_code=29401" \
+  --data "pickup_county=Charleston" \
+  --data "pickup_state=SC" \
+  --data "pickup_country=USA" \
+  --data "pickup_location_name=IKEA parking lot B" \
+  --data "pickup_location_name_lang=eng" \
+  --data "radius=1500" \
+  --data "destination_latitude=32.7693531" \
+  --data "destination_longitude=-79.9296352" \
+  --data "destination_street=Murray Blvd" \
+  --data "destination_house_number=2" \
+  --data "destination_city=Charleston" \
+  --data "destination_postal_code=29401" \
+  --data "destination_county=Charleston" \
+  --data "destination_state=SC" \
+  --data "destination_country=USA" \
+  --data "destination_location_name=Oyster Point" \
+  --data "destination_location_name_lang=eng" \
+  --data "vehicle_type=suv" \
+  --data "passengers=3"
 ```
 
 ```javascript
@@ -149,18 +165,32 @@ const discoveryEndPoint = "discovery_endpoint_here";
 fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.935005",
+    "pickup_street": "King",
+    "pickup_house_number": "372",
+    "pickup_city": "Charleston",
+    "pickup_postal_code": "29401",
+    "pickup_county": "Charleston",
+    "pickup_state": "SC",
+    "pickup_country": "USA",
+    "pickup_location_name": "IKEA parking lot B",
+    "pickup_location_name_lang": "eng",
+    "radius": "1500",
+    "destination_latitude": "32.7693531",
+    "destination_longitude": "-79.9296352",
+    "destination_street": "Murray Blvd",
+    "destination_house_number": "2",
+    "destination_city": "Charleston",
+    "destination_postal_code": "29401",
+    "destination_county": "Charleston",
+    "destination_state": "SC",
+    "destination_country": "USA",
+    "destination_location_name": "Oyster Point",
+    "destination_location_name_lang": "eng",
+    "vehicle_type": "suv",
+    "passengers": "3",
   })
 });
 ```
@@ -168,18 +198,32 @@ fetch(discoveryEndPoint, {
 ```python
 import requests
 payload = {
-    "start_at": "2017-12-11T15:18:54+03:00",
-    "latitude": "32.787793",
-    "longitude": "-79.935005",
-    "radius": "10000",
-    "height": "200",
-    "width": "120",
-    "length": "330",
-    "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
-    "amenities": "2,3",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "pickup_latitude": "32.787793",
+    "pickup_longitude": "-79.935005",
+    "pickup_street": "King",
+    "pickup_house_number": "372",
+    "pickup_city": "Charleston",
+    "pickup_postal_code": "29401",
+    "pickup_county": "Charleston",
+    "pickup_state": "SC",
+    "pickup_country": "USA",
+    "pickup_location_name": "IKEA parking lot B",
+    "pickup_location_name_lang": "eng",
+    "radius": "1500",
+    "destination_latitude": "32.7693531",
+    "destination_longitude": "-79.9296352",
+    "destination_street": "Murray Blvd",
+    "destination_house_number": "2",
+    "destination_city": "Charleston",
+    "destination_postal_code": "29401",
+    "destination_county": "Charleston",
+    "destination_state": "SC",
+    "destination_country": "USA",
+    "destination_location_name": "Oyster Point",
+    "destination_location_name_lang": "eng",
+    "vehicle_type": "suv",
+    "passengers": "3",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -271,6 +315,13 @@ requests.post("discovery_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
+      <code class="field">radius</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Radius in meters around the search coordinates to limit the search to. Specified as an integer</td>
+  </tr>
+  <tr>
+    <td>
       <code class="field">destination_latitude</code>
       <div class="type required">required</div>
     </td>
@@ -349,7 +400,7 @@ requests.post("discovery_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">vehicle_type</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
     <td>The type of vehicle required for the ride. See full list of options <a href="#vehicle-types">here</a></td>
   </tr>
@@ -358,7 +409,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">passengers</code>
       <div class="type required">required</div>
     </td>
-    <td>The total number of passengers</td>
+    <td>The total number of passengers the vehicle should accommodate</td>
   </tr>
 </table>
 
@@ -366,85 +417,44 @@ requests.post("discovery_endpoint_here", data=payload)
 
 A bid to provide a ride service. Typically sent by a car owner with the price for the ride, the distance from the pick up location and the estimated time of arrival.
 
-
 ## Arguments
 
-> Post request to a local/remote endpoint representing the vehicle
+> Post request to a local/remote endpoint representing the rider
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
-  --data "latitude=32.785889" \
-  --data "longitude=-79.935569" \
-  --data "entrance_latitude=32.785878" \
-  --data "entrance_longitude=-79.935558" \
-  --data "exit_latitude=32.785878" \
-  --data "exit_longitude=-79.935558" \
-  --data "location_floor=2" \
-  --data "location_name=IKEA parking lot B" \
-  --data "location_name_lang=eng" \
-  --data "location_house_number=372" \
-  --data "location_street=King" \
-  --data "location_city=Charleston" \
-  --data "location_postal_code=29401" \
-  --data "location_county=Charleston" \
-  --data "location_state=SC" \
-  --data "location_country=USA" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
-  --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "height=300" \
-  --data "width=200" \
-  --data "length=580" \
-  --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "current_latitude=32.785889" \
+  --data "current_longitude=-79.935569" \
+  --data "pickup_at=2017-12-11T15:18:54+03:00" \
+  --data "vehicle_type=suv" \
+  --data "vehicle_manufacturer=Luxor" \
+  --data "vehicle_model=Suave" \
+  --data "vehicle_color=Sapphire" \
+  --data "vehicle_license_number=92 321 87" \
+  --data "vehicle_contact=James McGill, mobile: 555-338-5943"
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "current_latitude": "32.785889",
+    "current_longitude": "-79.935569",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "vehicle_type": "suv",
+    "vehicle_manufacturer": "Luxor",
+    "vehicle_model": "Suave",
+    "vehicle_color": "Sapphire",
+    "vehicle_license_number": "92 321 87",
+    "vehicle_contact": "James McGill, mobile: 555-338-5943",
   })
 });
 ```
@@ -455,37 +465,17 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2300000000000000000",
-    "latitude": "32.785889",
-    "longitude": "-79.935569",
-    "entrance_latitude": "32.785878",
-    "entrance_longitude": "-79.935558",
-    "exit_latitude": "32.785878",
-    "exit_longitude": "-79.935558",
-    "location_floor": "2",
-    "location_name": "IKEA parking lot B",
-    "location_name_lang": "eng",
-    "location_house_number": "372",
-    "location_street": "King",
-    "location_city": "Charleston",
-    "location_postal_code": "29401",
-    "location_county": "Charleston",
-    "location_state": "SC",
-    "location_country": "USA",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
-    "height": "300",
-    "width": "200",
-    "length": "580",
-    "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "current_latitude": "32.785889",
+    "current_longitude": "-79.935569",
+    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "vehicle_type": "suv",
+    "vehicle_manufacturer": "Luxor",
+    "vehicle_model": "Suave",
+    "vehicle_color": "Sapphire",
+    "vehicle_license_number": "92 321 87",
+    "vehicle_contact": "James McGill, mobile: 555-338-5943",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
@@ -526,7 +516,7 @@ requests.post("vehicle_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">eta</code>
+      <code class="field">pickup_at</code>
       <div class="type required">required</div>
     </td>
     <td>The estimated time of arrival at the pick up location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
@@ -572,7 +562,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">vehicle_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Human readable information regarding the vehicle (e.g <code>James Magill, mobile: 415-338-5943</code>)</td>
+    <td>Human readable information regarding the vehicle (e.g <code>James McGill, mobile: 555-338-5943</code>)</td>
   </tr>
 </table>
 
@@ -600,17 +590,5 @@ The type of vehicles and their unique identifier.
   <tr>
     <td><code>luxury</code></td>
     <td>A vehicle with higher quality equipment, better performance and enhanced comfort</td>
-  </tr>
-  <tr>
-    <td><code>assisted</code></td>
-    <td>A vehicle with wheelchair access available</td>
-  </tr>
-  <tr>
-    <td><code>ride_share</code></td>
-    <td>Shared ride vehicle</td>
-  </tr>
-  <tr>
-    <td><code>animal_transport</code></td>
-    <td>A vehicle that allows pet transportation</td>
   </tr>
 </table>

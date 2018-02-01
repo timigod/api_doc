@@ -12,7 +12,7 @@ toc_footers:
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Drone Delivery"></p>
+<p class="header-image"><img src="/images/drone_delivery/header.png" alt="Drone Delivery"></p>
 
 # Drone Delivery Protocol
 
@@ -69,7 +69,7 @@ In response, a drone might send back a bid with a price, the estimated time it w
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -78,9 +78,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -101,7 +101,7 @@ payload = {
     "time_to_pickup": "2017-12-11T15:21:59+03:00",
     "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 # Need
@@ -327,10 +327,10 @@ A bid to provide a delivery service. Typically sent from a delivery drone to the
 
 ## Arguments
 
-> Post request to a local/remote endpoint representing the vehicle
+> Post request to a local/remote endpoint representing the drone
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -344,9 +344,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -377,7 +377,7 @@ payload = {
     "drone_manufacturer": "DXY",
     "drone_model": "m6000",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">

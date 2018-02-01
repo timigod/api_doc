@@ -7,20 +7,18 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - Parts of the car parking API were
-  - inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.
   - Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.
 
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Car Parking"></p>
+<p class="header-image"><img src="/images/car_parking/header.png" alt="Car Parking"></p>
 
 #  Car Parking Protocol
 
-The communication protocol for the car parking describes the format of a request for a parking space sent by a vehicle (also referred to as `need`), and the response sent by a parking space, usually an automated parking system (`bid`).
+The communication protocol for car parking describes the format of a request for a parking space (also referred to as `need`) sent by a vehicle, and the response sent by a parking space, usually an automated parking management system (`bid`).
 
-For example, a heavy goods truck might search for an available parking space within 1 km of a given coordinate that can fit in a 12 meters long vehicle.
+For example, a heavy goods truck might search for an available parking space within 1 km of a given coordinate that can fit a 12 meters long vehicle.
 
 > Need
 
@@ -30,8 +28,7 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "length=1200"
 ```
 
 ```javascript
@@ -44,8 +41,7 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   })
 });
 ```
@@ -57,46 +53,53 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a parking space might send back a bid with a price per hour, and the full details of the services it offers.
+In response, a parking space might send back a bid with a price per hour, and the full details of the additional services it offers.
 
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "height=300" \
+  --data "width=300" \
+  --data "length=1900" \
+  --data "weight=100000" \
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -106,19 +109,23 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
-<b>Note:</b> For charging while parking, see <a href="./protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service.
+<b>Note:</b> For charging while parking, see the <a href="../protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service. If a `bid` is given in response to a Car Parking `need` from a location offering EV Charging, the `bid` price will not include any charging services.
 
 # Need
 
@@ -140,9 +147,6 @@ curl "discovery_endpoint_here" \
   --data "width=120" \
   --data "length=330" \
   --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "level=3" \
-  --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
 
@@ -160,9 +164,6 @@ fetch(discoveryEndPoint, {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   })
 });
@@ -179,9 +180,6 @@ payload = {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
@@ -200,7 +198,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">end_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect the price per hour. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect how the service is priced. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
@@ -221,7 +219,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">radius</code>
       <div class="type required">required</div>
     </td>
-    <td>Radius in meters around the search coordinates to search. Specified as an integer</td>
+    <td>Radius in meters around the search coordinates to limit the search to. Specified as an integer</td>
   </tr>
   <tr>
     <td>
@@ -262,17 +260,19 @@ requests.post("discovery_endpoint_here", data=payload)
 
 # Bid
 
-A bid to provide a parking service. Typically sent from a parking space to a vehicle.
+A bid to provide a parking service. Typically sent from a parking management system to a vehicle.
 
 ## Arguments
 
 > Post request to a local/remote endpoint representing the vehicle
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "entrance_latitude=32.785878" \
@@ -295,24 +295,20 @@ curl "vehicle_endpoint_here" \
   --data "width=200" \
   --data "length=580" \
   --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -335,13 +331,7 @@ fetch(vehicleEndPoint, {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -351,7 +341,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -374,15 +366,9 @@ payload = {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
@@ -592,6 +578,14 @@ Price types and their unique identifier.
   <tr>
     <th>Price Type</th>
     <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
   </tr>
   <tr>
     <td><code>hour</code></td>
