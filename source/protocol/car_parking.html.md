@@ -1,5 +1,5 @@
 ---
-title: Electric Vehicle Charging
+title: Car Parking
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -7,20 +7,18 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - python
 
 toc_footers:
-  - Parts of the EV charging API were
-  - inspired by the <a href="https://github.com/PlugShare/slate" target="blank">PlugShare API</a>.
   - Documentation powered by <a href="https://github.com/lord/slate" target="blank">Slate</a>.
 
 search: true
 ---
 
-<p class="header-image"><img src="/images/ev_charging/header.png" alt="Electric Vehicle Charging"></p>
+<p class="header-image"><img src="/images/car_parking/header.png" alt="Car Parking"></p>
 
-# Electric Vehicle Charging Protocol
+#  Car Parking Protocol
 
-The communication protocol for electric vehicle charging describes the format of a request for a charging service (`need`), and the response sent by a charging provider (`bid`).
+The communication protocol for car parking describes the format of a request for a parking space (also referred to as `need`) sent by a vehicle, and the response sent by a parking space, usually an automated parking management system (`bid`).
 
-For example, an electric vehicle might search for charging stations within 1 km of a given coordinate that support a Tesla supercharger plug, and also have restrooms.
+For example, a heavy goods truck might search for an available parking space within 1 km of a given coordinate that can fit a 12 meters long vehicle.
 
 > Need
 
@@ -30,8 +28,7 @@ curl "discovery_endpoint_here" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=1000" \
-  --data "connector=tesla_supercharger" \
-  --data "amenities=3"
+  --data "length=1200"
 ```
 
 ```javascript
@@ -44,8 +41,7 @@ fetch(discoveryEndPoint, {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   })
 });
 ```
@@ -57,13 +53,12 @@ payload = {
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "1000",
-    "connector": "tesla_supercharger",
-    "amenities": "3",
+    "length": "1200",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a charging station might send back a bid with a price per kWh, and the full details of the services it offers.
+In response, a parking space might send back a bid with a price per hour, and the full details of the additional services it offers.
 
 > Bid
 
@@ -71,14 +66,18 @@ In response, a charging station might send back a bid with a price per kWh, and 
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "charging_levels=2,3" \
-  --data "amenities=2,3,4,7,9"
+  --data "height=300" \
+  --data "width=300" \
+  --data "length=1900" \
+  --data "weight=100000" \
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
@@ -89,14 +88,18 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "charging_levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -106,21 +109,27 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
     "available_until": "2017-12-12T15:18:54+03:00",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "charging_levels": "2,3",
-    "amenities": "2,3,4,7,9",
+    "height": "300",
+    "width": "300",
+    "length": "1900",
+    "weight": "100000",
+    "amenities": "2,3,8",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
 
+<b>Note:</b> For charging while parking, see the <a href="../protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service. If a `bid` is given in response to a Car Parking `need` from a location offering EV Charging, the `bid` price will not include any charging services.
+
 # Need
 
-A statement of need for charging stations. Typically this will be sent by an electric vehicle that is looking for a charging station around certain coordinates.
+A statement of need for parking spaces. Typically this will be sent by a vehicle that is looking for a parking space around certain coordinates.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
@@ -138,9 +147,6 @@ curl "discovery_endpoint_here" \
   --data "width=120" \
   --data "length=330" \
   --data "weight=1200" \
-  --data "connector=tesla_supercharger" \
-  --data "charging_level=3" \
-  --data "energy_source=solar" \
   --data "amenities=2,3"
 ```
 
@@ -158,9 +164,6 @@ fetch(discoveryEndPoint, {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "charging_level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   })
 });
@@ -177,9 +180,6 @@ payload = {
     "width": "120",
     "length": "330",
     "weight": "1200",
-    "connector": "tesla_supercharger",
-    "charging_level": "3",
-    "energy_source": "solar",
     "amenities": "2,3",
   }
 requests.post("discovery_endpoint_here", data=payload)
@@ -191,7 +191,14 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester would like to arrive at charging station (if undefined, the arrival time will be ASAP). Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester would like to arrive at the parking space (if undefined, the arrival time will be ASAP). Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">end_at</code>
+      <div class="type">optional</div>
+    </td>
+    <td>The time at which the requester plans to leave the parking space. This parameter is optional but highly recommended, as it can affect how the service is priced. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
@@ -219,76 +226,41 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The height of this vehicle, and the minimum height clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The width of this vehicle, and the minimum width clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the station. Specified as an integer representing centimeters</td>
+    <td>The length of this vehicle, and the minimum length clearance that this vehicle requires from the parking space. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of this vehicle. Stations that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">connector</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The connector type required by the EV. Specified as a connector id. See <a href="#connector-types">Connector Types</a> for available values</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">charging_level</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The charging level as defined by SAE standards. Specified as an integer. See <a href="#charging-levels">Charging Levels</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">battery_capacity</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The vehicle's total battery capacity, specified in kWh</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">current_battery_charge</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The vehicle's current battery charge level, as it was at the time the request was sent. Specified in integer denoting percentage of full capacity</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">energy_source</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Limit the request to only receive bids from stations using a specific source of the energy. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
+    <td>The weight of this vehicle. Parking spaces that cannot support a vehicle weighing this much should not respond. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that need to be present at charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
+    <td>A list of amenities that need to be present at the parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a></td>
   </tr>
 </table>
 
 # Bid
 
-A bid to provide a charging service. Typically sent from a charging station to an electric vehicle.
+A bid to provide a parking service. Typically sent from a parking management system to a vehicle.
 
 ## Arguments
 
@@ -298,7 +270,9 @@ A bid to provide a charging service. Typically sent from a charging station to a
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=300000000000000000,500000000000000000" \
+  --data "price_type=hour,flat" \
+  --data "price_description=Price per hour,City tax" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "entrance_latitude=32.785878" \
@@ -321,13 +295,7 @@ curl "bidding_endpoint_here" \
   --data "width=200" \
   --data "length=580" \
   --data "weight=10000" \
-  --data "connectors=tesla_hpwc,tesla_supercharger" \
-  --data "charging_levels=2,3" \
-  --data "energy_source=solar" \
-  --data "amenities=2,3,4,7,9" \
-  --data "provider=Tesla" \
-  --data "manufacturer=Tesla" \
-  --data "model=Supercharger"
+  --data "amenities=2,3,8"
 ```
 
 ```javascript
@@ -338,7 +306,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -361,13 +331,7 @@ fetch(biddingEndPoint, {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "charging_levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   })
 });
 ```
@@ -377,7 +341,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "300000000000000000,500000000000000000",
+    "price_type": "hour,flat",
+    "price_description": "Price per hour,City tax",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "entrance_latitude": "32.785878",
@@ -400,13 +366,7 @@ payload = {
     "width": "200",
     "length": "580",
     "weight": "10000",
-    "connectors": "tesla_hpwc,tesla_supercharger",
-    "charging_levels": "2,3",
-    "energy_source": "solar",
-    "amenities": "2,3,4,7,9",
-    "provider": "Tesla",
-    "manufacturer": "Tesla",
-    "model": "Supercharger",
+    "amenities": "2,3,8",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
@@ -431,63 +391,77 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">price_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_description</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
       <code class="field">latitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The latitude coordinate of the charging station</td>
+    <td>The latitude coordinate of the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">longitude</code>
       <div class="type required">required</div>
     </td>
-    <td>The longitude coordinate of the charging station</td>
+    <td>The longitude coordinate of the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the entrance to the charging station</td>
+    <td>The latitude coordinate of the entrance to the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">entrance_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the entrance to the charging station</td>
+    <td>The longitude coordinate of the entrance to the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_latitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The latitude coordinate of the exit from the charging station</td>
+    <td>The latitude coordinate of the exit from the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">exit_longitude</code>
       <div class="type">optional</div>
     </td>
-    <td>The longitude coordinate of the exit from the charging station</td>
+    <td>The longitude coordinate of the exit from the parking space</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_floor</code>
       <div class="type">optional</div>
     </td>
-    <td>Which floor/level is the charging stations located on (for multistory buildings)</td>
+    <td>Which floor/level is the parking space located on (for multistory buildings)</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_name</code>
       <div class="type">optional</div>
     </td>
-    <td>A human readable name/description of the charging station location (e.g., Lund Train Station parking)</td>
+    <td>A human readable name/description of the parking space location (e.g., Long Island Central Parking Lot)</td>
   </tr>
   <tr>
     <td>
@@ -501,255 +475,133 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">location_house_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The house number where the station is located</td>
+    <td>The house number where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_street</code>
       <div class="type">optional</div>
     </td>
-    <td>The street name where the station is located</td>
+    <td>The street name where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_city</code>
       <div class="type">optional</div>
     </td>
-    <td>The city where the station is located</td>
+    <td>The city where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_postal_code</code>
       <div class="type">optional</div>
     </td>
-    <td>The postal code where the station is located</td>
+    <td>The postal code where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_county</code>
       <div class="type">optional</div>
     </td>
-    <td>The county where the station is located</td>
+    <td>The county where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_state</code>
       <div class="type">optional</div>
     </td>
-    <td>The state where the station is located</td>
+    <td>The state where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">location_country</code>
       <div class="type">optional</div>
     </td>
-    <td>The country where the station is located</td>
+    <td>The country where the parking space is located</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time from which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
-      <div class="type">optional</div>
+      <div class="type required">required</div>
     </td>
-    <td>The time until which the charging station can be made available for the vehicle requesting a charge. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time until which the parking space can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle height this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum vehicle height this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle width this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum vehicle width this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle length this station can accommodate. Specified as an integer representing centimeters</td>
+    <td>The maximum vehicle length this parking space can accommodate. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The maximum vehicle weight this station can accommodate. Specified as an integer representing kilograms</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">connectors</code>
-      <div class="type required">required</div>
-    </td>
-    <td>A list of connector types available at this charging station. Specified as a comma separated list of connector ids. See <a href="#connector-types">Connector Types</a> for available values</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">charging_levels</code>
-      <div class="type">optional</div>
-    </td>
-    <td>A list of charging levels as defined by SAE standards available at this charging station. Specified as a comma separated list of integers. See <a href="#charging-levels">Charging Levels</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">energy_source</code>
-      <div class="type">optional</div>
-    </td>
-    <td>The source of the energy used by this charging station. Specified as an energy source id. See <a href="#energy-sources">Energy Sources</a></td>
+    <td>The maximum vehicle weight this parking space can accommodate. Specified as an integer representing kilograms</td>
   </tr>
   <tr>
     <td>
       <code class="field">amenities</code>
       <div class="type">optional</div>
     </td>
-    <td>A list of amenities that are present at this charging station. Specified as a comma separated list of amenity ids. See <a href="#amenities">Amenities</a></td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">provider</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Name of the service provider or charging network operating this charging station</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">manufacturer</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Name of the manufacturer of this charging station</td>
-  </tr>
-  <tr>
-    <td>
-      <code class="field">model</code>
-      <div class="type">optional</div>
-    </td>
-    <td>Name of the model of this charging station</td>
+    <td>A list of amenities that are present at this parking space. Specified as a comma separated list of amenity IDs. See <a href="#amenities">Amenities</a></td>
   </tr>
 </table>
 
-# Connector Types
+# Price Types
 
-Connector types and their unique identifier.
+Price types and their unique identifier.
 
-<table class="reference connectors">
+<table class="reference prices">
   <tr>
-    <th>Connector ID</th>
-    <th>Name</th>
-    <th>Charging Level</th>
-  </tr>
-  <tr>
-    <td><code>nema_5_15</code></td>
-    <td>NEMA 5-15 Wall Outlet</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td><code>nema_5_20</code></td>
-    <td>NEMA 5-20 Wall Outlet</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td><code>j1772</code></td>
-    <td>SAE J1772</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><code>mennekes</code></td>
-    <td>SAE J3068 / IEC 62196 (Mennekes)</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><code>nema_14_50</code></td>
-    <td>NEMA 14-50 (RV plug)	</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><code>chademo</code></td>
-    <td>CHAdeMO</td>
-    <td>3</td>
-  </tr>
-  <tr>
-    <td><code>ccs</code></td>
-    <td>SAE Combined Charging System (CCS)</td>
-    <td>3</td>
-  </tr>
-  <tr>
-    <td><code>tesla_hpwc</code></td>
-    <td>Tesla HPWC</td>
-    <td>2</td>
-  </tr>
-  <tr>
-    <td><code>tesla_supercharger</code></td>
-    <td>Tesla supercharger</td>
-    <td>3</td>
-  </tr>
-</table>
-
-# Charging Levels
-
-Available charging levels.
-
-<table class="reference levels">
-  <tr>
-    <th>Level</th>
+    <th>Price Type</th>
     <th>Description</th>
   </tr>
   <tr>
-    <td><code>1</code></td>
-    <td>Standard house outlet</td>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
   </tr>
   <tr>
-    <td><code>2</code></td>
-    <td>240 volt AC charging</td>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
   </tr>
   <tr>
-    <td><code>3</code></td>
-    <td>DC fast charging</td>
-  </tr>
-</table>
-
-# Energy Sources
-
-The energy source used by the station.
-
-<table class="reference levels">
-  <tr>
-    <th>Level</th>
-    <th>Description</th>
+    <td><code>hour</code></td>
+    <td>The listed <code>price</code> is per hour</td>
   </tr>
   <tr>
-    <td><code>grid</code></td>
-    <td>Connected to the electrical grid and using an unspecified energy source, or an unspecified mix of energy source</td>
+    <td><code>day</code></td>
+    <td>The listed <code>price</code> is per day</td>
   </tr>
   <tr>
-    <td><code>renewable</code></td>
-    <td>Uses 100% renewable energy of an unspecified source, or a mix of different renewable energy sources</td>
+    <td><code>week</code></td>
+    <td>The listed <code>price</code> is per week</td>
   </tr>
   <tr>
-    <td><code>solar</code></td>
-    <td>Uses 100% solar energy</td>
-  </tr>
-  <tr>
-    <td><code>wind</code></td>
-    <td>Uses 100% wind energy</td>
-  </tr>
-  <tr>
-    <td><code>hydro</code></td>
-    <td>Uses 100% hydropower energy</td>
-  </tr>
-  <tr>
-    <td><code>geothermal</code></td>
-    <td>Uses 100% geothermal energy</td>
+    <td><code>flat</code></td>
+    <td>The listed <code>price</code> is a flat price</td>
   </tr>
 </table>
 
@@ -776,7 +628,7 @@ A list of amentities can be included in both requests and responses.
   </tr>
   <tr>
     <td><code>4</code></td>
-    <td>Parking</td>
+    <td>EV Charging</td>
   </tr>
   <tr>
     <td><code>5</code></td>
@@ -784,18 +636,14 @@ A list of amentities can be included in both requests and responses.
   </tr>
   <tr>
     <td><code>6</code></td>
-    <td>Park</td>
-  </tr>
-  <tr>
-    <td><code>7</code></td>
     <td>WiFi</td>
   </tr>
   <tr>
-    <td><code>8</code></td>
+    <td><code>7</code></td>
     <td>Shopping</td>
   </tr>
   <tr>
-    <td><code>9</code></td>
+    <td><code>8</code></td>
     <td>Grocery</td>
   </tr>
 </table>
