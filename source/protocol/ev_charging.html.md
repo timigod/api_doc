@@ -68,7 +68,7 @@ In response, a charging station might send back a bid with a price per kWh, and 
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -82,9 +82,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -115,7 +115,7 @@ payload = {
     "charging_levels": "2,3",
     "amenities": "2,3,4,7,9",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 # Need
@@ -295,7 +295,7 @@ A bid to provide a charging service. Typically sent from a charging station to a
 > Post request to a local/remote endpoint representing the vehicle
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2300000000000000000" \
@@ -331,9 +331,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -408,7 +408,7 @@ payload = {
     "manufacturer": "Tesla",
     "model": "Supercharger",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">

@@ -63,7 +63,7 @@ In response, a parking space might send back a bid with a price per hour, and th
 > Bid
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=300000000000000000,500000000000000000" \
@@ -81,9 +81,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -122,7 +122,7 @@ payload = {
     "weight": "100000",
     "amenities": "2,3,8",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <b>Note:</b> For charging while parking, see the <a href="../protocol/ev_charging.html">Electric Vehicle Charging Protocol</a>, as some charging stations include a parking service. If a `bid` is given in response to a Car Parking `need` from a location offering EV Charging, the `bid` price will not include any charging services.
@@ -267,7 +267,7 @@ A bid to provide a parking service. Typically sent from a parking management sys
 > Post request to a local/remote endpoint representing the vehicle
 
 ```shell
-curl "vehicle_endpoint_here" \
+curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=300000000000000000,500000000000000000" \
@@ -299,9 +299,9 @@ curl "vehicle_endpoint_here" \
 ```
 
 ```javascript
-const vehicleEndPoint = "vehicle_endpoint_here";
+const biddingEndPoint = "bidding_endpoint_here";
 
-fetch(vehicleEndPoint, {
+fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
@@ -368,7 +368,7 @@ payload = {
     "weight": "10000",
     "amenities": "2,3,8",
   }
-requests.post("vehicle_endpoint_here", data=payload)
+requests.post("bidding_endpoint_here", data=payload)
 ```
 
 <table class="arguments">
