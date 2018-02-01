@@ -348,7 +348,7 @@ requests.post("discovery_endpoint_here", data=payload)
   <tr>
     <td>
       <code class="field">vehicle_type</code>
-      <div class="type required">required</div>
+      <div class="type">optional</div>
     </td>
     <td>The type of vehicle required for the ride. See full list of options <a href="#vehicle-types">here</a></td>
   </tr>
@@ -570,7 +570,7 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">vehicle_contact</code>
       <div class="type">optional</div>
     </td>
-    <td>Human readable information regarding the vehicle (e.g <code>James Magill, mobile: 415-338-5943</code>)</td>
+    <td>Human readable information regarding the vehicle (e.g <code>James McGill, mobile: 555-338-5943</code>)</td>
   </tr>
 </table>
 
@@ -598,17 +598,5 @@ The type of vehicles and their unique identifier.
   <tr>
     <td><code>luxury</code></td>
     <td>A vehicle with higher quality equipment, better performance and enhanced comfort</td>
-  </tr>
-  <tr>
-    <td><code>assisted</code></td>
-    <td>A vehicle with wheelchair access available</td>
-  </tr>
-  <tr>
-    <td><code>ride_share</code></td>
-    <td>Shared ride vehicle</td>
-  </tr>
-  <tr>
-    <td><code>animal_transport</code></td>
-    <td>A vehicle that allows pet transportation</td>
   </tr>
 </table>
