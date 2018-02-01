@@ -16,7 +16,7 @@ search: true
 
 # Drone Delivery Protocol
 
-The following document describes the communication protocol for a package delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
+The following document describes the communication protocol for a cargo delivery service provided by an autonomous drone. It includes the format for both the request for a delivery service (also referred to as `need`) and the response sent by drones that `bid` on providing the delivery service.
 
 For example, a user is looking for a drone to pick up a small tube containing corrosive materials from his doorstep and deliver it to a friend's backyard.
 
@@ -196,7 +196,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <div class="type">optional</div>
     </td>
     <td>
-      The time at which the requester would like the package to be picked up (if undefined, the pick up time will be ASAP). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
+      The time at which the requester would like the cargo to be picked up (if undefined, the pick up time will be ASAP). This should be specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC
     </td>
   </tr>
   <tr>
@@ -246,7 +246,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">external_reference_id</code>
       <div class="type">optional</div>
     </td>
-    <td>An identification string that might be needed for package dispatch</td>
+    <td>An identification string that might be needed for cargo dispatch</td>
   </tr>
   <tr>
     <td>
@@ -261,42 +261,42 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">hazardous_goods</code>
       <div class="type">optional</div>
     </td>
-    <td>If this package contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a></td>
+    <td>If the cargo contains hazardous goods, the hazardous goods class must be included. See the full list of options <a href="#hazardous-goods">here</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>A certain level of protection to the package may be requested. See full list of options <a href="#ip-protection-level">here</a></td>
+    <td>A certain level of protection to the cargo may be requested. See full list of options <a href="#ip-protection-level">here</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">height</code>
       <div class="type">optional</div>
     </td>
-    <td>The height of the package. Specified as an integer representing centimeters</td>
+    <td>The height of the cargo. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">width</code>
       <div class="type">optional</div>
     </td>
-    <td>The width of the package. Specified as an integer representing centimeters</td>
+    <td>The width of the cargo. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">length</code>
       <div class="type">optional</div>
     </td>
-    <td>The length of the package. Specified as an integer representing centimeters</td>
+    <td>The length of the cargo. Specified as an integer representing centimeters</td>
   </tr>
   <tr>
     <td>
       <code class="field">weight</code>
       <div class="type">optional</div>
     </td>
-    <td>The weight of the package. Specified as an integer representing grams</td>
+    <td>The weight of the cargo. Specified as an integer representing grams</td>
   </tr>
   <tr>
     <td>
@@ -310,7 +310,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">insured_value</code>
       <div class="type">optional</div>
     </td>
-    <td>The declared value of the package to be insured</td>
+    <td>The declared value of the cargo to be insured</td>
   </tr>
   <tr>
     <td>
@@ -435,7 +435,7 @@ requests.post("vehicle_endpoint_here", data=payload)
       <code class="field">ip_protection_level</code>
       <div class="type">optional</div>
     </td>
-    <td>A certain level of package protection that a drone may provide. See full list of options <a href="#ip-protection-level">here</a></td>
+    <td>A certain level of protection that a drone may provide to the cargo. See full list of options <a href="#ip-protection-level">here</a></td>
   </tr>
   <tr>
     <td>
