@@ -661,6 +661,30 @@ table.levels {
   }
 }
 
+table.hazardous {
+  td:first-of-type, th:first-of-type {
+    text-align: center;
+  }
+}
+
+table.cargo {
+  td:first-of-type, th:first-of-type {
+    text-align: center;
+  }
+}
+
+table.cargo_vehicles {
+  td:first-of-type, th:first-of-type {
+    text-align: right;
+  }
+}
+
+table.iplevel {
+  td:first-of-type, th:first-of-type {
+    text-align: center;
+  }
+}
+
 p.header-image {
   padding: 0;
   margin-bottom: -56px;
