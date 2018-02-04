@@ -64,7 +64,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a drone might send back a bid with a price, the estimated time it will arrive at the pickup location, and the estimated time it will arrive at the dropoff location.
+In response, a drone might send back a bid with a price, the estimated time of arrival at the pickup location, and the estimated time of arrival at the dropoff location.
 
 > Bid
 
