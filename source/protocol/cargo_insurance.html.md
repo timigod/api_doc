@@ -31,7 +31,7 @@ curl "discovery_endpoint_here" \
   --data "dropoff_latitude=40.875103" \
   --data "dropoff_longitude=-74.570389" \
   --data "planned_path=40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389" \
-  --data "vehicle_type=drone_autonomous" \
+  --data "vehicle_type=drone" \
   --data "cargo_type=11" \
   --data "insured_value=3000.00" \
   --data "insured_value_currency=USD"
@@ -50,7 +50,7 @@ fetch(discoveryEndPoint, {
     "dropoff_latitude": "40.875103",
     "dropoff_longitude": "-74.570389",
     "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
-    "vehicle_type": "drone_autonomous",
+    "vehicle_type": "drone",
     "cargo_type": "11",
     "insured_value": "3000.00",
     "insured_value_currency": "USD",
@@ -68,7 +68,7 @@ payload = {
     "dropoff_latitude": "40.875103",
     "dropoff_longitude": "-74.570389",
     "planned_path": "40.958123,-74.169388,40.7899,-74.463272,40.875103,-74.570389",
-    "vehicle_type": "drone_autonomous",
+    "vehicle_type": "drone",
     "cargo_type": "11",
     "insured_value": "3000.00",
     "insured_value_currency": "USD",
@@ -148,7 +148,8 @@ curl "discovery_endpoint_here" \
   --data "requester_name=Megadronix" \
   --data "requester_phone_number=+31-338-594332" \
   --data "external_reference_id=200982447" \
-  --data "vehicle_type=drone_autonomous" \
+  --data "vehicle_type=drone,ship,drone" \
+  --data "vehicle_is_autonomous=true,false,true" \
   --data "cargo_type=11" \
   --data "hazardous_goods=8" \
   --data "ip_protection_level=68" \
@@ -180,7 +181,8 @@ fetch(discoveryEndPoint, {
     "requester_name": "Megadronix",
     "requester_phone_number": "+31-338-594332",
     "external_reference_id": "200982447",
-    "vehicle_type": "drone_autonomous",
+    "vehicle_type": "drone,ship,drone",
+    "vehicle_is_autonomous": "true,false,true",
     "cargo_type": "11",
     "hazardous_goods": "8",
     "ip_protection_level": "68",
@@ -211,7 +213,8 @@ payload = {
     "requester_name": "Megadronix",
     "requester_phone_number": "+31-338-594332",
     "external_reference_id": "200982447",
-    "vehicle_type": "drone_autonomous",
+    "vehicle_type": "drone,ship,drone",
+    "vehicle_is_autonomous": "true,false,true",
     "cargo_type": "11",
     "hazardous_goods": "8",
     "ip_protection_level": "68",
@@ -333,7 +336,15 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">vehicle_type</code>
       <div class="type required">required</div>
     </td>
-    <td>The type of vehicle used for the trip. See full list of options <a href="#vehicle-types">here</a>
+    <td>The type of vehicle (one or more) used for the trip, specified as a comma separated list. See full list of options <a href="#vehicle-types">here</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">vehicle_is_autonomous</code>
+      <div class="type">optional</div>
+    </td>
+    <td>A boolean or a comma separated list of booleans, stating if the vehicle used for the trip is autonomous (<code>true</code>) or human controlled (<code>false</code>). Default is <code>true</code></a>
     </td>
   </tr>
   <tr>
@@ -531,75 +542,30 @@ The type of vehicles and their unique identifier.
 <table class="cargo_vehicles">
   <tr>
     <th>Vehicle Type</th>
-    <th>Description</th>
   </tr>
   <tr>
     <td><code>drone</code></td>
-    <td>Human controlled drone</td>
-  </tr>
-  <tr>
-    <td><code>drone_autonomous</code></td>
-    <td>Self operating drone</td>
   </tr>
   <tr>
     <td><code>car</code></td>
-    <td>Human controlled car</td>
-  </tr>
-  <tr>
-    <td><code>car_autonomous</code></td>
-    <td>Self operating car</td>
   </tr>
   <tr>
     <td><code>truck</code></td>
-    <td>Human controlled truck</td>
-  </tr>
-  <tr>
-    <td><code>truck_autonomous</code></td>
-    <td>Self operating truck</td>
   </tr>
   <tr>
     <td><code>van</code></td>
-    <td>Human controlled van</td>
-  </tr>
-  <tr>
-    <td><code>van_autonomous</code></td>
-    <td>Self operating van</td>
   </tr>
   <tr>
     <td><code>ship</code></td>
-    <td>Human controlled ship</td>
-  </tr>
-  <tr>
-    <td><code>ship_autonomous</code></td>
-    <td>Self operating ship</td>
   </tr>
   <tr>
     <td><code>robot</code></td>
-    <td>Human controlled robot</td>
   </tr>
-    <tr>
-    <td><code>robot_autonomous</code></td>
-    <td>Self operating robot</td>
-  </tr>
-  <tr>
+ <tr>
     <td><code>bike</code></td>
-    <td>Human controlled bike</td>
-  </tr>
-  <tr>
-    <td><code>bike_autonomous</code></td>
-    <td>Self operating bike</td>
   </tr>
   <tr>
     <td><code>rail</code></td>
-    <td>Human controlled rail</td>
-  </tr>
-  <tr>
-    <td><code>rail_autonomous</code></td>
-    <td>Self operating rail</td>
-  </tr>
-  <tr>
-    <td><code>intermodal</code></td>
-    <td>Combining multiple modes of transportation (e.g., rail, ship and truck)</td>
   </tr>
 </table>
 
