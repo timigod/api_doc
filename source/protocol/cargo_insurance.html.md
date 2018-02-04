@@ -76,7 +76,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, an insurance provider might send back a bid with the price for the given delivery path or time period, the type of coverage and the deductible amount required.
+In response, an insurance provider might send back a bid with the policy price, the type of coverage and the deductible amount required.
 
 > Bid
 
@@ -85,7 +85,9 @@ curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "coverage_type=all_risk" \
-  --data "price=2300000000000000000" \
+  --data "price=20000000000000000,100000000000000000" \
+  --data "price_type=minute,flat" \
+  --data "price_description=Price per minute,City tax" \
   --data "deductible=1400000000000000000"
 ```
 
@@ -98,7 +100,9 @@ fetch(biddingEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,100000000000000000",
+    "price_type": "minute,flat",
+    "price_description": "Price per minute,City tax",
     "deductible": "1400000000000000000",
   })
 });
@@ -110,7 +114,9 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,100000000000000000",
+    "price_type": "minute,flat",
+    "price_description": "Price per minute,City tax",
     "deductible": "1400000000000000000",
   }
 requests.post("bidding_endpoint_here", data=payload)
@@ -409,7 +415,9 @@ curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "coverage_type=all_risk" \
-  --data "price=2300000000000000000" \
+  --data "price=20000000000000000,100000000000000000" \
+  --data "price_type=minute,flat" \
+  --data "price_description=Price per minute,City tax" \
   --data "deductible=1400000000000000000" \
   --data "insurer_contact=Airsurance LTD, Tel: +1 415 982 3342" \
   --data "insurer_dav_id=0x17325a469aef3472aa58dfdcf672881d79b31d58"
@@ -424,7 +432,9 @@ fetch(biddingEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,100000000000000000",
+    "price_type": "minute,flat",
+    "price_description": "Price per minute,City tax",
     "deductible": "1400000000000000000",
     "insurer_contact": "Airsurance LTD, Tel: +1 415 982 3342",
     "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
@@ -438,7 +448,9 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,100000000000000000",
+    "price_type": "minute,flat",
+    "price_description": "Price per minute,City tax",
     "deductible": "1400000000000000000",
     "insurer_contact": "Airsurance LTD, Tel: +1 415 982 3342",
     "insurer_dav_id": "0x17325a469aef3472aa58dfdcf672881d79b31d58",
@@ -473,7 +485,21 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The offered price for the insurance service (including any additional fees or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">price_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_description</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
@@ -840,5 +866,40 @@ For a full listing of all available codes, read more about <a href="https://en.w
     <td>IP69K</td>
     <td>Protected from total dust ingress</td>
     <td>Protected from steam-jet cleaning, limited ingress protection</td>
+  </tr>
+</table>
+
+# Price Types
+
+Price types and their unique identifier.
+
+<table class="price_types">
+  <tr>
+    <th>Price Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
+  </tr>
+  <tr>
+    <td><code>hour</code></td>
+    <td>The listed <code>price</code> is per hour</td>
+  </tr>
+  <tr>
+    <td><code>day</code></td>
+    <td>The listed <code>price</code> is per day</td>
+  </tr>
+  <tr>
+    <td><code>week</code></td>
+    <td>The listed <code>price</code> is per week</td>
+  </tr>
+  <tr>
+    <td><code>flat</code></td>
+    <td>The listed <code>price</code> is a flat price</td>
   </tr>
 </table>

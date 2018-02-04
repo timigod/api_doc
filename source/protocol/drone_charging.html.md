@@ -66,7 +66,9 @@ In response, a charging station might send back a bid with a price per kWh.
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=2300000000000000000,30000000000000000" \
+  --data "price_type=kwh,kwh" \
+  --data "price_description=Price per kWh,VAT per kWh" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
@@ -81,7 +83,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2300000000000000000,30000000000000000",
+    "price_type": "kwh,kwh",
+    "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
@@ -95,7 +99,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2300000000000000000,30000000000000000",
+    "price_type": "kwh,kwh",
+    "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
@@ -307,7 +313,9 @@ A bid to provide a charging service. Typically sent from a charging station to a
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=2300000000000000000,30000000000000000" \
+  --data "price_type=kwh,kwh" \
+  --data "price_description=Price per kWh,VAT per kWh" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
   --data "available_from=2017-12-11T15:18:54+03:00" \
@@ -340,7 +348,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2300000000000000000,30000000000000000",
+    "price_type": "kwh,kwh",
+    "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
@@ -372,7 +382,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2300000000000000000,30000000000000000",
+    "price_type": "kwh,kwh",
+    "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
     "available_from": "2017-12-11T15:18:54+03:00",
@@ -419,7 +431,21 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The price per kWh. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_description</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
@@ -780,5 +806,44 @@ For a full listing of all available codes, read more about <a href="https://en.w
     <td>IP69K</td>
     <td>Protected from total dust ingress</td>
     <td>Protected from steam-jet cleaning, limited ingress protection</td>
+  </tr>
+</table>
+
+# Price Types
+
+Price types and their unique identifier.
+
+<table class="price_types">
+  <tr>
+    <th>Price Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>kwh</code></td>
+    <td>The listed <code>price</code> is per kWh</td>
+  </tr>
+  <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
+  </tr>
+  <tr>
+    <td><code>hour</code></td>
+    <td>The listed <code>price</code> is per hour</td>
+  </tr>
+  <tr>
+    <td><code>day</code></td>
+    <td>The listed <code>price</code> is per day</td>
+  </tr>
+  <tr>
+    <td><code>week</code></td>
+    <td>The listed <code>price</code> is per week</td>
+  </tr>
+  <tr>
+    <td><code>flat</code></td>
+    <td>The listed <code>price</code> is a flat price</td>
   </tr>
 </table>
