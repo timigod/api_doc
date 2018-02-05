@@ -679,6 +679,12 @@ table.cargo_vehicles {
   }
 }
 
+table.lost_vehicles {
+  td:first-of-type, th:first-of-type {
+    text-align: left;
+  }
+}
+
 table.vehicle_types {
   td:first-of-type, th:first-of-type {
     text-align: right;
