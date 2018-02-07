@@ -19,4 +19,5 @@ Here you will find the different protocols governing communication between the d
   <li><a href="./protocol/drone_delivery.html">Drone Delivery</a></li>
   <li><a href="./protocol/ev_charging.html">Electric Vehicle Charging</a></li>
   <li><a href="./protocol/ride_hailing.html">Ride Hailing</a></li>
+  <li><a href="./protocol/vehicle_locating.html">Vehicle Locating</a></li>
 </ul>
