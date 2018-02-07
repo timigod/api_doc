@@ -236,17 +236,10 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The drone's current battery charge level, as it was by the time the request was sent. Specified in %</td>
   </tr>
-        <tr>
-    <td>
-      <code class="field">charge_type</code>
-      <div class="type required">required</div>
-    </td>
-    <td>The drone's charge type. Its induction, contact and plug type</td>
-  </tr>
   <tr>
     <td>
       <code class="field">plug_type</code>
-      <div class="type">optional</div>
+      <div class="type required">required</div>
     </td>
     <td>The drone's plug type ID. See <a href="#plug-types">Plug Types</a> for possible values</td>
   </tr>
