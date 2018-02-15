@@ -85,9 +85,9 @@ curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "coverage_type=all_risk" \
-  --data "price=20000000000000000,100000000000000000" \
-  --data "price_type=minute,flat" \
-  --data "price_description=Price per minute,City tax" \
+  --data "price=100000000000000000" \
+  --data "price_type=flat" \
+  --data "price_description=Policy cost" \
   --data "deductible=1400000000000000000"
 ```
 
@@ -100,9 +100,9 @@ fetch(biddingEndPoint, {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "20000000000000000,100000000000000000",
-    "price_type": "minute,flat",
-    "price_description": "Price per minute,City tax",
+    "price": "100000000000000000",
+    "price_type": "flat",
+    "price_description": "Policy cost",
     "deductible": "1400000000000000000",
   })
 });
@@ -114,9 +114,9 @@ payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "coverage_type": "all_risk",
-    "price": "20000000000000000,100000000000000000",
-    "price_type": "minute,flat",
-    "price_description": "Price per minute,City tax",
+    "price": "100000000000000000",
+    "price_type": "flat",
+    "price_description": "Policy cost",
     "deductible": "1400000000000000000",
   }
 requests.post("bidding_endpoint_here", data=payload)
