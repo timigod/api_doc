@@ -315,14 +315,14 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">requester_name</code>
       <div class="type">optional</div>
     </td>
-    <td>The name of the person or the company requesting for the insurance service</td>
+    <td>The name of the person or the company requesting the insurance service</td>
   </tr>
   <tr>
     <td>
       <code class="field">requester_phone_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The phone number of the person or the company requesting for the insurance service</td>
+    <td>The phone number of the person or the company requesting the insurance service</td>
   </tr>
   <tr>
     <td>
