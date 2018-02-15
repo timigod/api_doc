@@ -18,7 +18,7 @@ search: true
 
 The following document describes the communication protocol for a cargo insurance service provided by an insurance provider to a user or a courier. It includes the format for both the request for insurance (also referred to as `need`) and the response sent by insurance providers that `bid` on providing the service.
 
-For example, an autonomous drone that is about to deliver an expensive diamond ring would send a request for an insurance service, along with the estimated value of the ring, the delivery path and the drone model.
+For example, an autonomous drone that is about to deliver an expensive diamond ring would send a request for an insurance service, along with the estimated value of the ring, and the delivery path.
 
 > Need
 
