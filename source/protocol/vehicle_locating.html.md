@@ -77,7 +77,7 @@ curl "bidding_endpoint_here" \
   --data "price_description=Price per minute" \
   --data "current_latitude=55.756951" \
   --data "current_longitude=37.633839" \
-  --data "eta=2017-12-11T15:18:54+03:00" \
+  --data "arrival_at=2017-12-11T15:18:54+03:00" \
   --data "vehicle_type=robot" \
   --data "vehicle_manufacturer=Husarion" \
   --data "vehicle_model=ROSBot"
@@ -96,7 +96,7 @@ fetch(biddingEndPoint, {
     "price_description": "Price per minute",
     "current_latitude": "55.756951",
     "current_longitude": "37.633839",
-    "eta": "2017-12-11T15:18:54+03:00",
+    "arrival_at": "2017-12-11T15:18:54+03:00",
     "vehicle_type": "robot",
     "vehicle_manufacturer": "Husarion",
     "vehicle_model": "ROSBot",
@@ -114,7 +114,7 @@ payload = {
     "price_description": "Price per minute",
     "current_latitude": "55.756951",
     "current_longitude": "37.633839",
-    "eta": "2017-12-11T15:18:54+03:00",
+    "arrival_at": "2017-12-11T15:18:54+03:00",
     "vehicle_type": "robot",
     "vehicle_manufacturer": "Husarion",
     "vehicle_model": "ROSBot",
@@ -254,7 +254,7 @@ curl "bidding_endpoint_here" \
   --data "price_description=Price per minute" \
   --data "current_latitude=43.611626" \
   --data "current_longitude=-116.392593" \
-  --data "eta=2017-12-11T15:18:54+03:00" \
+  --data "arrival_at=2017-12-11T15:18:54+03:00" \
   --data "vehicle_type=drone" \
   --data "vehicle_manufacturer=Dronster" \
   --data "vehicle_model=Res-Q" \
@@ -274,7 +274,7 @@ fetch(biddingEndPoint, {
     "price_description": "Price per minute",
     "current_latitude": "43.611626",
     "current_longitude": "-116.392593",
-    "eta": "2017-12-11T15:18:54+03:00",
+    "arrival_at": "2017-12-11T15:18:54+03:00",
     "vehicle_type": "drone",
     "vehicle_manufacturer": "Dronster",
     "vehicle_model": "Res-Q",
@@ -293,7 +293,7 @@ payload = {
     "price_description": "Price per minute",
     "current_latitude": "43.611626",
     "current_longitude": "-116.392593",
-    "eta": "2017-12-11T15:18:54+03:00",
+    "arrival_at": "2017-12-11T15:18:54+03:00",
     "vehicle_type": "drone",
     "vehicle_locating_technology": "Object Recognition Camera",
     "vehicle_manufacturer": "Dronster",
@@ -355,7 +355,7 @@ requests.post("bidding_endpoint_here", data=payload)
   </tr>
   <tr>
     <td>
-      <code class="field">eta</code>
+      <code class="field">arrival_at</code>
       <div class="type required">required</div>
     </td>
     <td>The estimated time of arrival at the location where the lost vehicle was last seen. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
