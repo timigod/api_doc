@@ -60,7 +60,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: normal;
 
   // language selector for mobile devices
   .lang-selector {
@@ -158,18 +158,19 @@ html, body {
   .toc-link.active {
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    font-weight: bolder;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
     color: $nav-active-parent-text;
+    font-weight: normal;
   }
 
   .toc-list-h2 {
     display: none;
     background-color: $nav-subitem-bg;
-    font-weight: 500;
   }
 
   .toc-h2 {
@@ -206,7 +207,7 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: #fff;
+  color: #333;
   transition-property: background;
   transition-timing-function: linear;
   transition-duration: 130ms;
@@ -276,14 +277,13 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
   }
 }
 
 .lang-selector {
   background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
+  font-weight: normal;
   a {
     display: block;
     float:left;
@@ -299,6 +299,7 @@ html, body {
     }
 
     &.active {
+      font-weight: bolder;
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
     }
@@ -357,6 +358,7 @@ html, body {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: #fdfdfd;
+    color: #fd6b4e;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -415,6 +417,7 @@ html, body {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      font-weight: normal;
     }
 
     td {
@@ -633,7 +636,7 @@ table.arguments {
   }
   .type.required {
     color: #003ca6;
-    font-weight: 600;
+    font-weight: 300;
   }
   .type.deprecated {
     color: #ff4040;
@@ -675,7 +678,13 @@ table.cargo {
 
 table.cargo_vehicles {
   td:first-of-type, th:first-of-type {
-    text-align: right;
+    text-align: left;
+  }
+}
+
+table.lost_vehicles {
+  td:first-of-type, th:first-of-type {
+    text-align: left;
   }
 }
 

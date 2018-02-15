@@ -21,20 +21,23 @@ under the License.
 // Use these settings to help adjust the appearance of Slate
 
 
+// FONT IMPORT
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
-$lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
-$lang-select-active-bg: #00B8F4 !default; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
+$nav-bg: #d0d0d1 !default;
+$examples-bg: #d0d0d1 !default;
+$code-bg: #022b48 !default;
+$code-annotation-bg: #174668 !default;
+$nav-subitem-bg: #d0d0d1 !default;
+$nav-active-bg: #fd6b4e !default;
+$nav-active-parent-bg: #f2f2f2 !default; // parent links of the current section
+$lang-select-border: #d0d0d1 !default;
+$lang-select-bg: #174668 !default;
+$lang-select-active-bg: #fd6b4e !default; // feel free to change this to blue or something
+$lang-select-pressed-bg: #174668 !default; // color of language tab bg when mouse is pressed
+$main-bg: #fff !default;
 $aside-notice-bg: #8fbcd4 !default;
 $aside-warning-bg: #c97a7e !default;
 $aside-success-bg: #6ac174 !default;
@@ -44,9 +47,9 @@ $search-notice-bg: #c97a7e !default;
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
+$nav-text: #333 !default;
 $nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
+$nav-active-parent-text: #333 !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
@@ -70,13 +73,14 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
 %header-font {
-  @extend %default-font;
-  font-weight: bold;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  font-weight: normal;
 }
 
 %code-font {
@@ -88,8 +92,8 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 // OTHER
 ////////////////////
-$nav-footer-border-color: #666 !default;
-$search-box-border-color: #666 !default;
+$nav-footer-border-color: #484c59 !default;
+$search-box-border-color: #484c59 !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////

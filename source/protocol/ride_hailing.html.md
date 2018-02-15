@@ -18,7 +18,7 @@ search: true
 
 The communication protocol for ride hailing describes the format of a request for a ride (also referred to as `need`) sent by a user, and the response (`bid`) sent by vehicle, driver, or car owner.
 
-For example, a user might search for a ride within 3 km of a given coordinate to a destination 2 km away.
+For example, a user might search for a ride together with his pet dog, within a radius of 3 km of a given coordinate to a destination 2 km away.
 
 > Need
 
@@ -29,7 +29,8 @@ curl "discovery_endpoint_here" \
   --data "pickup_longitude=-79.935005" \
   --data "destination_latitude=32.7693531" \
   --data "destination_longitude=-79.9296352" \
-  --data "radius=3000"
+  --data "radius=3000" \
+  --data "additional_features=pet_transport"
 ```
 
 ```javascript
@@ -44,6 +45,7 @@ fetch(discoveryEndPoint, {
     "destination_latitude": "32.7693531",
     "destination_longitude": "-79.9296352",
     "radius": "3000",
+    "additional_features": "pet_transport",
   })
 });
 ```
@@ -57,6 +59,7 @@ payload = {
     "destination_latitude": "32.7693531",
     "destination_longitude": "-79.9296352",
     "radius": "3000",
+    "additional_features": "pet_transport",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -69,7 +72,9 @@ In response, an autonomous vehicle might send back a bid with a price for the ri
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=20000000000000000,20000000000000000" \
+  --data "price_type=km,flat" \
+  --data "price_description=Price per km,City tax" \
   --data "current_latitude=32.785889" \
   --data "current_longitude=-79.935569" \
   --data "pickup_at=2017-12-11T15:18:54+03:00" \
@@ -88,7 +93,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,20000000000000000",
+    "price_type": "km,flat",
+    "price_description": "Price per km,City tax",
     "current_latitude": "32.785889",
     "current_longitude": "-79.935569",
     "pickup_at": "2017-12-11T15:18:54+03:00",
@@ -106,7 +113,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,20000000000000000",
+    "price_type": "km,flat",
+    "price_description": "Price per km,City tax",
     "current_latitude": "32.785889",
     "current_longitude": "-79.935569",
     "pickup_at": "2017-12-11T15:18:54+03:00",
@@ -156,7 +165,8 @@ curl "discovery_endpoint_here" \
   --data "destination_location_name=Oyster Point" \
   --data "destination_location_name_lang=eng" \
   --data "vehicle_type=suv" \
-  --data "passengers=3"
+  --data "passengers=3" \
+  --data "additional_features=assisted"
 ```
 
 ```javascript
@@ -191,6 +201,7 @@ fetch(discoveryEndPoint, {
     "destination_location_name_lang": "eng",
     "vehicle_type": "suv",
     "passengers": "3",
+    "additional_features": "assisted",
   })
 });
 ```
@@ -224,6 +235,7 @@ payload = {
     "destination_location_name_lang": "eng",
     "vehicle_type": "suv",
     "passengers": "3",
+    "additional_features": "assisted",
   }
 requests.post("discovery_endpoint_here", data=payload)
 ```
@@ -411,6 +423,13 @@ requests.post("discovery_endpoint_here", data=payload)
     </td>
     <td>The total number of passengers the vehicle should accommodate</td>
   </tr>
+  <tr>
+    <td>
+      <code class="field">additional_features</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Vehicles may provide additional features. See full list of options <a href="#additional-features">here</a></td>
+  </tr>
 </table>
 
 # Bid
@@ -425,7 +444,9 @@ A bid to provide a ride service. Typically sent by a car owner with the price fo
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=20000000000000000,4000000000000000" \
+  --data "price_type=km,km" \
+  --data "price_description=Price per km,VAT per km" \
   --data "current_latitude=32.785889" \
   --data "current_longitude=-79.935569" \
   --data "pickup_at=2017-12-11T15:18:54+03:00" \
@@ -434,7 +455,8 @@ curl "bidding_endpoint_here" \
   --data "vehicle_model=Suave" \
   --data "vehicle_color=Sapphire" \
   --data "vehicle_license_number=92 321 87" \
-  --data "vehicle_contact=James McGill, mobile: 555-338-5943"
+  --data "vehicle_contact=James McGill, mobile: 555-338-5943" \
+  --data "additional_features=assisted"
 ```
 
 ```javascript
@@ -445,7 +467,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,4000000000000000",
+    "price_type": "km,km",
+    "price_description": "Price per km,VAT per km",
     "current_latitude": "32.785889",
     "current_longitude": "-79.935569",
     "pickup_at": "2017-12-11T15:18:54+03:00",
@@ -455,6 +479,7 @@ fetch(biddingEndPoint, {
     "vehicle_color": "Sapphire",
     "vehicle_license_number": "92 321 87",
     "vehicle_contact": "James McGill, mobile: 555-338-5943",
+    "additional_features": "assisted",
   })
 });
 ```
@@ -464,7 +489,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "20000000000000000,4000000000000000",
+    "price_type": "km,km",
+    "price_description": "Price per km,VAT per km",
     "current_latitude": "32.785889",
     "current_longitude": "-79.935569",
     "pickup_at": "2017-12-11T15:18:54+03:00",
@@ -474,6 +501,7 @@ payload = {
     "vehicle_color": "Sapphire",
     "vehicle_license_number": "92 321 87",
     "vehicle_contact": "James McGill, mobile: 555-338-5943",
+    "additional_features": "assisted",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
@@ -498,7 +526,21 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The total price for the ride. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+  </tr>
+    <tr>
+    <td>
+      <code class="field">price_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_description</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
@@ -564,6 +606,13 @@ requests.post("bidding_endpoint_here", data=payload)
     </td>
     <td>Human readable information regarding the vehicle (e.g <code>James McGill, mobile: 555-338-5943</code>)</td>
   </tr>
+  <tr>
+    <td>
+      <code class="field">additional_features</code>
+      <div class="type">optional</div>
+    </td>
+    <td>Vehicles may provide additional features. See full list of options <a href="#additional-features">here</a></td>
+  </tr>
 </table>
 
 # Vehicle Types
@@ -590,5 +639,71 @@ The type of vehicles and their unique identifier.
   <tr>
     <td><code>luxury</code></td>
     <td>A vehicle with higher quality equipment, better performance and enhanced comfort</td>
+  </tr>
+</table>
+
+# Additional Features
+
+Vehicles may provide additional features such as wheelchair access etc., below are the available features and their unique identifier.
+
+<table class="vehicle_types">
+  <tr>
+    <th>Requirement</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>assisted</code></td>
+    <td>Wheelchair access available</td>
+  </tr>
+  <tr>
+    <td><code>pet_transport</code></td>
+    <td>Pet transport is allowed</td>
+  </tr>
+  <tr>
+    <td><code>ride_share</code></td>
+    <td>Ride sharing is allowed</td>
+  </tr>
+</table>
+
+# Price Types
+
+Price types and their unique identifier.
+
+<table class="price_types">
+  <tr>
+    <th>Price Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
+  </tr>
+  <tr>
+    <td><code>hour</code></td>
+    <td>The listed <code>price</code> is per hour</td>
+  </tr>
+  <tr>
+    <td><code>day</code></td>
+    <td>The listed <code>price</code> is per day</td>
+  </tr>
+  <tr>
+    <td><code>week</code></td>
+    <td>The listed <code>price</code> is per week</td>
+  </tr>
+  <tr>
+    <td><code>flat</code></td>
+    <td>The listed <code>price</code> is a flat price</td>
+  </tr>
+  <tr>
+    <td><code>km</code></td>
+    <td>The listed <code>price</code> is per km</td>
+  </tr>
+  <tr>
+    <td><code>mile</code></td>
+    <td>The listed <code>price</code> is per mile</td>
   </tr>
 </table>

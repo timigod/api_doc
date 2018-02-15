@@ -64,7 +64,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, a drone might send back a bid with a price, the estimated time it will arrive at the pickup location, and the estimated time it will arrive at the dropoff location.
+In response, a drone might send back a bid with a price, the estimated time of arrival at the pickup location, and the estimated time of arrival at the dropoff location.
 
 > Bid
 
@@ -72,7 +72,9 @@ In response, a drone might send back a bid with a price, the estimated time it w
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=2000000000000000,20000000000000000" \
+  --data "price_type=second,flat" \
+  --data "price_description=Price per second,Tax" \
   --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
   --data "time_to_dropoff=2017-12-11T15:34:20+03:00"
 ```
@@ -85,7 +87,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2000000000000000,20000000000000000",
+    "price_type": "second,flat",
+    "price_description": "Price per second,Tax",
     "time_to_pickup": "2017-12-11T15:21:59+03:00",
     "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   })
@@ -97,7 +101,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2000000000000000,20000000000000000",
+    "price_type": "second,flat",
+    "price_description": "Price per second,Tax",
     "time_to_pickup": "2017-12-11T15:21:59+03:00",
     "time_to_dropoff": "2017-12-11T15:34:20+03:00",
   }
@@ -333,7 +339,9 @@ A bid to provide a delivery service. Typically sent from a delivery drone to the
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=2300000000000000000" \
+  --data "price=2000000000000000,20000000000000000" \
+  --data "price_type=second,flat" \
+  --data "price_description=Price per second,Tax" \
   --data "time_to_pickup=2017-12-11T15:21:59+03:00" \
   --data "time_to_dropoff=2017-12-11T15:34:20+03:00" \
   --data "insured=true" \
@@ -351,7 +359,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2000000000000000,20000000000000000",
+    "price_type": "second,flat",
+    "price_description": "Price per second,Tax",
     "time_to_pickup": "2017-12-11T15:21:59+03:00",
     "time_to_dropoff": "2017-12-11T15:34:20+03:00",
     "insured": "true",
@@ -368,7 +378,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "2300000000000000000",
+    "price": "2000000000000000,20000000000000000",
+    "price_type": "second,flat",
+    "price_description": "Price per second,Tax",
     "time_to_pickup": "2017-12-11T15:21:59+03:00",
     "time_to_dropoff": "2017-12-11T15:34:20+03:00",
     "insured": "true",
@@ -400,7 +412,21 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">price</code>
       <div class="type required">required</div>
     </td>
-    <td>The offered price for the delivery (including any additional fees, insurance or taxes). Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+    <td>A comma separated list of prices. Specified as an integer representing DAV tokens without the decimal point padded to 18 decimals (1 DAV is 1000000000000000000)</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_type</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A list of price types describing the <code>price</code> parameter(s). Specified as a comma separated list. See <a href="#price-types">Price Types</a> for available values</td>
+  </tr>
+  <tr>
+    <td>
+      <code class="field">price_description</code>
+      <div class="type required">required</div>
+    </td>
+    <td>A comma separated list of strings describing the <code>price</code> parameter(s) in human readable terms</td>
   </tr>
   <tr>
     <td>
@@ -700,3 +726,37 @@ For a full listing of all available codes, read more about <a href="https://en.w
   </tr>
 </table>
 
+# Price Types
+
+Price types and their unique identifier.
+
+<table class="price_types">
+  <tr>
+    <th>Price Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>second</code></td>
+    <td>The listed <code>price</code> is per second</td>
+  </tr>
+  <tr>
+    <td><code>minute</code></td>
+    <td>The listed <code>price</code> is per minute</td>
+  </tr>
+  <tr>
+    <td><code>hour</code></td>
+    <td>The listed <code>price</code> is per hour</td>
+  </tr>
+  <tr>
+    <td><code>day</code></td>
+    <td>The listed <code>price</code> is per day</td>
+  </tr>
+  <tr>
+    <td><code>week</code></td>
+    <td>The listed <code>price</code> is per week</td>
+  </tr>
+  <tr>
+    <td><code>flat</code></td>
+    <td>The listed <code>price</code> is a flat price</td>
+  </tr>
+</table>
