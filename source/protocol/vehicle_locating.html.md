@@ -124,7 +124,7 @@ requests.post("bidding_endpoint_here", data=payload)
 
 # Need
 
-A statement of need for locating a vehicle. Typically this will be sent by a vehicle owner that is looking for assistance in finding his lost vehicle.
+A statement of need for locating a vehicle. Typically this will be sent by a vehicle owner that is looking for assistance in finding their lost vehicle.
 
 This request is sent to the decentralized discovery engine which responds with status `200` and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.
 
