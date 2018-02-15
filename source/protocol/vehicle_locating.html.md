@@ -72,9 +72,9 @@ In response, an autonomous robot might send back a bid with a price for the miss
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=20000000000000000" \
-  --data "price_type=minute" \
-  --data "price_description=Price per minute" \
+  --data "price=20000000000000000,10000000000000" \
+  --data "price_type=flat,minute" \
+  --data "price_description=Finders fee,Price per minute" \
   --data "current_latitude=55.756951" \
   --data "current_longitude=37.633839" \
   --data "arrival_at=2017-12-11T15:18:54+03:00" \
@@ -91,9 +91,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "20000000000000000",
-    "price_type": "minute",
-    "price_description": "Price per minute",
+    "price": "20000000000000000,10000000000000",
+    "price_type": "flat,minute",
+    "price_description": "Finders fee,Price per minute",
     "current_latitude": "55.756951",
     "current_longitude": "37.633839",
     "arrival_at": "2017-12-11T15:18:54+03:00",
@@ -109,9 +109,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "20000000000000000",
-    "price_type": "minute",
-    "price_description": "Price per minute",
+    "price": "20000000000000000,10000000000000",
+    "price_type": "flat,minute",
+    "price_description": "Finders fee,Price per minute",
     "current_latitude": "55.756951",
     "current_longitude": "37.633839",
     "arrival_at": "2017-12-11T15:18:54+03:00",
@@ -249,9 +249,9 @@ A bid to provide a vehicle locating service. Typically sent by a vehicle with lo
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
-  --data "price=20000000000000000" \
-  --data "price_type=minute" \
-  --data "price_description=Price per minute" \
+  --data "price=20000000000000000,10000000000000" \
+  --data "price_type=flat,minute" \
+  --data "price_description=Finders fee,Price per minute" \
   --data "current_latitude=43.611626" \
   --data "current_longitude=-116.392593" \
   --data "arrival_at=2017-12-11T15:18:54+03:00" \
@@ -269,9 +269,9 @@ fetch(biddingEndPoint, {
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "20000000000000000",
-    "price_type": "minute",
-    "price_description": "Price per minute",
+    "price": "20000000000000000,10000000000000",
+    "price_type": "flat,minute",
+    "price_description": "Finders fee,Price per minute",
     "current_latitude": "43.611626",
     "current_longitude": "-116.392593",
     "arrival_at": "2017-12-11T15:18:54+03:00",
@@ -288,9 +288,9 @@ import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
-    "price": "20000000000000000",
-    "price_type": "minute",
-    "price_description": "Price per minute",
+    "price": "20000000000000000,10000000000000",
+    "price_type": "flat,minute",
+    "price_description": "Finders fee,Price per minute",
     "current_latitude": "43.611626",
     "current_longitude": "-116.392593",
     "arrival_at": "2017-12-11T15:18:54+03:00",
