@@ -415,7 +415,7 @@ requests.post("discovery_endpoint_here", data=payload)
 
 # Bid
 
-A bid to provide a cargo insurance service. Typically sent from an insurance provider to a user or a courier that plans to deliver a package from one point to another.
+A bid to provide cargo insurance. Typically sent from an insurance provider to a user or a courier that plans to deliver a package from one point to another.
 
 ## Arguments
 
