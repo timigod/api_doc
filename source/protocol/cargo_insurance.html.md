@@ -76,7 +76,7 @@ payload = {
 requests.post("discovery_endpoint_here", data=payload)
 ```
 
-In response, an insurance provider might send back a bid with the policy price, the type of coverage and the deductible amount required.
+In response, an insurance provider might send back a bid with the policy price, the type of coverage, and the deductible amount required.
 
 > Bid
 
