@@ -1,7 +1,7 @@
 ---
 title: DAV Communication Protocols
 
-search: true
+search: false
 ---
 
 <p class="header-image"><img src="/images/header.png" alt="DAV Communication Protocols"></p>
