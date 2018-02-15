@@ -6,6 +6,10 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Vehicle Locating</title>
+    <link rel="icon" type="image/png" sizes="192x192"  href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
 
     <style>
       .highlight table td { padding: 5px; }
@@ -255,9 +259,9 @@
       <div class="content">
         <p class="header-image"><img src="../images/vehicle_locating/header.png" alt="Vehicle Locating"></p>
 <h1 id='vehicle-locating-protocol'>Vehicle Locating Protocol</h1>
-<p>The Vehicle Locating communication protocol describes the format of a request for locating a lost vehicle (also referred to as <code>need</code>) sent by the vehicle owner or the vehicle itself, and the response (<code>bid</code>) sent by other vehicles that are able to help locating it.</p>
+<p>The Vehicle Locating communication protocol describes the format of a request (also referred to as <code>need</code>) for locating a lost vehicle, and the response (<code>bid</code>) sent by other vehicles that are able to help locating it. The need would typically be sent by the vehicle owner, the vehicle itself, or a rescue service.</p>
 
-<p>For example, a drone on a delivery mission runs out of battery and performs an emergency landing. The drone owner that lost the connection with his drone sends a request for locating assistance, along with the drone&#39;s last recorded coordinates, its model, color, and any other information that might help finding it.</p>
+<p>For example, a drone on a delivery mission runs out of battery and performs an emergency landing. The drone owner that lost the connection with their drone sends a request for locating assistance, along with the drone&#39;s last known coordinates, its model, color, and any other information that might help in finding it.</p>
 
 <blockquote>
 <p>Need</p>
@@ -304,12 +308,12 @@
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"bidding_endpoint_here"</span> <span class="se">\</span>
   --data <span class="s2">"request_uid=ae7bd8f67f3089c"</span> <span class="se">\</span>
   --data <span class="s2">"expires_at=2017-12-11T15:18:59+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"price=20000000000000000"</span> <span class="se">\</span>
-  --data <span class="s2">"price_type=minute"</span> <span class="se">\</span>
-  --data <span class="s2">"price_description=Price per minute"</span> <span class="se">\</span>
+  --data <span class="s2">"price=20000000000000000,10000000000000"</span> <span class="se">\</span>
+  --data <span class="s2">"price_type=flat,minute"</span> <span class="se">\</span>
+  --data <span class="s2">"price_description=Finders fee,Price per minute"</span> <span class="se">\</span>
   --data <span class="s2">"current_latitude=55.756951"</span> <span class="se">\</span>
   --data <span class="s2">"current_longitude=37.633839"</span> <span class="se">\</span>
-  --data <span class="s2">"eta=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
+  --data <span class="s2">"arrival_at=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_type=robot"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_manufacturer=Husarion"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_model=ROSBot"</span>
@@ -320,12 +324,12 @@
   <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"request_uid"</span><span class="p">:</span> <span class="s2">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s2">"expires_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
-    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"20000000000000000"</span><span class="p">,</span>
-    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"minute"</span><span class="p">,</span>
-    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Price per minute"</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"20000000000000000,10000000000000"</span><span class="p">,</span>
+    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"flat,minute"</span><span class="p">,</span>
+    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Finders fee,Price per minute"</span><span class="p">,</span>
     <span class="s2">"current_latitude"</span><span class="p">:</span> <span class="s2">"55.756951"</span><span class="p">,</span>
     <span class="s2">"current_longitude"</span><span class="p">:</span> <span class="s2">"37.633839"</span><span class="p">,</span>
-    <span class="s2">"eta"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s2">"arrival_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"vehicle_type"</span><span class="p">:</span> <span class="s2">"robot"</span><span class="p">,</span>
     <span class="s2">"vehicle_manufacturer"</span><span class="p">:</span> <span class="s2">"Husarion"</span><span class="p">,</span>
     <span class="s2">"vehicle_model"</span><span class="p">:</span> <span class="s2">"ROSBot"</span><span class="p">,</span>
@@ -335,19 +339,19 @@
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"request_uid"</span><span class="p">:</span> <span class="s">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s">"expires_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
-    <span class="s">"price"</span><span class="p">:</span> <span class="s">"20000000000000000"</span><span class="p">,</span>
-    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"minute"</span><span class="p">,</span>
-    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Price per minute"</span><span class="p">,</span>
+    <span class="s">"price"</span><span class="p">:</span> <span class="s">"20000000000000000,10000000000000"</span><span class="p">,</span>
+    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"flat,minute"</span><span class="p">,</span>
+    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Finders fee,Price per minute"</span><span class="p">,</span>
     <span class="s">"current_latitude"</span><span class="p">:</span> <span class="s">"55.756951"</span><span class="p">,</span>
     <span class="s">"current_longitude"</span><span class="p">:</span> <span class="s">"37.633839"</span><span class="p">,</span>
-    <span class="s">"eta"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s">"arrival_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"vehicle_type"</span><span class="p">:</span> <span class="s">"robot"</span><span class="p">,</span>
     <span class="s">"vehicle_manufacturer"</span><span class="p">:</span> <span class="s">"Husarion"</span><span class="p">,</span>
     <span class="s">"vehicle_model"</span><span class="p">:</span> <span class="s">"ROSBot"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"bidding_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre><h1 id='need'>Need</h1>
-<p>A statement of need for locating a vehicle. Typically this will be sent by a vehicle owner that is looking for assistance in finding his lost vehicle.</p>
+<p>A statement of need for locating a vehicle. Typically this will be sent by a vehicle owner that is looking for assistance in finding their lost vehicle.</p>
 
 <p>This request is sent to the decentralized discovery engine which responds with status <code>200</code> and a unique identifier for this request. The details of this request are then broadcasted to DAV entities that can provide this service. <a href="#bid">Bids</a> are later received as separate calls.</p>
 <h2 id='arguments'>Arguments</h2>
@@ -459,12 +463,12 @@
 <pre class="highlight shell tab-shell"><code>curl <span class="s2">"bidding_endpoint_here"</span> <span class="se">\</span>
   --data <span class="s2">"request_uid=ae7bd8f67f3089c"</span> <span class="se">\</span>
   --data <span class="s2">"expires_at=2017-12-11T15:18:59+03:00"</span> <span class="se">\</span>
-  --data <span class="s2">"price=20000000000000000"</span> <span class="se">\</span>
-  --data <span class="s2">"price_type=minute"</span> <span class="se">\</span>
-  --data <span class="s2">"price_description=Price per minute"</span> <span class="se">\</span>
+  --data <span class="s2">"price=20000000000000000,10000000000000"</span> <span class="se">\</span>
+  --data <span class="s2">"price_type=flat,minute"</span> <span class="se">\</span>
+  --data <span class="s2">"price_description=Finders fee,Price per minute"</span> <span class="se">\</span>
   --data <span class="s2">"current_latitude=43.611626"</span> <span class="se">\</span>
   --data <span class="s2">"current_longitude=-116.392593"</span> <span class="se">\</span>
-  --data <span class="s2">"eta=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
+  --data <span class="s2">"arrival_at=2017-12-11T15:18:54+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_type=drone"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_manufacturer=Dronster"</span> <span class="se">\</span>
   --data <span class="s2">"vehicle_model=Res-Q"</span> <span class="se">\</span>
@@ -476,12 +480,12 @@
   <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="s2">"request_uid"</span><span class="p">:</span> <span class="s2">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s2">"expires_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
-    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"20000000000000000"</span><span class="p">,</span>
-    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"minute"</span><span class="p">,</span>
-    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Price per minute"</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"20000000000000000,10000000000000"</span><span class="p">,</span>
+    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"flat,minute"</span><span class="p">,</span>
+    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Finders fee,Price per minute"</span><span class="p">,</span>
     <span class="s2">"current_latitude"</span><span class="p">:</span> <span class="s2">"43.611626"</span><span class="p">,</span>
     <span class="s2">"current_longitude"</span><span class="p">:</span> <span class="s2">"-116.392593"</span><span class="p">,</span>
-    <span class="s2">"eta"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s2">"arrival_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s2">"vehicle_type"</span><span class="p">:</span> <span class="s2">"drone"</span><span class="p">,</span>
     <span class="s2">"vehicle_manufacturer"</span><span class="p">:</span> <span class="s2">"Dronster"</span><span class="p">,</span>
     <span class="s2">"vehicle_model"</span><span class="p">:</span> <span class="s2">"Res-Q"</span><span class="p">,</span>
@@ -492,12 +496,12 @@
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">"request_uid"</span><span class="p">:</span> <span class="s">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s">"expires_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
-    <span class="s">"price"</span><span class="p">:</span> <span class="s">"20000000000000000"</span><span class="p">,</span>
-    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"minute"</span><span class="p">,</span>
-    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Price per minute"</span><span class="p">,</span>
+    <span class="s">"price"</span><span class="p">:</span> <span class="s">"20000000000000000,10000000000000"</span><span class="p">,</span>
+    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"flat,minute"</span><span class="p">,</span>
+    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Finders fee,Price per minute"</span><span class="p">,</span>
     <span class="s">"current_latitude"</span><span class="p">:</span> <span class="s">"43.611626"</span><span class="p">,</span>
     <span class="s">"current_longitude"</span><span class="p">:</span> <span class="s">"-116.392593"</span><span class="p">,</span>
-    <span class="s">"eta"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
+    <span class="s">"arrival_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:54+03:00"</span><span class="p">,</span>
     <span class="s">"vehicle_type"</span><span class="p">:</span> <span class="s">"drone"</span><span class="p">,</span>
     <span class="s">"vehicle_locating_technology"</span><span class="p">:</span> <span class="s">"Object Recognition Camera"</span><span class="p">,</span>
     <span class="s">"vehicle_manufacturer"</span><span class="p">:</span> <span class="s">"Dronster"</span><span class="p">,</span>
@@ -558,7 +562,7 @@
   </tr>
   <tr>
     <td>
-      <code class="field">eta</code>
+      <code class="field">arrival_at</code>
       <div class="type required">required</div>
     </td>
     <td>The estimated time of arrival at the location where the lost vehicle was last seen. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>

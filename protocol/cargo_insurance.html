@@ -6,6 +6,10 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Cargo Insurance</title>
+    <link rel="icon" type="image/png" sizes="192x192"  href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="../images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
 
     <style>
       .highlight table td { padding: 5px; }
@@ -269,7 +273,7 @@
 <h1 id='cargo-insurance-protocol'>Cargo Insurance Protocol</h1>
 <p>The following document describes the communication protocol for a cargo insurance service provided by an insurance provider to a user or a courier. It includes the format for both the request for insurance (also referred to as <code>need</code>) and the response sent by insurance providers that <code>bid</code> on providing the service.</p>
 
-<p>For example, an autonomous drone that is about to deliver an expensive diamond ring would send a request for an insurance service, along with the estimated value of the ring, the delivery path and the drone model.</p>
+<p>For example, an autonomous drone that is about to deliver an expensive diamond ring would send a request for an insurance service, along with the estimated value of the ring, and the delivery path.</p>
 
 <blockquote>
 <p>Need</p>
@@ -320,7 +324,7 @@
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"discovery_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
-<p>In response, an insurance provider might send back a bid with the policy price, the type of coverage and the deductible amount required.</p>
+<p>In response, an insurance provider might send back a bid with the policy price, the type of coverage, and the deductible amount required.</p>
 
 <blockquote>
 <p>Bid</p>
@@ -329,9 +333,9 @@
   --data <span class="s2">"request_uid=ae7bd8f67f3089c"</span> <span class="se">\</span>
   --data <span class="s2">"expires_at=2017-12-11T15:18:59+03:00"</span> <span class="se">\</span>
   --data <span class="s2">"coverage_type=all_risk"</span> <span class="se">\</span>
-  --data <span class="s2">"price=20000000000000000,100000000000000000"</span> <span class="se">\</span>
-  --data <span class="s2">"price_type=minute,flat"</span> <span class="se">\</span>
-  --data <span class="s2">"price_description=Price per minute,City tax"</span> <span class="se">\</span>
+  --data <span class="s2">"price=100000000000000000"</span> <span class="se">\</span>
+  --data <span class="s2">"price_type=flat"</span> <span class="se">\</span>
+  --data <span class="s2">"price_description=Policy cost"</span> <span class="se">\</span>
   --data <span class="s2">"deductible=1400000000000000000"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">biddingEndPoint</span> <span class="o">=</span> <span class="s2">"bidding_endpoint_here"</span><span class="p">;</span>
 
@@ -341,9 +345,9 @@
     <span class="s2">"request_uid"</span><span class="p">:</span> <span class="s2">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s2">"expires_at"</span><span class="p">:</span> <span class="s2">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
     <span class="s2">"coverage_type"</span><span class="p">:</span> <span class="s2">"all_risk"</span><span class="p">,</span>
-    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"20000000000000000,100000000000000000"</span><span class="p">,</span>
-    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"minute,flat"</span><span class="p">,</span>
-    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Price per minute,City tax"</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"100000000000000000"</span><span class="p">,</span>
+    <span class="s2">"price_type"</span><span class="p">:</span> <span class="s2">"flat"</span><span class="p">,</span>
+    <span class="s2">"price_description"</span><span class="p">:</span> <span class="s2">"Policy cost"</span><span class="p">,</span>
     <span class="s2">"deductible"</span><span class="p">:</span> <span class="s2">"1400000000000000000"</span><span class="p">,</span>
   <span class="p">})</span>
 <span class="p">});</span>
@@ -352,9 +356,9 @@
     <span class="s">"request_uid"</span><span class="p">:</span> <span class="s">"ae7bd8f67f3089c"</span><span class="p">,</span>
     <span class="s">"expires_at"</span><span class="p">:</span> <span class="s">"2017-12-11T15:18:59+03:00"</span><span class="p">,</span>
     <span class="s">"coverage_type"</span><span class="p">:</span> <span class="s">"all_risk"</span><span class="p">,</span>
-    <span class="s">"price"</span><span class="p">:</span> <span class="s">"20000000000000000,100000000000000000"</span><span class="p">,</span>
-    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"minute,flat"</span><span class="p">,</span>
-    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Price per minute,City tax"</span><span class="p">,</span>
+    <span class="s">"price"</span><span class="p">:</span> <span class="s">"100000000000000000"</span><span class="p">,</span>
+    <span class="s">"price_type"</span><span class="p">:</span> <span class="s">"flat"</span><span class="p">,</span>
+    <span class="s">"price_description"</span><span class="p">:</span> <span class="s">"Policy cost"</span><span class="p">,</span>
     <span class="s">"deductible"</span><span class="p">:</span> <span class="s">"1400000000000000000"</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">"bidding_endpoint_here"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
@@ -541,14 +545,14 @@
       <code class="field">requester_name</code>
       <div class="type">optional</div>
     </td>
-    <td>The name of the person or the company requesting for the insurance service</td>
+    <td>The name of the person or the company requesting the insurance service</td>
   </tr>
   <tr>
     <td>
       <code class="field">requester_phone_number</code>
       <div class="type">optional</div>
     </td>
-    <td>The phone number of the person or the company requesting for the insurance service</td>
+    <td>The phone number of the person or the company requesting the insurance service</td>
   </tr>
   <tr>
     <td>
@@ -639,7 +643,7 @@
   </tr>
 </table>
 <h1 id='bid'>Bid</h1>
-<p>A bid to provide a cargo insurance service. Typically sent from an insurance provider to a user or a courier that plans to deliver a package from one point to another.</p>
+<p>A bid to provide cargo insurance. Typically sent from an insurance provider to a user or a courier that plans to deliver a package from one point to another.</p>
 <h2 id='arguments-2'>Arguments</h2>
 <blockquote>
 <p>Post request to a local/remote endpoint representing the insurance requester</p>
