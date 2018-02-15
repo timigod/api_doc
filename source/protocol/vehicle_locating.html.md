@@ -18,7 +18,7 @@ search: true
 
 The Vehicle Locating communication protocol describes the format of a request (also referred to as `need`) for locating a lost vehicle, and the response (`bid`) sent by other vehicles that are able to help locating it. The need would typically be sent by the vehicle owner, the vehicle itself, or a rescue service.
 
-For example, a drone on a delivery mission runs out of battery and performs an emergency landing. The drone owner that lost the connection with their drone sends a request for locating assistance, along with the drone's last recorded coordinates, its model, color, and any other information that might help finding it.
+For example, a drone on a delivery mission runs out of battery and performs an emergency landing. The drone owner that lost the connection with their drone sends a request for locating assistance, along with the drone's last known coordinates, its model, color, and any other information that might help in finding it.
 
 > Need
 
