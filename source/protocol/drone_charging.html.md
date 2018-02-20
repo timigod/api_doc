@@ -24,7 +24,7 @@ For example, a drone may look for a charging station that supports 2mm bullet co
 
 ```shell
 curl "discovery_endpoint_here" \
-  --data "start_at=2017-12-11T15:18:54+03:00" \
+  --data "start_at=1519093577681" \
   --data "latitude=32.787793" \
   --data "longitude=-79.935005" \
   --data "radius=2000" \
@@ -49,7 +49,7 @@ fetch(discoveryEndPoint, {
 ```python
 import requests
 payload = {
-    "start_at": "2017-12-11T15:18:54+03:00",
+    "start_at": "1519093577681",
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "2000",
@@ -71,7 +71,7 @@ curl "bidding_endpoint_here" \
   --data "price_description=Price per kWh,VAT per kWh" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
+  --data "available_from=1519093577681" \
   --data "available_until=2017-12-12T15:18:54+03:00"
 ```
 
@@ -82,13 +82,13 @@ fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
-    "expires_at": "2017-12-11T15:18:59+03:00",
+    "expires_at": "1519093577681",
     "price": "2300000000000000000,30000000000000000",
     "price_type": "kwh,kwh",
     "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
+    "available_from": "1519093577681",
     "available_until": "2017-12-12T15:18:54+03:00",
   })
 });
@@ -98,14 +98,14 @@ fetch(biddingEndPoint, {
 import requests
 payload = {
     "request_uid": "ae7bd8f67f3089c",
-    "expires_at": "2017-12-11T15:18:59+03:00",
+    "expires_at": "1519093577681",
     "price": "2300000000000000000,30000000000000000",
     "price_type": "kwh,kwh",
     "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
+    "available_from": "1519093577681",
+    "available_until": "1519093577681",
   }
 requests.post("bidding_endpoint_here", data=payload)
 ```
@@ -145,7 +145,7 @@ const discoveryEndPoint = "discovery_endpoint_here";
 fetch(discoveryEndPoint, {
   method: "POST",
   body: JSON.stringify({
-    "start_at": "2017-12-11T15:18:54+03:00",
+    "start_at": "1519093577681",
     "latitude": "32.787793",
     "longitude": "-79.935005",
     "radius": "10000",
@@ -192,7 +192,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">start_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester would like to arrive at charging station (if undefined, the arrival time will be ASAP). Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester would like to arrive at charging station (if undefined, the arrival time will be ASAP). Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
@@ -305,13 +305,13 @@ A bid to provide a charging service. Typically sent from a charging station to a
 ```shell
 curl "bidding_endpoint_here" \
   --data "request_uid=ae7bd8f67f3089c" \
-  --data "expires_at=2017-12-11T15:18:59+03:00" \
+  --data "expires_at=1519093577681" \
   --data "price=2300000000000000000,30000000000000000" \
   --data "price_type=kwh,kwh" \
   --data "price_description=Price per kWh,VAT per kWh" \
   --data "latitude=32.785889" \
   --data "longitude=-79.935569" \
-  --data "available_from=2017-12-11T15:18:54+03:00" \
+  --data "available_from=1519093577681" \
   --data "available_until=2017-12-12T15:18:54+03:00" \
   --data "location_name=IKEA parking lot B" \
   --data "location_name_lang=eng" \
@@ -340,14 +340,14 @@ fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
     "request_uid": "ae7bd8f67f3089c",
-    "expires_at": "2017-12-11T15:18:59+03:00",
+    "expires_at": "1519093577681",
     "price": "2300000000000000000,30000000000000000",
     "price_type": "kwh,kwh",
     "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
+    "available_from": "1519093577681",
+    "available_until": "1519093577681",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -380,8 +380,8 @@ payload = {
     "price_description": "Price per kWh,VAT per kWh",
     "latitude": "32.785889",
     "longitude": "-79.935569",
-    "available_from": "2017-12-11T15:18:54+03:00",
-    "available_until": "2017-12-12T15:18:54+03:00",
+    "available_from": "1519093577681",
+    "available_until": "1519093577681",
     "location_name": "IKEA parking lot B",
     "location_name_lang": "eng",
     "location_house_number": "372",
@@ -417,7 +417,7 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>This bid will expire at this time. Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
@@ -459,14 +459,14 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">available_from</code>
       <div class="type required">required</div>
     </td>
-    <td>The time from which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time from which the charging station can be made available. Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
       <code class="field">available_until</code>
       <div class="type">optional</div>
     </td>
-    <td>The time until which the charging station can be made available. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time until which the charging station can be made available. Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>

@@ -24,7 +24,7 @@ For example, a user might search for a ride together with her pet dog, within a 
 
 ```shell
 curl "discovery_endpoint_here" \
-  --data "pickup_at=2017-12-11T15:18:54+03:00" \
+  --data "pickup_at=1519093577681" \
   --data "pickup_latitude=32.787793" \
   --data "pickup_longitude=-79.935005" \
   --data "destination_latitude=32.7693531" \
@@ -53,7 +53,7 @@ fetch(discoveryEndPoint, {
 ```python
 import requests
 payload = {
-    "pickup_at": "2017-12-11T15:18:54+03:00",
+    "pickup_at": "1519093577681",
     "pickup_latitude": "32.787793",
     "pickup_longitude": "-79.935005",
     "destination_latitude": "32.7693531",
@@ -246,7 +246,7 @@ requests.post("discovery_endpoint_here", data=payload)
       <code class="field">pickup_at</code>
       <div class="type">optional</div>
     </td>
-    <td>The time at which the requester would like to be picked up (if undefined, pick up time will be ASAP). Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The time at which the requester would like to be picked up (if undefined, pick up time will be ASAP). Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
@@ -519,7 +519,7 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">expires_at</code>
       <div class="type required">required</div>
     </td>
-    <td>This bid will expire at this time. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>This bid will expire at this time. Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
@@ -561,7 +561,7 @@ requests.post("bidding_endpoint_here", data=payload)
       <code class="field">pickup_at</code>
       <div class="type required">required</div>
     </td>
-    <td>The estimated time of arrival at the pick up location. Specified in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="blank">ISO 8601</a> including date, time, and time offset from UTC</td>
+    <td>The estimated time of arrival at the pick up location. Specified as time in milliseconds since <a href="https://en.wikipedia.org/wiki/Unix_time">Epoch/Unix Time</a></td>
   </tr>
   <tr>
     <td>
