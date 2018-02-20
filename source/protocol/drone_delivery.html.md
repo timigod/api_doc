@@ -70,7 +70,7 @@ In response, a drone might send back a bid with a price, the estimated time of a
 
 ```shell
 curl "bidding_endpoint_here" \
-  --data "request_uid=ae7bd8f67f3089c" \
+  --data "need_id=ae7bd8f67f3089c" \
   --data "expires_at=2017-12-11T15:18:59+03:00" \
   --data "price=2000000000000000,20000000000000000" \
   --data "price_type=second,flat" \
@@ -85,7 +85,7 @@ const biddingEndPoint = "bidding_endpoint_here";
 fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
-    "request_uid": "ae7bd8f67f3089c",
+    "need_id": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2000000000000000,20000000000000000",
     "price_type": "second,flat",
@@ -99,7 +99,7 @@ fetch(biddingEndPoint, {
 ```python
 import requests
 payload = {
-    "request_uid": "ae7bd8f67f3089c",
+    "need_id": "ae7bd8f67f3089c",
     "expires_at": "2017-12-11T15:18:59+03:00",
     "price": "2000000000000000,20000000000000000",
     "price_type": "second,flat",
@@ -337,7 +337,7 @@ A bid to provide a delivery service. Typically sent from a delivery drone to the
 
 ```shell
 curl "bidding_endpoint_here" \
-  --data "request_uid=ae7bd8f67f3089c" \
+  --data "need_id=ae7bd8f67f3089c" \
   --data "expires_at=1519093577681" \
   --data "price=2000000000000000,20000000000000000" \
   --data "price_type=second,flat" \
@@ -357,7 +357,7 @@ const biddingEndPoint = "bidding_endpoint_here";
 fetch(biddingEndPoint, {
   method: "POST",
   body: JSON.stringify({
-    "request_uid": "ae7bd8f67f3089c",
+    "need_id": "ae7bd8f67f3089c",
     "expires_at": "1519093577681",
     "price": "2000000000000000,20000000000000000",
     "price_type": "second,flat",
@@ -376,7 +376,7 @@ fetch(biddingEndPoint, {
 ```python
 import requests
 payload = {
-    "request_uid": "ae7bd8f67f3089c",
+    "need_id": "ae7bd8f67f3089c",
     "expires_at": "1519093577681",
     "price": "2000000000000000,20000000000000000",
     "price_type": "second,flat",
@@ -395,7 +395,7 @@ requests.post("bidding_endpoint_here", data=payload)
 <table class="arguments">
   <tr>
     <td>
-      <code class="field">request_uid</code>
+      <code class="field">need_id</code>
       <div class="type required">required</div>
     </td>
     <td>The UID of the request. This arrives as part of the request</td>
